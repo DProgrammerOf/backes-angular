@@ -88,6 +88,14 @@ export class VeiculosMapaComponent implements OnDestroy {
     clearInterval(this.veiculosTimer);
   }
 
+  sendCallNative(event: any): void {
+    if (window.parent.postMessage) {
+      window.parent.postMessage(event, '*');
+    } else {
+      alert('error call native ' + event.type);
+    }
+  }
+
   MoneyBRL(i:any) {
     var v = i.replace(/\D/g,'');
     v = (v/100).toFixed(2) + '';
@@ -447,17 +455,29 @@ export class VeiculosMapaComponent implements OnDestroy {
           {
             text: 'Waze',
             icon: 'WAZE-ICON',
-            handler: () => window.open("https://waze.com/ul?ll=" + veiculo.latitude + "," + veiculo.longitude + "&z=10")
+            handler: () => this.sendCallNative({ 
+              type: 'openLink', 
+              url: "https://waze.com/ul?ll=" + veiculo.latitude + "," + veiculo.longitude + "&z=10", 
+              target: '_system' 
+            })
           },
           {
             text: 'Google Maps',
             icon: 'fa-google',
-            handler: () => window.open("https://www.google.com/maps/search/?api=1&query=" + veiculo.latitude + "," + veiculo.longitude)
+            handler: () => this.sendCallNative({ 
+              type: 'openLink', 
+              url: "https://www.google.com/maps/search/?api=1&query=" + veiculo.latitude + "," + veiculo.longitude, 
+              target: '_system' 
+            })
           },
           {
             text: 'Street View',
             icon: 'fa-street-view',
-            handler: () => window.open("https://maps.google.com/maps?q=&layer=c&cbll=" + veiculo.latitude + "," + veiculo.longitude)
+            handler: () => this.sendCallNative({ 
+              type: 'openLink', 
+              url: "https://maps.google.com/maps?q=&layer=c&cbll=" + veiculo.latitude + "," + veiculo.longitude, 
+              target: '_system' 
+            })
           }
         ]
       )
