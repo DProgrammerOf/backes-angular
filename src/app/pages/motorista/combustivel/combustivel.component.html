@@ -1,0 +1,145 @@
+<main class="home" [class.content-motorista-app-android]="this.app.platform?.toLocaleLowerCase() == 'android'">
+    <div class="header">
+        <div class="top">
+            <span (click)="back()">
+                Voltar
+            </span>
+        </div>
+
+        <div class="middle">
+            <div class="controller-date">
+                <span class="controller" (click)="backMonth()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M328 112L184 256l144 144"/></svg>
+                </span>
+                <span class="input-date">
+                    {{ this.dateFilter.locale('pt-br').format('MMMM Y') | titlecase }}
+                </span>
+                <span class="controller" (click)="nextMonth()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M184 112l144 144-144 144"/></svg>
+                </span>
+            </div>
+
+            <div class="controller-calc">
+                <div class="month-calc">
+                    <span class="total-label">Total do mês</span>
+                    <span class="total-calc">{{ this.abastecimentosCalculos.total | currency }}</span>
+                </div>
+
+                <div class="month-types-calc">
+                    <div>
+                        <span class="type-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M416 128L192 384l-96-96"/></svg>
+                        </span>
+                        <span class="type-label">Pago</span>
+                        <span class="type-cost">{{ this.abastecimentosCalculos.pago | currency }}</span>
+                    </div>
+
+                    <div>
+                        <span class="type-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M85.57 446.25h340.86a32 32 0 0028.17-47.17L284.18 82.58c-12.09-22.44-44.27-22.44-56.36 0L57.4 399.08a32 32 0 0028.17 47.17z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M250.26 195.39l5.74 122 5.73-121.95a5.74 5.74 0 00-5.79-6h0a5.74 5.74 0 00-5.68 5.95z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M256 397.25a20 20 0 1120-20 20 20 0 01-20 20z"/></svg>
+                        </span>
+                        <span class="type-label">A pagar</span>
+                        <span class="type-cost">{{ this.abastecimentosCalculos.naoPago | currency }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+
+        <div class="list-despesas">
+
+            <div class="item-search">
+                <div class="input-group">
+                    <span class="input-group-text" id="label-search-bem">
+                        <i class="icon ion-md-search" aria-hidden="true"></i>
+                    </span>
+                    <input type="text" class="form-control" 
+                    placeholder="Nome do fornecedor"
+                    aria-label="Procure pelo nome do fornecedor" 
+                    aria-describedby="label-search-bem"
+                    [(ngModel)]="this.searchValue"
+                    (input)="this.filterType()" />
+                    <span class="input-group-text" id="close-search-bem">
+                        <i class="icon ion-md-close" aria-hidden="true"
+                        *ngIf="this.searchValue" (click)="this.filterTypeCancel()"></i>
+                    </span>
+                    <span class="input-group-text" id="switch-list">
+                        <i class="icon ion-md-business" aria-hidden="true"
+                        (click)="this.setTypeList('abastecimento')" *ngIf="this.typeList == 'fornecedor'"></i>
+                        <span class="fuel-icon" 
+                        (click)="this.setTypeList('fornecedor')" *ngIf="this.typeList == 'abastecimento'">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M32 64C32 28.7 60.7 0 96 0H256c35.3 0 64 28.7 64 64V256h8c48.6 0 88 39.4 88 88v32c0 13.3 10.7 24 24 24s24-10.7 24-24V222c-27.6-7.1-48-32.2-48-62V96L384 64c-8.8-8.8-8.8-23.2 0-32s23.2-8.8 32 0l77.3 77.3c12 12 18.7 28.3 18.7 45.3V168v24 32V376c0 39.8-32.2 72-72 72s-72-32.2-72-72V344c0-22.1-17.9-40-40-40h-8V448c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32V64zM96 80v96c0 8.8 7.2 16 16 16H240c8.8 0 16-7.2 16-16V80c0-8.8-7.2-16-16-16H112c-8.8 0-16 7.2-16 16z"/></svg>    
+                        </span>
+                    </span>
+                </div> 
+            </div>
+            
+            <div *ngIf="this.typeList === 'abastecimento'" class="items-abastecimento">
+                <div class="item" *ngFor="let item of this.abastecimentosFiltered">
+                    <div class="item-top">
+                        <span class="item-date">
+                            {{ item[0] | todate:'DD/MM/yyyy' }}
+                        </span>
+                        <span class="item-value">
+                            {{ item[1] | currency }}
+                        </span>
+                    </div>
+                    
+                    <div class="item-middle" *ngFor="let infos of item[2]" (click)="this.actionAbastecimento(infos)">
+                        <span class="item-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M32 64C32 28.7 60.7 0 96 0H256c35.3 0 64 28.7 64 64V256h8c48.6 0 88 39.4 88 88v32c0 13.3 10.7 24 24 24s24-10.7 24-24V222c-27.6-7.1-48-32.2-48-62V96L384 64c-8.8-8.8-8.8-23.2 0-32s23.2-8.8 32 0l77.3 77.3c12 12 18.7 28.3 18.7 45.3V168v24 32V376c0 39.8-32.2 72-72 72s-72-32.2-72-72V344c0-22.1-17.9-40-40-40h-8V448c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32V64zM96 80v96c0 8.8 7.2 16 16 16H240c8.8 0 16-7.2 16-16V80c0-8.8-7.2-16-16-16H112c-8.8 0-16 7.2-16 16z"/></svg>    
+                        </span>
+                        <span class="item-title">
+                            {{ infos.atributos.fornecedor?.nome }}
+                        </span>
+                        <span class="item-desc">
+                        {{ infos.atributos.litros }} litros
+                        </span>
+                        <span class="item-value">
+                            {{ infos.valor | currency }}
+                        </span>
+                        <span class="item-status">
+                            <span [class.status-pago]="infos.atributos.pago" [class.status-nao-pago]="!infos.atributos.pago"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="this.typeList === 'fornecedor'" class="items-abastecimento">
+                <div class="item">
+                    <div class="item-top">
+                        <span class="item-date">
+                            Fornecedores
+                        </span>
+                        <span class="item-value">
+                            Local
+                        </span>
+                    </div>
+
+                    <div class="item-middle" *ngFor="let item of this.fornecedoresFiltered">
+                        <span class="item-icon">
+                            <i class="icon ion-md-business" aria-hidden="true"></i>
+                        </span>
+                        <span class="item-title">
+                            {{ item.nome }}
+                        </span>
+                        <span class="item-desc">
+                            {{ item.cnpj | tocnpj }}
+                        </span>
+                        <span class="item-value">
+                            {{ item.cidade }}/{{ item.estado }}
+                        </span>
+                        <span class="item-status"></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <span id="btnCreate" (click)="openCreate()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M256 112v288M400 256H112"/></svg>
+    </span>
+</main>

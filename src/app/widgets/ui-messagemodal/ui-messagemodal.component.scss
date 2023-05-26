@@ -1,0 +1,17 @@
+:host {
+    position: absolute;
+    width: 90%;
+    left: 5%;
+    bottom: 0;
+    z-index: 12;
+}
+
+
+
+p {
+    color: white;
+    padding: .6rem .8rem;
+    font-size: .9rem;
+    text-align: center;
+    opacity: 0;
+}

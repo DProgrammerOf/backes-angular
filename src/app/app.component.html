@@ -1,0 +1,15 @@
+<main class="containter" [@routeAnimations]="this.getRouteAnimationData()">
+  <router-outlet></router-outlet>
+</main>
+
+<div id="loading" [@loadingOpen]="this.loading ? 'opened' : 'closed'">
+  <div class="loading-content" [@loadingContentShowHidden]="this.loading ? 'opened' : 'closed'">
+    <span class="svg-loading">
+        
+        <div class="loader"></div>
+    </span>
+    <span class="text-loading" *ngIf="loadingText != ''">
+        {{ loadingText }}
+    </span>
+  </div>
+</div>

@@ -1,0 +1,2 @@
+<p [@messageModalShow]="this.status" [class.bg-success]="!this.error" [class.bg-danger]="this.error" [class.messagemodal-android]="this.app.platform?.toLocaleLowerCase() == 'android'"
+class="text-white">{{ this.text }}</p>

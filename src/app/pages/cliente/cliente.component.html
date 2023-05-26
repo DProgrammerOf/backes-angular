@@ -1,0 +1,49 @@
+<div [ngClass]="{'nav-menu-app': true, 'opened': this.menu === true, 'closed': this.menu === false, 'ios': this.app.platform?.toLocaleLowerCase() == 'ios'}">
+    <div class="logo">
+        <!-- <img src="assets/original/imgs/logo.png" width="80%" height="175px"/> -->
+        <i class="icon ion-md-close" (click)="this.setMenu(false)"></i>
+    </div>
+    <ul class="menu">
+        <li routerLink="veiculos" (click)="this.setMenu(false)"  routerLinkActive="active-link">
+            <i class="fa fa-car" aria-hidden="true"></i>
+            <span>Veículos</span>
+        </li>
+        <li routerLink="historico" (click)="this.setMenu(false)"  routerLinkActive="active-link">
+            <i class="fa fa-share" aria-hidden="true"></i>
+            <span>Histórico</span>
+        </li>
+        <li routerLink="compartilhar" (click)="this.setMenu(false)"  routerLinkActive="active-link">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+            <span>Compartilhar</span>
+        </li>
+        <li routerLink="notificacoes" (click)="this.setMenu(false)"  routerLinkActive="active-link">
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+            <span>Notificações</span>
+        </li>
+        <li routerLink="senha" (click)="this.setMenu(false)"  routerLinkActive="active-link">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+            <span>Alterar senha</span>
+        </li>
+        <li (click)="this.logout()">
+            <i class="fa fa-power-off" aria-hidden="true"></i>
+            <span>Logout</span>
+        </li>
+        <li class="user-link" routerLink="perfil" (click)="this.setMenu(false)"  routerLinkActive="active-link">
+            <span>
+                <i class="icon ion-md-person" aria-hidden="true"> </i>
+                <div class="badget-online">
+                    <span class="circle"></span>
+                    <span class="text">Ativo</span>
+                </div>
+            </span>
+           
+            <span>Backes</span>
+        </li>
+    </ul>
+</div>
+
+<div [@routeClienteAnimations]="this.getRouteAnimationData()" >
+    <router-outlet></router-outlet>
+</div>
+
+<ng-container style="z-index: 11;" #overlay (click)="this.clickActionSheet(this)"></ng-container>

@@ -1,0 +1,300 @@
+.back-nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: .2rem;
+    
+    i, svg {
+        font-size: 1.3rem;
+        line-height: 1.3rem;
+    }
+
+    span {
+        font-size: 1.1rem;
+    }
+}
+
+main {
+    background-color: #f4f4f7;
+    padding: 1rem .8rem;
+    
+
+    .cards-bg {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 0rem;
+        padding-left: 1rem;
+
+
+        div.paradas {
+            display: flex;
+            flex-direction: row;
+            padding: 0 0;
+
+            .icone {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                width: 6px;
+
+                &::before, &::after {
+                    content: "";
+                    position: absolute;
+                    height: 50%;
+                    width: 6px;
+                    background-color: gray;
+                    z-index: 1;
+                }
+
+                &::before {
+                    top: 0;
+                }
+
+                &::after {
+                    bottom: 0;
+                }
+
+                span {
+                    background-color: grey;
+                    color: white;
+                    font-size: 2rem;
+                    line-height: 2rem;
+                    padding: 0.6rem;
+                    border-radius: 50%;
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    font-weight: bold;
+                    z-index: 2;
+                }
+            }
+
+
+            .infos {
+                display: flex;
+                flex-direction: column;
+                padding: 1rem 0;
+                padding-right: .5rem;
+                padding-left: 1.5rem;
+                gap: 1rem;
+                justify-content: left;
+
+                .endereco {
+                    text-align: left;
+                    justify-content: flex-start;
+                    color: gray;
+                    font-size: .8rem;
+                }
+
+                .tempo {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    gap: .4rem;
+                    font-weight: bold;
+                    color: gray;
+                    font-size: .9rem;
+
+                    i {
+                        font-size: 1.1rem;
+                        line-height: 1.1rem;
+                    }
+                }
+            }
+        }
+
+        div.viagem {
+            display: flex;
+            flex-direction: row;
+            padding: 0;
+
+            .icone {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                width: 6px;
+                
+
+                &::before, &::after {
+                    content: "";
+                    position: absolute;
+                    height: 50%;
+                    width: 6px;
+                    background-color: #186465;
+                    z-index: 1;
+                }
+
+                &::before {
+                    top: 0;
+                }
+
+                &::after {
+                    bottom: 0;
+                }
+
+                span {
+                    background-color: #186465;
+                    color: white;
+                    font-size: 1.4rem;
+                    line-height: 1.4rem;
+                    padding: 0.6rem;
+                    border-radius: 50%;
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    font-weight: bold;
+                    z-index: 2;
+                }
+            }
+
+
+            .infos {
+                display: grid;
+                grid-template-areas: 
+                "date-start travel-icon address-start" 
+                "date-icon travel-icon details" 
+                "date-end travel-icon address-end";
+                grid-gap: .2rem 1rem;
+                justify-content: left;
+                padding: 1rem 0;
+                padding-right: 0.5rem;
+                padding-left: 1.5rem;
+                grid-template-rows: 2fr 1fr 2fr;
+                grid-template-columns: 45px 12px 1fr;
+                border: 1px solid #f0f0f0;
+                border-right: 0;
+                border-left: 0;
+              
+                .inicio {
+                    grid-area: date-start;
+                }
+                .icon-date {
+                    grid-area: date-icon;
+                }
+                .final {
+                    grid-area: date-end;
+                }
+                .icon-travel { 
+                    grid-area: travel-icon;
+                }
+
+                .endereco-start {
+                    grid-area: address-start;
+                }
+                .calculos {
+                    grid-area: details;
+                }
+                .endereco-end {
+                    grid-area: address-end;
+                }
+  
+
+                .inicio, .final {
+                    font-size: 1.1rem;
+                    line-height: 1.1rem;
+                    color: black;
+                    font-weight: 500;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .icon-date {
+                    background-color: #ffc107;
+                    color: white;
+                    border-radius: 100%;
+                    width: 2rem;
+                    height: 2rem;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: bold;
+                    font-size: 1.2rem;
+                    line-height: 1.2rem;
+                    align-self: center;
+                    justify-self: center;
+                }
+
+                .icon-travel {
+                    display: flex;
+                    flex-direction: column;
+                    gap: .5rem;
+                    justify-content: space-around;
+                    .circle {
+                        // width: 8px;
+                        // height: 10px;
+                        // border-radius: 100%;
+                        // background-color: gray;
+                    }
+                    .line {
+                        width: 2px;
+                        background-color: gray;
+                        height: 60%;
+                        margin-left: 50%;
+                        transform: translateX(-50%);
+                    }
+                }
+                
+                .endereco {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    text-align: left;
+                    justify-content: flex-start;
+                    color: gray;
+                    font-size: .8rem;
+                    position: relative;
+
+                    &::before {
+                        position: absolute;
+                        left: calc(-1rem + -11px);
+                        content: "";
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 100%;
+                        background-color: gray;
+                    }
+                }
+
+                .calculos {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
+                    gap: 1rem;
+
+                    .distancia, .tempo {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-start;
+                        gap: .2rem;
+                        font-weight: bold;
+                        color: black;
+                        font-size: .9rem;
+
+                        i {
+                            font-size: 1.1rem;
+                            line-height: 1.1rem;
+                            color: gray;
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+}

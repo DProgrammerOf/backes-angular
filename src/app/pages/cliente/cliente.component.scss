@@ -1,0 +1,142 @@
+.nav-menu-app {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: -100%;
+    height: 100%;
+    width: 65%;
+    max-width: 300px;
+    background: white;
+    color: #585858;
+
+    display: flex;
+    flex-direction: column;
+
+    &.ios {
+        padding-top: 1rem;
+    }
+
+    &.opened {
+        left: 0;
+        animation-name: open;
+        animation-duration: .4s;
+    }
+
+    &.closed {
+        left: -100%;
+        animation-name: close;
+        animation-duration: .3s;
+    }
+
+    .logo {
+        // background: #186465;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        i {
+            font-size: 2rem;
+            margin: 1rem 0;
+        }
+    }
+
+    .menu {
+        display: flex;
+        flex-direction: column;
+        left: 0;
+        list-style: none;
+        padding: 0;
+
+        li {
+            padding: .8rem 1rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            gap: .8rem;
+            background-color:  transparent;
+            color: black;
+            border-radius: 2rem;
+            margin: 1rem 1rem;
+
+            &.active-link {
+                background-color: rgba($color: #186465, $alpha: 0.2);
+                color: black;
+                border-radius: 2rem;
+                margin: 1rem 1rem;
+            }
+
+            &.user-link {
+                margin-left: 0;
+                > :first-child {
+                    border: 1px solid #eee;
+                    border-radius: 50%;
+                    padding: 1.1rem 1.2rem;
+                    position: relative;
+
+                    .badget-online {
+                        position: absolute;
+                        bottom: -.4rem;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        border: 1px solid #eee;
+                        border-radius: 6px;
+                        padding: .3rem .2rem;
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: nowrap;
+                        justify-content: center;
+                        align-items: center;
+                        gap: .3rem;
+                        background-color: white;
+
+                        .circle {
+                            display: block;
+                            background-color: #32db64;
+                            -webkit-box-shadow: 0px 0px 7px 0px rgba(50,219,100,1);
+                            -moz-box-shadow: 0px 0px 7px 0px rgba(50,219,100,1);
+                            box-shadow: 0px 0px 7px 0px rgba(50,219,100,1);
+                            width: 9px;
+                            height: 9px;
+                            border-radius: 100%;
+                        }
+
+                        .text {
+                            font-size: .7rem;
+                            line-height: .7rem;
+                            color: #32db64;
+                        }
+                    }
+                }
+
+                > :last-child {
+                    font-size: 1.1rem;
+                }
+            }
+            
+            i {
+                font-size: 1.2rem;
+            }
+
+            span {
+                font-size: 1rem;
+                line-height: .9rem;
+            }
+
+            * {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+@keyframes open {
+    from {left: -100%;}
+    to {left: 0;}
+}
+
+@keyframes close {
+    from {left: 0;}
+    to {left: -100%;}
+}

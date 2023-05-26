@@ -1,0 +1,98 @@
+main.content-client-app {
+    padding: 0;
+    background-color: #e1e1e1;
+    display: flex;
+    flex-direction: column;
+
+    padding-bottom: 55px;
+}
+
+div.alertas-list {
+    background-color: white;
+    padding: 0 .5rem;
+}
+div.alerta-card {
+    padding: 1rem 0;
+    font-size: 1rem;
+    font-weight: 500;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    border-bottom: 1px solid #fafafa;
+    
+    div {
+        width: 45%;
+    }
+
+
+    .data {
+        font-weight: normal;   
+    }
+
+    .identificacao {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: .4rem;
+
+        .placa {
+            margin-left: 10px;   
+        }
+
+        .texto {
+            text-align: left;
+        }
+
+        .item-vermelho{
+            background: #D21818;
+            padding: 5px;
+            border-radius: 10px;
+                color: white;
+        }
+        .item-verde{
+            background: #43a047;
+            padding: 5px;
+            border-radius: 10px;
+                color: white;
+        }
+        .item-azul{
+            background: #488aff;
+            padding: 5px;
+            border-radius: 10px;
+                color: white;
+        }
+        .item-amarelo{
+            background: #ffc125;
+            padding: 5px;
+            border-radius: 10px;
+                color: white;
+        }
+    
+        .item-vermelho2{
+            background: #f53d3d;
+            padding: 5px;
+                border-radius: 10px;
+                color: white;
+        }
+        .item-laranja{
+            background: #eb5e28;
+            padding: 5px;
+                border-radius: 10px;
+                color: white;
+        }
+        .item-laranja{
+            background: #63b716;
+            padding: 5px;
+                border-radius: 10px;
+                color: white;
+        }
+        .item-turquesa{
+            background: #379680;
+            padding: 5px;
+                border-radius: 10px;
+                color: white;
+        }
+    }
+}

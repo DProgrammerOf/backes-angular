@@ -1,0 +1,22 @@
+<nav class="header-client-app">
+    <span class="back-nav" (click)="this.location.back()">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        <span>Back</span>
+    </span>
+    <h6>{{ this.titlePage }}</h6>
+    <div class="lista-actions">
+        <i class="icon ion-md-refresh" aria-hidden="true" (click)="this.refresh()"></i>
+    </div>
+</nav>
+
+<main class="content-client-app" [class.content-client-app-android]="this.app.platform?.toLocaleLowerCase() == 'android'" (click)="this.base.setMenu(false)" (click)="this.base.setMenu(false)">
+    <div class="cercas-list">
+        <div class="cerca-card" *ngFor="let cerca of this.cercas" (click)="selectCerca(cerca)" >
+            {{ cerca.nome }}
+        </div>
+    </div>
+
+    <button id="addCerca" class="btn btn-primary" (click)="addCerca()">
+        <i class="icon ion-md-add"></i>
+    </button>
+</main>

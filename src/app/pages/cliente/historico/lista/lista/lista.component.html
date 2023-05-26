@@ -1,0 +1,39 @@
+<nav class="header-client-app">
+    <span class="back-nav" (click)="this.location.back()">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        <span>Back</span>
+    </span>
+    <h6>{{ this.titlePage }}</h6>
+</nav>
+
+
+<main class="content-client-app" (click)="this.base.setMenu(false)">
+    <div class="cards-bg">
+        <div *ngFor="let local of this.historico">
+            <div>
+                <div class="top-card">
+                    <div>
+                      <span class="horario">{{ local.date | todate:'DD/MM/yyyy HH:mm:ss' }}</span>
+                    </div>
+                    <div>
+                        <span class="ignicao btn" [class.btn-backes-success]="local.ligado == 'S'" [class.btn-danger]="local.ligado == 'N'">
+                            {{ local.ligado == 'S' ? 'Ligado' : 'Desligado' }}
+                        </span>
+                    </div>
+                </div>
+                <div class="bottom-card">
+                    <div>
+                        <span class="endereco">{{ local.address }}</span>
+                    </div>
+                    <div>
+                        <i class="icon ion-md-speedometer" 
+                        [class.text-danger]="local.ligado == 'N'" [class.text-success]="local.ligado == 'S'"
+                        [class.fill-danger]="local.ligado == 'N'" [class.fill-success]="local.ligado == 'S'"></i>
+                        <span class="velocidade" text-end>{{ local.speed }}</span>
+                        <span class="unidade" text-end>Km/h</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

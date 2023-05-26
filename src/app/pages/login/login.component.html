@@ -1,0 +1,51 @@
+<div  class="login-content" >
+    <div class="logo-row">
+        <img src="assets/original/imgs/logo.png" />
+    </div>
+
+    <form class="form-container" (keydown.enter)="this.authenticate()">
+        
+      <div class="input-group group-login">
+        <input type="text" class="form-control"
+          placeholder="Usuário" [(ngModel)]="this.login" [ngModelOptions]="{standalone: true}" />
+          <span class="input-group-text">
+            <i class="icon ion-md-person" aria-hidden="true"></i>
+          </span>
+      </div>
+
+      <div class="input-group group-senha">
+        <input type="password" class="form-control"
+          placeholder="Senha" [(ngModel)]="this.password" [ngModelOptions]="{standalone: true}"/>
+          <span class="input-group-text">
+            <i class="icon ion-md-unlock" aria-hidden="true"></i>
+          </span>
+      </div>
+      
+      <div class="form-check form-switch group-remember mt-2">
+        <div class="cl-toggle-switch">
+          <label class="cl-switch">
+            <input [(ngModel)]="this.remember" [ngModelOptions]="{standalone: true}" id="remember" type="checkbox" role="switch" />
+            <span></span>
+          </label>
+        </div>
+        <label class="form-check-label" for="remember">Lembrar senha</label>
+      </div>
+
+      <div class="action-buttons mt-4">
+          <a class="btn" (click)="this.authenticate()">Entrar</a>
+      </div>
+    </form>
+</div>
+
+<!-- Modal content -->
+<div id="myModal" class="modal" [class.modal-open]="this.modal.opened" (click)="closeModal()">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <p [innerHTML]="this.modal.text"></p>
+  </div>
+
+</div>
+<script>
+</script>

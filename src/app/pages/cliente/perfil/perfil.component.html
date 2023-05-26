@@ -1,0 +1,52 @@
+<nav class="header-client-app">
+    <span class="menu-bar" (click)="this.base.setMenu(true)">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </span>
+    <h6>{{ this.titlePage }}</h6>
+</nav>
+
+
+<main class="content-client-app p-3" [class.content-client-app-android]="this.app.platform?.toLocaleLowerCase() == 'android'" (click)="this.base.setMenu(false)">
+
+    <div class="mb-3">
+        <label for="nome" class="form-label">Nome</label>
+        <input [disabled]="this.formDisabled" type="text" class="form-control" id="nome" [(ngModel)]="this.form.nome" placeholder="Informe seu nome">
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input [disabled]="this.formDisabled" type="text" class="form-control" id="email" [(ngModel)]="this.form.email" placeholder="Informe seu email">
+    </div>
+    <div class="mb-3">
+        <label for="celular" class="form-label">Celular</label>
+        <input [disabled]="this.formDisabled" type="text" class="form-control" id="celular" [(ngModel)]="this.form.celular" placeholder="Informe seu celular">
+    </div>
+    <div class="mb-3">
+        <label for="celular" class="form-label">Telefone Fixo</label>
+        <input [disabled]="this.formDisabled" type="text" class="form-control" id="celular" [(ngModel)]="this.form.telefone" placeholder="Informe seu telefone fixo">
+    </div>
+    <div class="mb-3">
+        <label for="telefone" class="form-label">Endereço</label>
+        <input [disabled]="this.formDisabled" type="text" class="form-control" id="telefone" [(ngModel)]="this.form.endereco" placeholder="Informe seu endereço">
+    </div>
+    <div class="mb-3">
+        <label for="bairro" class="form-label">Bairro</label>
+        <input [disabled]="this.formDisabled" type="text" class="form-control" id="bairro" [(ngModel)]="this.form.bairro" placeholder="Informe seu bairro">
+    </div>
+    <div class="mb-3">
+        <label for="cidade" class="form-label">Cidade</label>
+        <input [disabled]="this.formDisabled" type="text" class="form-control" id="cidade" [(ngModel)]="this.form.cidade" placeholder="Informe seu cidade">
+    </div>
+    <div class="mb-3">
+        <label for="estado" class="form-label">Estado</label>
+        <input [disabled]="this.formDisabled" type="text" class="form-control" id="estado" [(ngModel)]="this.form.estado" maxlength="2" placeholder="Informe seu estado">
+    </div>
+    <div class="mb-3">
+        <label for="cep" class="form-label">CEP</label>
+        <input [disabled]="this.formDisabled" type="text" class="form-control" id="cep" [(ngModel)]="this.form.cep" maxlength="9" placeholder="Informe seu cep">
+    </div>
+
+    <div class="d-grid mt-4">
+        <button class="btn btn-primary p-2" type="button" (click)="this.save()">Alterar Dados</button>
+    </div>
+
+</main>

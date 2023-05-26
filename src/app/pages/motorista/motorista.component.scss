@@ -1,0 +1,24 @@
+.header {
+    margin-top: 2rem;
+}
+
+/* SELECT2 */
+.select2-container {
+    z-index: 1061 !important;
+}
+.select2-selection { 
+    height: 2.625em !important;
+    padding: 0 0.75em !important;
+    border: 1px solid #d9d9d9 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.select2-selection__arrow {
+    height: 100% !important;
+}
+/* SELECT2 */
+
+.swal2-html-container {
+    padding: 1rem 0;
+}

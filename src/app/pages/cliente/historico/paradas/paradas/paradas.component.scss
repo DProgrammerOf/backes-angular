@@ -1,0 +1,61 @@
+main.content-client-app {
+    padding: 0 !important
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+.controlador {
+    position: absolute;
+    right: 10px;
+    bottom: 1.2rem;
+    width: 140px;
+    height: 40px;
+    background: white;
+    border-radius: 2px;
+
+    z-index: 400;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 100%;
+    }
+
+
+    .info-controlador {
+      font-size: 1.2rem;
+      line-height: 1.2rem;
+      font-weight: 500;
+      border: 1px solid #ccc;
+      border-top: 0;
+      border-bottom: 0;
+      height: 100%;
+      flex: 1;
+      width: 100%;
+    }
+
+    #prox {
+      line-height: 1rem;
+      font-size: .9rem;
+    }
+
+    #ant {
+      line-height: 1rem;
+      font-size: .9rem;
+      i, svg {
+        transform: rotate(180deg);
+      }
+    }
+}
+
+/* PARADAS IN STYLE.SCSS */

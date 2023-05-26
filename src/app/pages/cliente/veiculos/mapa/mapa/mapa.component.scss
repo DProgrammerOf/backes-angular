@@ -1,0 +1,219 @@
+.header-client-app {
+    position: absolute;
+    background: transparent;
+    top: 2rem;
+    left: 0;
+    z-index: 401;
+
+    .back-nav {
+        background-color: white;
+        width: 2.5rem;
+        height: 2.5rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border-radius: 100%;
+        i, svg {
+            color: #999;
+            font-size: 1rem;
+            margin-left: -.2rem;
+        }
+    }
+}
+
+main.content-client-app {
+    padding: 0 !important;
+    height: 100vh !important;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+#info-bem {
+    z-index: 401;
+    width: 100%;
+    padding-bottom: 1rem;
+    background: white;
+    position: absolute;
+    border-radius: 5% 5% 0 0;
+    display: flex;
+    flex-direction: column;
+    bottom: -100%;
+
+    &.hidden {
+        animation-name: hide;
+        animation-duration: .3s;
+    }
+    &.visible {
+        bottom: 0;
+        animation-name: show;
+        animation-duration: .4s;
+    }
+    &.init {
+        display: none;
+    }
+
+    .info-desc {
+        padding: .6rem 5% 0 5%;
+        display: flex;
+        flex-direction: row;
+        margin-bottom: .3rem;
+        gap: 1rem;
+        align-items: center;
+
+        .velocidade {
+            width: 3rem;
+            height: 3rem;
+            border: 4px solid #d40000;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            &.ign-on {
+                border-color: #8dd35f;
+            }
+            span {
+                font-size: 22px;
+                margin-left: 0px;
+                font-weight: bold;
+                min-width: 14px;
+                text-align: center;
+
+                &.isOne {
+                    margin-left: -1px;
+                }
+            }
+        }
+
+        .icon-car.ign-on {
+            background: #8dd35f;
+        }
+
+        .identificacao {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .placa {
+                font-weight: bold !important;
+                font-size: 1.3rem !important;
+            }
+            .modelo {
+                font-size: 1rem;
+            }
+        }
+        .close-info-bem {
+            position: absolute;
+            right: 2.5%;
+            top: 2%;
+            color: rgba(0,0,0,.4);
+            font-size: 1.3rem;
+        }
+    }
+
+    .status {
+        padding: 0 5%;
+        display: flex;
+        flex-direction: column;
+
+        .address {
+            // font-size: 1.2rem;
+            font-size: 0.8rem;
+        }
+
+        .last-att {
+            // font-size: 1.2rem;
+            font-size: 0.7rem;
+            color: rgba(0,0,0,0.4);
+        }
+    }
+
+    hr {
+        width: 100%;
+        height: 1px;
+        background-color: rgba(0,0,0,.1);
+        position: relative;
+        margin: .5rem 0;
+    }
+
+    .infos {
+        padding: 0 5%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        column-gap: 4%;
+        row-gap: .5rem;
+
+        div {
+            width: 22%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+
+            .icon-car {
+                font-size: 2.5rem;
+            }
+
+            .desc {
+                font-size: .8rem;
+            }
+
+            .desc-valor {
+                text-align: center;
+                font-size: .8rem;
+                font-weight: bolder;
+            }
+        }
+    }
+}
+
+#btn-acoes {
+    z-index: 401;
+    position: absolute;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    gap: .3rem;
+    padding: 0 .6rem;
+    width: 100%;
+    bottom: 1rem;
+}
+
+
+.btn-in-map {
+    background: white;
+    color: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    box-shadow: none;
+    border: none;
+    i, svg {
+        font-size: 1.4rem;
+        color: rgba(0,0,0,.6);
+    }
+}
+.btn-vel {
+    text-transform: inherit;
+    width: auto;
+    border-radius: 10px;
+    margin-left: auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: row;
+    gap: .4rem;
+    align-items: center;
+    font-weight: 500;
+
+    i {
+        line-height: 1.5rem;
+    }
+
+    span {
+        line-height: 1rem;
+    }
+}

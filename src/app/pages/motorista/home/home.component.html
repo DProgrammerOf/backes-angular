@@ -1,0 +1,33 @@
+<main class="home">
+    <div class="header">
+        <div class="top">
+            <span>
+                <img src="assets/imagens/app-motorista/logobackes.webp" alt="Logomarca Backes Rastreamento">
+            </span>
+            <i class="icon ion-md-exit" (click)="exit()"></i>
+        </div>
+
+        <div class="bottom">
+            <div>
+                <img src="assets/imagens/app-motorista/perfil-motorista.jpg" alt="Imagem de perfil do motorista">
+            </div>
+            <span>{{ motorista.perfil?.nome }}</span>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div (click)="this.openQRCode()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><rect x="336" y="336" width="80" height="80" rx="8" ry="8"/><rect x="272" y="272" width="64" height="64" rx="8" ry="8"/><rect x="416" y="416" width="64" height="64" rx="8" ry="8"/><rect x="432" y="272" width="48" height="48" rx="8" ry="8"/><rect x="272" y="432" width="48" height="48" rx="8" ry="8"/><rect x="336" y="96" width="80" height="80" rx="8" ry="8"/><rect x="288" y="48" width="176" height="176" rx="16" ry="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><rect x="96" y="96" width="80" height="80" rx="8" ry="8"/><rect x="48" y="48" width="176" height="176" rx="16" ry="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><rect x="96" y="336" width="80" height="80" rx="8" ry="8"/><rect x="48" y="288" width="176" height="176" rx="16" ry="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
+            <span>Identificador</span>
+        </div>
+
+        <div (click)="this.openCombustivel()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M256.05 80.65Q263.94 80 272 80c106 0 192 86 192 192s-86 192-192 192A192.09 192.09 0 0189.12 330.65" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32"/><path d="M256 48C141.12 48 48 141.12 48 256a207.29 207.29 0 0018.09 85L256 256z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
+            <span>Despesas</span>
+        </div>
+    </div>
+</main>
+
+<div id="router-painel-motoristas" [@routeMotoristaAnimations]="this.getRouteAnimationData()">
+    <router-outlet></router-outlet>
+</div>

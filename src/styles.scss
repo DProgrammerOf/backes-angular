@@ -1,0 +1,418 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+    margin: 0;
+    padding: 0;
+    // background-color: #186465!important;
+    background-color: #186465;
+    background-repeat: no-repeat;
+    background-size: cover; 
+    min-height: 100vh;
+    min-width: 100vw;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* GLOBAL TO APP MOTORISTA */
+.content-motorista-app-android {
+    padding-bottom: 8rem !important;
+    
+    #btnCreate {
+        bottom: 4rem !important;
+    }
+}
+/* GLOBAL TO APP MOTORISTA */
+
+
+/* GLOBAL TO APP CLIENTE */
+nav.header-client-app {
+    font-family: 'GoogleSans', sans-serif !important;
+}
+nav.header-client-app {
+    position: relative;
+    color: white;
+    border-color: #b2b2b2;
+    background-color: #186465;
+    height: 55px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: .6rem;
+
+    h6 {
+        position: absolute;
+        padding: 0;
+        margin: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+
+    .lista-actions {
+        font-size: 1.1rem;
+    }
+}
+main.content-client-app {
+    font-family: 'Roboto', sans-serif !important;
+    height: calc(100vh);
+    overflow-y: scroll;
+    background-color: white;
+    padding: 1rem 1.5rem;
+}
+
+.map-paradas {
+
+    .iconpop {
+        width: 12px;
+        height: 12px;
+        margin-right: 4px;
+        margin-left: 1px;
+    }
+
+    .ft-marker-details {
+        font-size: 12px !important;
+        line-height: 1.5 !important;
+        font-family: "Helvetica Neue", Arial, Helvetica, sans-serif !important;
+
+        span, div, p {
+            font-size: 12px !important;
+            line-height: 1.5 !important;
+            font-family: "Helvetica Neue", Arial, Helvetica, sans-serif !important;
+        }
+    }
+
+    .numbered-icon {
+        background: none;
+        border: none;
+        min-width: 31px !important;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .number {
+            position: absolute;
+            top: 6px;
+            font-size: .8rem;
+            width: 25px;
+            text-align: center;
+            left: 3px;
+            font-weight: bold;
+            color: #00cd98;
+        }
+    }
+}
+
+#map {
+    .iconpop{ 
+		width: 12px;
+		height: 12px;
+    }
+
+    hr {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+}
+.leaflet-cluster-anim .leaflet-marker-icon, .leaflet-cluster-anim .leaflet-marker-shadow {
+    -webkit-transition: -webkit-transform 0.3s ease-out, opacity 0.3s ease-in;
+    -moz-transition: -moz-transform 0.3s ease-out, opacity 0.3s ease-in;
+    -o-transition: -o-transform 0.3s ease-out, opacity 0.3s ease-in;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-in;
+}
+
+.leaflet-cluster-spider-leg {
+    /* stroke-dashoffset (duration and function) should match with leaflet-marker-icon transform in order to track it exactly */
+    -webkit-transition: -webkit-stroke-dashoffset 0.3s ease-out, -webkit-stroke-opacity 0.3s ease-in;
+    -moz-transition: -moz-stroke-dashoffset 0.3s ease-out, -moz-stroke-opacity 0.3s ease-in;
+    -o-transition: -o-stroke-dashoffset 0.3s ease-out, -o-stroke-opacity 0.3s ease-in;
+    transition: stroke-dashoffset 0.3s ease-out, stroke-opacity 0.3s ease-in;
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip{
+    box-shadow: none;
+}
+
+.leaflet-control-layers .leaflet-control{
+    box-shadow: none;
+}
+
+.leaflet-control-zoom leaflet-bar leaflet-control, .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
+    box-shadow: none;
+    border: none;
+}
+
+.leaflet-control-layers-toggle {
+    background-image: url(assets/original/imgs/layers-2x.png);
+    background-size: 26px 26px;
+    background-position: 25% 25%;
+}
+
+.leaflet-retina .leaflet-control-layers-toggle {
+    background-image: url(assets/original/imgs/layers-2x.png);
+    background-size: 26px 26px;
+    background-position: 25% 25%;
+}
+
+.leaflet-control-layers.leaflet-control {
+    width: 36px;
+    height: 36px;
+}
+
+.leaflet-control-layers-expanded {
+    width: auto !important;
+    height: auto !important;
+}
+
+.bar-button-md[icon-only], .bar-button-ios[icon-only]{
+    padding:10px;
+}
+
+.leaflet-touch .leaflet-bar a {
+    width: 30px !important;
+    height: 30px !important;
+    line-height: 30px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1rem !important;
+    margin: auto !important;
+}
+
+.leaflet-control-layers-selector {
+    margin: 0.6rem 0.2rem;
+}
+.leaflet-div-icon {
+    background: transparent;
+    border: none;
+    min-width: 44px;
+}
+#leaflet-control-icon {
+    svg, i {
+        width: 1.4rem;
+    }
+}
+.menu-bar {
+    padding: 1rem .5rem;
+}
+
+.back-nav {
+    span {
+        padding-left: .3rem;
+    }
+}
+
+
+main.content-client-app:not([class*="content-client-app-android"]) {
+  //  padding-bottom: 65px !important;
+}
+
+.leaflet-control-attribution {
+    display: none;
+}
+
+.marker-cluster div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: .7rem;
+}
+
+.swal2-popup {
+    border-radius: 1.5rem !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1.2rem !important;
+
+    .swal2-actions.btn-dialog-actions {
+        width: 100%;
+        padding: 0 1rem;
+        margin-top: 2rem;
+    }
+    .swal2-confirm {
+        background-color: #32db64;
+        border-color: #32db64;
+        font-size: 1rem;
+        font-weight: bold;
+        color: white;
+        border-radius: 3rem;
+        width: 45%;
+        padding: .8rem 0rem;
+        text-transform: uppercase;
+        letter-spacing: .3px;
+
+        &:focus-visible {
+            box-shadow: none !important;
+            outline: none;
+        }
+
+        &:focus {
+            box-shadow: none;
+            border: none;
+            outline: none;
+        }
+    }
+    .swal2-cancel {
+        background-color: transparent;
+        border: none;
+        font-size: 1rem;
+        font-weight: bold;
+        color: rgb(88, 88, 88);
+        border-radius: 3rem;
+        width: 45%;
+        padding: .8rem 0rem;
+        text-transform: uppercase;
+        letter-spacing: .3px;
+
+        &:focus-visible {
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        &:focus {
+            border: none;
+            box-shadow: none;
+            outline: none;
+        }
+
+        &:active {
+            background-color: transparent;
+            font-weight: bold;
+            color: rgb(88, 88, 88);
+        }
+    }
+
+    .swal2-title {
+        font-size: 1.2rem !important;
+        font-weight: bold !important;
+        letter-spacing: 0.5px;
+        color: rgba(0,0,0,0.8);
+    }
+
+    .swal2-input {
+        box-shadow: none !important;
+        .swal2-input:focus, .swal2-file:focus, .swal2-textarea:focus {
+            outline: none !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+    }
+
+    .swal2-html-container {
+        width: 70% !important;
+        align-self: center;
+        justify-self: center;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        letter-spacing: .7px;
+        color: rgba(0,0,0,0.6);
+        margin-top: 1rem;
+
+        input {
+            width: 100% !important;
+        }
+    }
+    
+    .swal2-image {
+        margin-bottom: 0 !important;
+        margin-top: 1rem !important;
+    }
+}
+main.content-client-app {
+    background-color: white;
+    height: calc(100vh - 55px);
+}
+/* GLOBAL TO APP CLIENTE */
+
+
+/* GLOBAL ANDROID MODIFICATIONS */
+nav.header-client-app {
+    margin-top: 1.5rem !important;
+}
+
+.btn-acoes-android {
+    bottom: 4rem !important;
+}
+
+.map-veiculo-android {
+    .leaflet-bottom.leaflet-right {
+        bottom: 8rem !important;
+    }
+}
+
+.map-veiculos-android {
+    .leaflet-bottom.leaflet-right {
+        bottom: 4rem !important;
+    }
+}
+
+.content-client-app-android {
+    padding-bottom: 8rem !important;
+    
+    #addCerca, #addLink {
+        bottom: 4rem !important;
+    }
+
+    #replay-control {
+        bottom: calc(4rem + 110px + 2%) !important;
+    }
+
+    #replay-infos {
+        bottom: calc(4rem + 1%) !important;
+    }
+
+    #controladorParadas {
+        bottom: 5.2rem;
+    }
+}
+
+.info-bem-android {
+    padding-bottom: 4rem !important;
+}
+
+.messagemodal-android {
+    margin-bottom: 4rem !important;
+}
+/* GLOBAL ANDROID MODIFICATIONS */
+
+
+/* COLORS BOOTSTRAP -> IONIC */
+$primary:    #488aff;
+$danger:     #f53d3d;
+$greecustom: #32db64;
+@font-face {
+	font-family: GoogleSans;
+	src: url("assets/original/fonts/GoogleSans-Regular.ttf");
+}
+
+body, span, button, h1, h2, h3, h4, h5, h6, p {
+	font-family: 'GoogleSans' !important;
+}
+
+.text-success {
+    color: $greecustom !important;
+}
+.bg-success {
+    background-color: $greecustom !important;
+}
+.btn-backes-success {
+    color: white;
+    background-color: $greecustom !important;
+    border-color: $greecustom !important;
+}
+.text-danger {
+    color: $danger;
+}
+.bg-danger {
+    background-color: $danger;
+}
+.fill-success {
+    fill: $greecustom;
+}
+.fill-danger {
+    fill: $danger;   
+}
+/* COLORS BOOTSTRAP -> IONIC */

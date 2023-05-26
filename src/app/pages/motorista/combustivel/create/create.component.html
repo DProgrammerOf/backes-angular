@@ -1,0 +1,214 @@
+<main>
+    <div id="header-create" class="header">
+        <div class="top">
+            <span class="close" (click)="back()">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </span>
+
+            <span class="title">
+                Novo Abastecimento
+            </span>
+        </div>
+    </div>
+
+    <div id="content-create" class="content">
+        <div class="form">
+            <div class="input-images">
+                <h6 class="group-title">Abastecimento</h6>
+                <p class="group-desc mb-1">
+                    Preencha o formulário com imagens relevantes como: valor do hodômetro e do comprovante de pagamento.
+                </p>
+
+                <div id="list-images" class="image-scroll">
+                    <img *ngFor="let image of imagens; index as i;"
+                        (click)="delImagem(i)"
+                        [src]="image.safeUrl ? image.safeUrl : 'assets/imagens/app-motorista/thumbnail-image.svg'"
+                        class="rounded float-end"
+                        alt="Imagem anexo ao novo abastecimento"
+                    />
+                    <input id="input-images" type="file" (change)="readURL($event)" accept="image/png, image/gif, image/jpeg" hidden>
+                </div>
+
+                <div class="image-infos">
+                    <span>
+                        <span id="image-count">{{countImagens}}</span>
+                        /3 fotos adicionadas
+                    </span>
+
+                    <a id="addImage" (click)="addImagem()">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M256 112v288M400 256H112"/></svg>
+                        <span>
+                            Adicionar foto
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="input-infos">
+                <div id="dateInput" class="input-group form-floating mt-2">
+                    <input type="datetime-local" class="form-control" id="date" [(ngModel)]="formInputs.data">
+                    <label for="date">Data</label>
+                    <span class="input-group-text" (click)="openInputDate()">
+                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+                <div id="label-datehour">Informe a data, o odometro, quantidade litros e o valor total <b>referente ao abastecimento</b>.</div>
+
+                <div id="internoInput" class="input-group form-floating mt-2">
+                    <div class="form-check form-switch" style="padding-left: .2rem;">
+                        <div class="cl-toggle-switch">
+                            <label class="cl-switch">
+                              <input [(ngModel)]="formInputs.interno" id="interno" type="checkbox" role="switch" class="form-check-input"/>
+                              <span>Bomba interna:</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="!formInputs.interno" id="fornecedorInput" class="input-group mt-2">
+                    <div id="fornecedor" class="form-select" [class.selected]="this.selectFornecedor.text" (click)="this.openSelect('fornecedor')">
+                        <span (click)="this.openSelect('fornecedor')">{{ this.selectFornecedor.text || 'Escolha um fornecedor' }}</span>
+                    </div>
+                    <span id="addFornecedor" class="input-group-text" (click)="addFornecedor()">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+                <div id="litrosInput" class="input-group form-floating mt-2">
+                    <input type="number" class="form-control" id="litros" [value]="formInputs.litros" (input)="maskValue($event, 'litros')" placeholder="0">
+                    <label for="litros">Litros</label>
+                    <span class="input-group-text">
+                        <i class="fa fa-tint" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+                <div id="valorInput" class="input-group form-floating mt-2">
+                    <input type="number" class="form-control" id="valor" [value]="formInputs.valor" (input)="maskValue($event, 'valor')" placeholder="0">
+                    <label for="valor">Valor</label>
+                    <span class="input-group-text">
+                        <i class="fa fa-money" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+                <div id="statusInput" class="input-group form-floating mt-2">
+                    <div class="form-check form-switch" style="padding-left: .2rem;">
+                        <div class="cl-toggle-switch">
+                            <label class="cl-switch">
+                              <input [(ngModel)]="formInputs.pago" id="pago" type="checkbox" role="switch" class="form-check-input"/>
+                              <span>Abastecimento pago pelo motorista:</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tipoInput" class="input-group mt-2">
+                    <div id="tipo" class="form-select" [class.selected]="this.selectCombustivel.text" (click)="this.openSelect('combustivel')">
+                        <span (click)="this.openSelect('combustivel')">{{ this.selectCombustivel.text || 'Escolha o tipo do combustível' }}</span>
+                    </div>
+                </div>
+
+                <div id="hodometroInput" class="input-group form-floating mt-2">
+                    <input type="text" class="form-control" id="hodometro" [value]="formInputs.hodometro" (input)="maskValue($event, 'hodometro')" placeholder="0">
+                    <label for="hodometro">Hodômetro</label>
+                    <span class="input-group-text">
+                        <i class="fa fa-road" aria-hidden="true"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="input-veiculos mt-4">
+                <h6 class="group-title">Veículo</h6>
+                <p class="group-desc mb-1">Selecione o veículo no qual o abastecimento foi feito.</p>
+                <div id="veiculo" class="form-select" [class.selected]="this.selectVeiculo.text" (click)="this.openSelect('veiculo')">
+                    <span (click)="this.openSelect('veiculo')">{{ this.selectVeiculo.text || 'Escolha um veículo' }}</span>
+                </div>
+            </div>
+
+            <div class="input-buttons mt-4">
+                <a id="createCombustivel" (click)="save()">
+                    Salvar
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+<!-- ACTION SHEET c/Filtro  @VEICULOS -->
+<div id="overlaySelectVeiculo" [class]="selectVeiculo.overlayClass" (click)="closeSelect('veiculo')"></div>
+<div id="selectVeiculo" [@selectVeiculosShow]="selectVeiculo.selectClass">
+	<div class="input-group">
+        <span class="input-group-text label-search-select">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </span>
+        <input type="text" class="form-control"
+        placeholder="Placa, motorista ou veículo"
+        aria-label="Procure por placa, motorista ou veículo"
+        [(ngModel)]="this.selectVeiculo.filterValue"
+        (input)="this.filterSelect('veiculo')" tabindex="-1" />
+        <span class="input-group-text close-search-select">
+            <i class="icon ion-md-close" aria-hidden="true"
+            *ngIf="this.selectVeiculo.filterValue" (click)="this.filterCancelSelectBem('veiculo')"></i>
+        </span>
+    </div>
+    <div class="select-list">
+        <div *ngFor="let item of this.selectVeiculo.filtered" (click)="selectedOnSelect(item, 'veiculo')">
+			({{item.name}}) {{ item.marca }}
+		</div>
+    </div>
+</div>
+<!-- ACTION SHEET c/Filtro  @VEICULOS -->
+
+
+<!-- ACTION SHEET c/Filtro  @FORNECEDORES -->
+<div id="overlaySelectFornecedor" [class]="selectFornecedor.overlayClass" (click)="closeSelect('fornecedor')"></div>
+<div id="selectFornecedor" [@selectVeiculosShow]="selectFornecedor.selectClass">
+	<div class="input-group">
+        <span class="input-group-text label-search-select">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </span>
+        <input type="text" class="form-control"
+        placeholder="Nome da empresa"
+        aria-label="Procure pelo nome da empresa"
+        [(ngModel)]="this.selectFornecedor.filterValue"
+        (input)="this.filterSelect('fornecedor')" tabindex="-1" />
+        <span class="input-group-text close-search-select">
+            <i class="icon ion-md-close" aria-hidden="true"
+            *ngIf="this.selectFornecedor.filterValue" (click)="this.filterCancelSelectBem('fornecedor')"></i>
+        </span>
+    </div>
+    <div class="select-list">
+        <div *ngFor="let item of this.selectFornecedor.filtered" (click)="selectedOnSelect(item, 'fornecedor')">
+            {{ item.nome }}
+		</div>
+    </div>
+</div>
+<!-- ACTION SHEET c/Filtro  @FORNECEDORES -->
+
+
+<!-- ACTION SHEET c/Filtro  @TIPO COMBUSTIVEL -->
+<div id="overlaySelectCombustivel" [class]="selectCombustivel.overlayClass" (click)="closeSelect('combustivel')"></div>
+<div id="selectCombustivel" [@selectVeiculosShow]="selectCombustivel.selectClass">
+	<div class="input-group">
+        <span class="input-group-text label-search-select">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </span>
+        <input type="text" class="form-control"
+        placeholder="Tipo do combustivel"
+        aria-label="Procure pelo tipo do combustivel"
+        [(ngModel)]="this.selectCombustivel.filterValue"
+        (input)="this.filterSelect('combustivel')" tabindex="-1" />
+        <span class="input-group-text close-search-select">
+            <i class="icon ion-md-close" aria-hidden="true"
+            *ngIf="this.selectCombustivel.filterValue" (click)="this.filterCancelSelectBem('combustivel')"></i>
+        </span>
+    </div>
+    <div class="select-list">
+        <div *ngFor="let item of this.selectCombustivel.filtered" (click)="selectedOnSelect(item, 'combustivel')">
+            {{ item.tipo }}
+		</div>
+    </div>
+</div>
+<!-- ACTION SHEET c/Filtro  @TIPO COMBUSTIVEL -->
