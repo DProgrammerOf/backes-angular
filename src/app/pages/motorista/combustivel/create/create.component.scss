@@ -335,6 +335,25 @@ main {
     }
 }
   
+#selectFornecedor > .select-list > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        gap: .1rem;
+        border-bottom: none;
+    }
+    .item-cnpj, .item-cidade {
+        color: #999;
+        font-size: .8rem;
+        line-height: .8rem;
+    }
+}
+
 #selectVeiculo,
 #selectFornecedor,
 #selectCombustivel {

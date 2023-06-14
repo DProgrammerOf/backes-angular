@@ -181,7 +181,11 @@
     </div>
     <div class="select-list">
         <div *ngFor="let item of this.selectFornecedor.filtered" (click)="selectedOnSelect(item, 'fornecedor')">
-            {{ item.nome }}
+            <div>
+                <span class="item-nome">{{ item.nome }}</span>
+                <span class="item-cnpj">{{ item.cnpj | tocnpj }}</span>
+            </div>
+            <span class="item-cidade">{{ item.cidade ? item.cidade + '/' + item.estado : '' }}</span>
 		</div>
     </div>
 </div>

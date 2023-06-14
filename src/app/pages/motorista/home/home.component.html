@@ -11,12 +11,16 @@
             <div>
                 <img src="assets/imagens/app-motorista/perfil-motorista.jpg" alt="Imagem de perfil do motorista">
             </div>
-            <span>{{ motorista.perfil?.nome }}</span>
+            <span class="infos">
+                <span>{{ motorista.perfil?.nome }}</span>
+                <span class="linked" *ngIf="this.vinculado">Vinculado com: {{ veiculo?.name }}</span>
+            </span>
+            
         </div>
     </div>
 
     <div class="panel">
-        <div (click)="this.openQRCode()">
+        <div (click)="this.openQRCode()" [class.link-disable]="this.vinculado">
             <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><rect x="336" y="336" width="80" height="80" rx="8" ry="8"/><rect x="272" y="272" width="64" height="64" rx="8" ry="8"/><rect x="416" y="416" width="64" height="64" rx="8" ry="8"/><rect x="432" y="272" width="48" height="48" rx="8" ry="8"/><rect x="272" y="432" width="48" height="48" rx="8" ry="8"/><rect x="336" y="96" width="80" height="80" rx="8" ry="8"/><rect x="288" y="48" width="176" height="176" rx="16" ry="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><rect x="96" y="96" width="80" height="80" rx="8" ry="8"/><rect x="48" y="48" width="176" height="176" rx="16" ry="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><rect x="96" y="336" width="80" height="80" rx="8" ry="8"/><rect x="48" y="288" width="176" height="176" rx="16" ry="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
             <span>Identificador</span>
         </div>
@@ -25,9 +29,93 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M256.05 80.65Q263.94 80 272 80c106 0 192 86 192 192s-86 192-192 192A192.09 192.09 0 0189.12 330.65" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32"/><path d="M256 48C141.12 48 48 141.12 48 256a207.29 207.29 0 0018.09 85L256 256z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
             <span>Despesas</span>
         </div>
+
+        <div (click)="this.desvincular()" *ngIf="this.vinculado">
+            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                fill="#000000" stroke="none">
+                <path d="M2460 4668 c-25 -14 -58 -44 -75 -67 l-30 -43 0 -937 0 -938 28 -40
+                c85 -123 271 -122 354 1 l28 41 0 936 0 936 -27 39 c-44 62 -90 88 -167 92
+                -55 3 -74 -1 -111 -20z"/>
+                <path d="M1259 4246 c-62 -16 -86 -35 -219 -172 -400 -412 -610 -927 -610
+                -1499 0 -337 70 -645 214 -940 111 -227 245 -413 427 -592 173 -170 320 -276
+                529 -383 330 -168 646 -238 1025 -227 270 8 477 49 715 143 492 195 891 566
+                1130 1049 294 593 295 1295 5 1890 -114 234 -246 415 -436 600 -135 131 -166
+                149 -255 143 -116 -7 -194 -91 -194 -207 0 -79 24 -120 129 -218 150 -139 271
+                -303 366 -491 275 -548 233 -1215 -109 -1727 -253 -378 -625 -628 -1079 -727
+                -88 -19 -133 -22 -332 -23 -205 0 -242 3 -340 24 -605 130 -1088 557 -1280
+                1132 -148 447 -112 924 101 1339 89 173 178 293 323 439 68 68 130 139 138
+                159 8 19 14 58 14 87 0 139 -128 237 -262 201z"/>
+                </g>
+            </svg>
+            <span>Desvincular</span>
+        </div>
+
+        <div (click)="this.trocar()" *ngIf="this.vinculado">
+            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                fill="#000000" stroke="none">
+                <path d="M1010 4258 c-42 -9 -77 -42 -509 -471 -311 -311 -469 -475 -482 -502
+                -24 -51 -24 -119 0 -170 13 -27 171 -191 482 -501 453 -451 465 -462 514 -472
+                55 -12 123 -2 162 23 60 39 102 114 103 180 0 82 -33 125 -299 390 l-251 250
+                1272 5 1273 5 38 27 c22 14 51 43 65 65 23 33 27 48 27 113 0 65 -4 80 -27
+                113 -14 22 -43 51 -65 65 l-38 27 -1273 5 -1272 5 251 250 c266 265 299 308
+                299 390 0 22 -9 58 -19 80 -45 99 -143 147 -251 123z"/>
+                <path d="M3997 2976 c-89 -24 -156 -111 -157 -201 0 -82 33 -125 299 -390
+                l251 -250 -1272 -5 -1273 -5 -38 -27 c-22 -14 -51 -43 -65 -65 -23 -33 -27
+                -48 -27 -113 0 -65 4 -80 27 -113 14 -22 43 -51 65 -65 l38 -27 1273 -5 1272
+                -5 -251 -250 c-266 -265 -299 -308 -299 -390 1 -66 43 -141 103 -180 39 -25
+                107 -35 162 -23 49 10 61 21 514 472 311 310 469 474 482 501 24 51 24 119 0
+                170 -13 27 -171 191 -482 501 -460 458 -464 462 -517 473 -29 6 -54 11 -55 10
+                -1 0 -23 -6 -50 -13z"/>
+                </g>
+            </svg>
+            <span>Troca rápida</span>
+        </div>
     </div>
 </main>
 
 <div id="router-painel-motoristas" [@routeMotoristaAnimations]="this.getRouteAnimationData()">
     <router-outlet></router-outlet>
 </div>
+
+
+<!-- ACTION SHEET c/Filtro  @VEICULOS -->
+<div id="overlaySelectVeiculo" [class]="selectVeiculo.overlayClass" (click)="closeSelect()"></div>
+<div id="selectVeiculo" [@selectVeiculosShow]="selectVeiculo.selectClass">
+    <div class="header-manual">Vinculação Manual</div>
+	<div class="input-group">
+        <span class="input-group-text label-search-select">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </span>
+        <input type="text" class="form-control"
+        placeholder="Placa, motorista ou veículo"
+        aria-label="Procure por placa, motorista ou veículo"
+        [(ngModel)]="this.selectVeiculo.filterValue"
+        (input)="this.filterSelectVeiculo()" tabindex="-1" />
+        <span class="input-group-text close-search-select">
+            <i class="icon ion-md-close" aria-hidden="true"
+            *ngIf="this.selectVeiculo.filterValue" (click)="this.filterCancelSelectVeiculo()"></i>
+        </span>
+    </div>
+    <div id="select-list-veiculos-vincular" class="select-list">
+        <div *ngFor="let item of this.selectVeiculo.filtered"
+        (click)="selectedOnSelect(item)" 
+        [attr.id]="'vincularId-'+item.id" 
+        [attr.attr-selected]="this.veiculoSelected?.id === item.id ? 'true' : 'false'">
+			({{item.name}}) {{ item.marca }}
+		</div>
+    </div>
+    <div class="bottom-manual">
+        <span class="checkVincular">
+            <input class="form-check-input" type="checkbox" id="checkboxPeriodo" [(ngModel)]="this.selectVeiculo.checkboxPeriodo">
+            <label class="form-check-label" for="checkboxPeriodo">
+                Até o fim do dia
+            </label>
+        </span>
+        <button class="btn btnVincular" [disabled]="this.veiculoSelected === undefined" (click)="vincular()">
+            Vincular
+        </button>
+    </div>
+</div>
+<!-- ACTION SHEET c/Filtro  @VEICULOS -->
