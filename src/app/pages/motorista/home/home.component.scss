@@ -54,10 +54,21 @@
                 }
             }
             
-            span {
+            .infos {
                 color: white;
                 font-weight: bold;
                 font-size: 1.2rem;
+                
+                display: flex;
+                flex-direction: column;
+                gap: 0;
+                justify-content: center;
+                align-items: center;
+                 
+                .linked {
+                    font-size: .8rem;
+                    line-height: .8rem;
+                }
             }
         }
     }
@@ -66,9 +77,14 @@
         margin-top: 1rem;
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         justify-content: center;
         align-items: center;
         gap: 1rem;
+
+        .link-disable {
+            opacity: .3;
+        }
 
         div {
             width: 40%;
@@ -99,3 +115,126 @@
     width: 100%;
     height: 100%;
 }
+
+
+/* ACTIONSHEET FILTER: Veiculos */
+#overlaySelectVeiculo {
+    position: absolute;
+    background-color: black;
+    opacity: 0.26;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    &.hidden {
+        z-index: -1;
+    }
+
+    &.visible {
+        z-index: 12;
+    }
+}
+  
+
+#selectVeiculo {
+    position: absolute;
+    bottom: calc(-15px);
+    left: 0;
+    width: 100%;
+    height: 460px;
+    z-index: -1;
+    padding-top: 15px;
+    background-color: white;
+    border-radius: 15px 15px 0 0;
+
+    .header-manual {
+        padding: .35rem 0.75rem;
+        display: flex;
+        flex-direction: column;
+        font-weight: bold;
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    .bottom-manual {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        color: #666;
+
+        .checkVincular {
+            display: flex;
+            flex-direction: row;
+            gap: .4rem;
+            font-size: 1rem;
+            line-height: 1rem;
+            align-items: center;
+            
+            input {
+                border: 1px solid rgba(0,0,0,.2);
+                margin-top: -1px;
+            }
+        }
+
+        .btnVincular {
+            background-color: #186465;
+            color: white;
+            padding: .5rem 1rem;
+            border-radius: 5px;
+        }
+    }
+
+    .select-list {
+        height: 300px;
+        overflow-y: scroll;
+
+        div[attr-selected=true],
+        div.selected {
+            background-color: #186465;
+            color: white;
+        }
+
+        div {
+            border-radius: 0;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow-x: hidden;
+            padding-top: 0.65rem;
+            padding-bottom: 0.65rem;
+        }
+        div:not(:last-child) {
+            border-bottom: 1px solid #fafafa;
+        }
+    }
+
+    div {
+        box-shadow: none;
+        border-radius: 15px;
+        padding: .5rem .4rem;
+
+        span.label-search-select{
+            background: white;
+            border-radius: 15px 0 0 15px;
+            border-right: 0;
+        }
+        span.close-search-select {
+            background: white;
+            border-radius: 0 15px 15px 0;
+            border-left: 0;
+        }
+
+        input {
+            border-left: 0;
+            border-right: 0;
+        }
+
+        input:focus {
+            box-shadow: none;
+            border-color: #ced4da;
+        }
+    }
+}
+/* ACTIONSHEET FILTER: Veiculos */

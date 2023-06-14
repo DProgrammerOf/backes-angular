@@ -542,7 +542,11 @@ export class CombustivelCreateComponent implements OnInit {
       });
     } else if (type == 'fornecedor') {
       return this.fornecedores?.filter( (fornecedor) => {
-        if (fornecedor.nome)
+        if (fornecedor.nome && fornecedor.cnpj && fornecedor.cidade && fornecedor.estado)
+          return (
+            fornecedor.nome.toString() + fornecedor.cnpj + fornecedor.cidade + fornecedor.estado
+          ).toLowerCase().indexOf(text.toLowerCase()) > -1;
+        else if (fornecedor.nome)
           return fornecedor.nome?.toLowerCase().indexOf(text.toLowerCase()) > -1;
         else
           return false;
