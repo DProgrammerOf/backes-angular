@@ -15,8 +15,10 @@ import Swal from 'sweetalert2';
   animations: [slideOutAnimationMotorista, showSelectVeiculos]
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  photo: string = '';
-  routerPainelMotoristaLoaded: String | undefined;
+  // Timer refresh
+  timerRefresh: NodeJS.Timer | undefined;
+  
+  // Variaveis de dados
   veiculos: Veiculo[] | undefined;
   
   // Vinculacao
@@ -58,13 +60,23 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getRouteAnimationData() {
-    this.routerPainelMotoristaLoaded = this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
     // console.log('dev-rlv', this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation']);
     return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
   }
 
   ngOnInit(): void {
     this.app.setStatus(true);
+    this.refresh();
+    this.timerRefresh = setInterval(
+      () => this.refresh(), 5000
+    );
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.timerRefresh);
+  }
+
+  private refresh(): void {
     this.vinculacaoService.vinculo().subscribe(
       (response) => {
         if (response.success) {
@@ -73,9 +85,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
       }
     )
-  }
-
-  ngOnDestroy(): void {
   }
 
   protected openCombustivel() {
@@ -87,7 +96,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     // veiculos loaded in perfil
     console.log(this.motorista.veiculos);
-    this.veiculos = this.motorista.veiculos?.filter( veiculo => veiculo.motorista === 'Não Informado');
+    this.veiculos = this.motorista.veiculos;
     this.selectVeiculo.filtered = this.veiculos;
     this.openSelect();
   }
@@ -228,7 +237,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     })
   }
   trocar(): void {
-    this.veiculos = this.motorista.veiculos?.filter( veiculo => veiculo.motorista === 'Não Informado');
+    this.veiculos = this.motorista.veiculos;
     this.selectVeiculo.filtered = this.veiculos;
     this.selectVeiculo.overlayClass = 'visible';
     this.selectVeiculo.selectClass = 'opened';
