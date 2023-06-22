@@ -134,7 +134,8 @@ main {
             .input-infos {
                 margin-top: .4rem;
                 display: grid;
-                grid-template-areas: 
+                grid-template-areas:
+                "documentoInput documentoInput"
                 "dateInput dateInput"
                 "tipoInput tipoInput"
                 "hodometroInput hodometroInput"
@@ -148,6 +149,10 @@ main {
 
                 #dateInput {
                     grid-area: dateInput;
+                }
+
+                #documentoInput {
+                    grid-area: documentoInput;
                 }
 
                 #hourInput {

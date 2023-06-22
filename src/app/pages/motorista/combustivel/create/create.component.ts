@@ -78,6 +78,7 @@ export class CombustivelCreateComponent implements OnInit {
   formInputs = {
     veiculo: 0,
     data: moment().format("YYYY-MM-DDTHH:mm"),
+    documento: '',
     fornecedor: 0,
     valor: '',
     litros: '',
@@ -302,6 +303,7 @@ export class CombustivelCreateComponent implements OnInit {
         data.append('imagem-'+index.toString(), img.file)
       }
     });
+    data.append('documento', this.formInputs.documento);
     data.append('date', this.formInputs.data);
     data.append('litros', this.formInputs.litros.toString());
     data.append('valor', this.formInputs.valor.toString());
