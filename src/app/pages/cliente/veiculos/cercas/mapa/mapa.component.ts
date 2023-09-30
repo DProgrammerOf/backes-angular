@@ -193,9 +193,7 @@ export class CercasMapaComponent implements OnInit {
         this.markers[3].lat+','+this.markers[3].lng;
         this.service.create(this.veiculo, result.value, coordenadas).subscribe( (response) => {
           if (response.message) {
-            response.success 
-            ? this.swalWithBootstrapButtons.fire(response.message.toString(), '', 'success')
-            : this.swalWithBootstrapButtons.fire(response.message.toString(), '', 'error')
+            this.base.openMessage(response.success, response.message.toString());
           }
 
           setTimeout( () => this.location.back(), 500);

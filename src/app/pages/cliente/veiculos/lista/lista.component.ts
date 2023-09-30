@@ -154,11 +154,10 @@ export class VeiculosListaComponent implements OnDestroy {
     }).then((result) => {
       if (result.isConfirmed) {
         this.service.bloquear(veiculo.imei).subscribe( (response) => {
-          response.success
-          ? this.swalWithBootstrapButtons.fire(response.message.toString(), '', 'success').then(
-            () => this.refresh()
-          )
-          : this.swalWithBootstrapButtons.fire(response.message.toString(), '', 'error')
+          this.base.openMessage(response.success, response.message.toString());
+          if (response.success) {
+            this.refresh();
+          }
         });
       }
     })
@@ -176,11 +175,10 @@ export class VeiculosListaComponent implements OnDestroy {
     }).then((result) => {
       if (result.isConfirmed) {
         this.service.desbloquear(veiculo.imei).subscribe( (response) => {
-          response.success
-          ? this.swalWithBootstrapButtons.fire(response.message.toString(), '', 'success').then(
-            () => this.refresh()
-          )
-          : this.swalWithBootstrapButtons.fire(response.message.toString(), '', 'error')
+          this.base.openMessage(response.success, response.message.toString());
+          if (response.success) {
+            this.refresh();
+          }
         });
       }
     })
@@ -206,11 +204,10 @@ export class VeiculosListaComponent implements OnDestroy {
     }).then((result) => {
       if (result.isConfirmed) {
         this.service.velocidade_limite(veiculo.imei, parseInt(result.value)).subscribe( (response) => {
-          response.success
-          ? this.swalWithBootstrapButtons.fire(response.message.toString(), '', 'success').then(
-            () => this.refresh()
-          )
-          : this.swalWithBootstrapButtons.fire(response.message.toString(), '', 'error')
+          this.base.openMessage(response.success, response.message.toString());
+          if (response.success) {
+            this.refresh();
+          }
         });
       }
     })

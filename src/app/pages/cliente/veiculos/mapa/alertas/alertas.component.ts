@@ -103,10 +103,9 @@ export class VeiculosMapaAlertasComponent implements OnInit {
               this.app.setStatus(false);
               this.alertas = responseTwo.data;
             })
+
           }
-          response.success 
-            ? this.swalWithBootstrapButtons.fire(response.message?.toString(), '', 'success')
-            : this.swalWithBootstrapButtons.fire(response.message?.toString(), '', 'error')
+          this.base.openMessage(response.success, response.message?.toString() ?? '');
         })
       }
     })
@@ -122,9 +121,7 @@ export class VeiculosMapaAlertasComponent implements OnInit {
             this.alertas = responseTwo.data;
           })
         }
-        response.success 
-          ? this.swalWithBootstrapButtons.fire(response.message?.toString(), '', 'success')
-          : this.swalWithBootstrapButtons.fire(response.message?.toString(), '', 'error')
+        this.base.openMessage(response.success, response.message?.toString() ?? '');
       })
     }
   }

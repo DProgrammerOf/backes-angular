@@ -538,9 +538,7 @@ export class VeiculosMapaComponent implements OnDestroy {
     }).then((result) => {
       if (result.isConfirmed) {
         this.service.alterar_odometro(veiculo.imei, parseInt(result.value)).subscribe( (response) => {
-          response.success 
-          ? this.swalWithBootstrapButtons.fire(response.message.toString(), '', 'success')
-          : this.swalWithBootstrapButtons.fire(response.message.toString(), '', 'error')
+          this.base.openMessage(response.success, response.message.toString());
         });
       }
     })
@@ -566,9 +564,7 @@ export class VeiculosMapaComponent implements OnDestroy {
     }).then((result) => {
       if (result.isConfirmed) {
         this.service.alterar_horimetro(veiculo.imei, parseInt(result.value)).subscribe( (response) => {
-          response.success 
-          ? this.swalWithBootstrapButtons.fire(response.message.toString(), '', 'success')
-          : this.swalWithBootstrapButtons.fire(response.message.toString(), '', 'error')
+          this.base.openMessage(response.success, response.message.toString());
         });
       }
     })
@@ -594,9 +590,7 @@ export class VeiculosMapaComponent implements OnDestroy {
     }).then((result) => {
       if (result.isConfirmed) {
         this.service.alterar_motorista(veiculo.imei, result.value).subscribe( (response) => {
-          response.success 
-          ? this.swalWithBootstrapButtons.fire(response.message.toString(), '', 'success')
-          : this.swalWithBootstrapButtons.fire(response.message.toString(), '', 'error')
+          this.base.openMessage(response.success, response.message.toString());
         });
       }
     })
@@ -621,9 +615,7 @@ export class VeiculosMapaComponent implements OnDestroy {
         const gasto = (<HTMLInputElement>document.querySelector("#gastoCombustivel"))?.value;
         //;$("#gastoCombustivel").val();
         this.service.alterar_combustivel(veiculo.imei, parseFloat(preco.replace(',', '.')), parseInt(gasto)).subscribe( (response) => {
-          response.success 
-          ? this.swalWithBootstrapButtons.fire(response.message.toString(), '', 'success')
-          : this.swalWithBootstrapButtons.fire(response.message.toString(), '', 'error')
+          this.base.openMessage(response.success, response.message.toString());
         });
       }
     })
@@ -641,9 +633,7 @@ export class VeiculosMapaComponent implements OnDestroy {
     }).then((result) => {
       if (result.isConfirmed) {
         this.service.bloquear(veiculo.imei).subscribe( (response) => {
-          response.success 
-          ? this.swalWithBootstrapButtons.fire(response.message.toString(), '', 'success')
-          : this.swalWithBootstrapButtons.fire(response.message.toString(), '', 'error')
+          this.base.openMessage(response.success, response.message.toString());
         });
       }
     })
@@ -661,9 +651,7 @@ export class VeiculosMapaComponent implements OnDestroy {
     }).then((result) => {
       if (result.isConfirmed) {
         this.service.desbloquear(veiculo.imei).subscribe( (response) => {
-          response.success 
-          ? this.swalWithBootstrapButtons.fire(response.message.toString(), '', 'success')
-          : this.swalWithBootstrapButtons.fire(response.message.toString(), '', 'error')
+          this.base.openMessage(response.success, response.message.toString());
         });
       }
     })
