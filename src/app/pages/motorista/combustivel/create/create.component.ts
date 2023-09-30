@@ -11,6 +11,7 @@ import { Fornecedor, FornecedoresService } from 'src/app/services/motorista/forn
 import Swal from 'sweetalert2';
 import { showSelectVeiculos } from 'src/app/app.animation';
 import * as EstadosCidades from 'src/assets/json/estados-cidades.json';
+import { NgxImageCompressService } from 'ngx-image-compress';
 
 
 interface ImageForm {
@@ -119,7 +120,8 @@ export class CombustivelCreateComponent implements OnInit {
     private app: AppComponent,
     private motorista: MotoristaComponent,
     private service: CombustivelService,
-    private fornecedoresService: FornecedoresService
+    private fornecedoresService: FornecedoresService,
+    private imageCompress: NgxImageCompressService
   ){}
 
   ngOnInit(): void {
@@ -217,20 +219,53 @@ export class CombustivelCreateComponent implements OnInit {
     this.formInputs.veiculo = parseInt(value);
   }
 
+  private dataURLtoFile(dataurl:string, filename:string) {
+    var arr = dataurl?.split(','),
+      mime = arr[0].match(/:(.*?);/)?.[1],
+      bstr = atob(arr[arr.length - 1]), 
+      n = bstr.length, 
+      u8arr = new Uint8Array(n);
+    while(n--){
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, {type:mime});
+  }
+
   protected readURL(input:any): void {
     const target = input.target as HTMLInputElement;
     const files = target.files as FileList;
     if (files && files[0]) {
-      let url = window.URL.createObjectURL(files[0]);
-      let sanitizedUrl = this.sanitizer.bypassSecurityTrustUrl(url);
-      this.imagens[this.countImagens] = {
-        file: files[0],
-        safeUrl: sanitizedUrl,
-        url: url
-      }
-      this.countImagens++;
-      console.log(this.countImagens, this.imagens);
-      target.value = "";
+
+      var reader = new FileReader();
+      reader.readAsDataURL(files[0]);
+      reader.addEventListener(
+        "load",
+        () => {
+          // convert image file to base64 string
+          if (typeof reader?.result != 'string') {
+            return;
+          }
+          // Compress image 50%
+          this.imageCompress
+          .compressFile(reader.result, orientation, 50, 50)
+          .then(compressedImage => {
+            // Create object url to image compressed and load preview
+            var file_compressed = this.dataURLtoFile(compressedImage, files[0].name);
+            let url = window.URL.createObjectURL(file_compressed);
+            let sanitizedUrl = this.sanitizer.bypassSecurityTrustUrl(url);
+            this.imagens[this.countImagens] = {
+              file: file_compressed,
+              safeUrl: sanitizedUrl,
+              url: url
+            }
+            this.countImagens++;
+            target.value = "";
+          });
+        },
+        false,
+      );
+
+      
     }
   }
 
