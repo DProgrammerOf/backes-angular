@@ -180,7 +180,7 @@ export class HistoricoService {
           this.lastVeiculo = response.veiculo;
           this.lastRota = response.rota;
 
-          if (response.paradas && response.tempomovimento && response.gasto !== undefined) {
+          if (response.tempomovimento && response.gasto !== undefined) {
             this.lastRotaInfos = {
               paradas: response.paradas as Number,
               gasto: response.gasto,
