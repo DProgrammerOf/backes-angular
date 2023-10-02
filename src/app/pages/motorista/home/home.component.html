@@ -15,7 +15,7 @@
                 <span>{{ motorista.perfil?.nome }}</span>
                 <span class="linked" *ngIf="this.vinculado">Vinculado com: {{ veiculo?.name }}</span>
             </span>
-            
+
         </div>
     </div>
 
@@ -83,7 +83,7 @@
 <!-- ACTION SHEET c/Filtro  @VEICULOS -->
 <div id="overlaySelectVeiculo" [class]="selectVeiculo.overlayClass" (click)="closeSelect()"></div>
 <div id="selectVeiculo" [@selectVeiculosShow]="selectVeiculo.selectClass">
-    <div class="header-manual">Vinculação Manual</div>
+    <div class="header-manual"></div>
 	<div class="input-group">
         <span class="input-group-text label-search-select">
             <i class="fa fa-search" aria-hidden="true"></i>
@@ -100,8 +100,8 @@
     </div>
     <div id="select-list-veiculos-vincular" class="select-list">
         <div *ngFor="let item of this.selectVeiculo.filtered"
-        (click)="selectedOnSelect(item)" 
-        [attr.id]="'vincularId-'+item.id" 
+        (click)="selectedOnSelect(item)"
+        [attr.id]="'vincularId-'+item.id"
         [attr.attr-selected]="this.veiculoSelected?.id === item.id ? 'true' : 'false'">
 			({{item.name}}) {{ item.marca }}
 		</div>

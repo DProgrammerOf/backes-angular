@@ -96,7 +96,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     // veiculos loaded in perfil
     console.log(this.motorista.veiculos);
-    this.veiculos = this.motorista.veiculos;
+    this.veiculos = this.motorista.veiculos;//?.filter( veiculo => veiculo.motorista === 'Não Informado');
     this.selectVeiculo.filtered = this.veiculos;
     this.openSelect();
   }

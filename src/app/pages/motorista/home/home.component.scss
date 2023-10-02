@@ -53,18 +53,18 @@
                     width: 100%;
                 }
             }
-            
+
             .infos {
                 color: white;
                 font-weight: bold;
                 font-size: 1.2rem;
-                
+
                 display: flex;
                 flex-direction: column;
                 gap: 0;
                 justify-content: center;
                 align-items: center;
-                 
+
                 .linked {
                     font-size: .8rem;
                     line-height: .8rem;
@@ -136,7 +136,7 @@
         z-index: 12;
     }
 }
-  
+
 
 #selectVeiculo {
     position: absolute;
@@ -172,7 +172,7 @@
             font-size: 1rem;
             line-height: 1rem;
             align-items: center;
-            
+
             input {
                 border: 1px solid rgba(0,0,0,.2);
                 margin-top: -1px;
@@ -182,8 +182,12 @@
         .btnVincular {
             background-color: #186465;
             color: white;
-            padding: .5rem 1rem;
-            border-radius: 5px;
+            padding: .5rem 4rem;
+            border-radius: 15px;
+            font-weight: 700;
+
+
+
         }
     }
 
@@ -193,8 +197,10 @@
 
         div[attr-selected=true],
         div.selected {
-            background-color: #186465;
-            color: white;
+          background-color: #dd2525;
+          color: white;
+          border-radius: 15px;
+          font-weight: 800;
         }
 
         div {
