@@ -200,6 +200,9 @@ main.content-client-app {
 }
 
 .veiculo-search {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
     div {
         box-shadow: none;
         border-radius: 0;
@@ -236,7 +239,40 @@ main.content-client-app {
           box-shadow: none;
           border-color: #ced4da;
         }
-      }
+    }
+
+    .filter-group {
+        background: none;
+        width: 60px;
+        padding: 0;
+        margin: 0;
+
+        span {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            font-size: 22px;
+            line-height: 22px;
+
+            .count-funnel {
+                position: absolute;
+                background: #0d6efd;
+                color: white;
+                width: 14px;
+                height: 14px;
+                font-size: 10px;
+                line-height: 10px;
+                border-radius: 100%;
+                margin-left: 28px;
+                margin-top: 6px;
+            }
+        }
+        
+    }
 }
 
 .btn-dialog-actions {
@@ -284,4 +320,138 @@ main.content-client-app {
         //     display: none;
         // }
     }
+}
+
+// Lista popup
+#filter-popup {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+
+    &.content-client-app-android {
+        .filter-content {
+            height: calc(350px + 4rem) !important;
+        }
+    }
+
+    .filter-overlay {
+        background-color: rgba(0,0,0,.1);
+        height: 100%;
+        width: 100%;
+    }
+
+    .filter-content {
+        position: absolute;
+        width: 100%;
+        background-color: white;
+        border-radius: 1rem 1rem 0 0;
+        padding: 1.2rem 1.5rem;
+        margin: 0;
+        height: 350px;
+        bottom: -5px;
+        left: 0;
+
+        .filter-header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            h4 {
+                font-size: 20px;
+                line-height: 18px;
+                font-weight: bold;
+            }
+
+            .btnFilterSave {
+                font-size: 14px;
+                line-height: 14px;
+                color: #0d6efd;
+            }
+
+            * {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 0;
+                margin: 0;
+            }
+        }
+
+        .filter-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 1rem 0;
+
+            div {
+                display: flex;
+                gap: 6px;
+                align-items: center;
+                height: 35px;
+                width: 100%;
+                
+                label {
+                    width: 100%;
+                    font-size: 14px;
+                    line-height: 14px;
+                    display: flex;
+                    flex-direction: row;
+                    gap: 5px;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    .filter-count {
+                        background-color: #186465;
+                        color: white;
+                        width: 20px;
+                        height: 20px;
+                        font-size: 12px;
+                        line-height: 12px;
+                        border-radius: 5px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+
+                input {
+                    margin-top: -2px;
+                }
+            }
+        }
+    }
+
+    &.opened {
+        z-index: 12;
+
+        .filter-content {
+            bottom: -5px;
+            animation-name: open;
+            animation-duration: .2s;
+        }
+    }
+
+    &.closed {
+        z-index: -1;
+
+        .filter-content {
+            bottom: -350px;
+            animation-name: close;
+            animation-duration: .2s;
+        }
+    }
+}
+
+@keyframes open {
+    from {bottom: -350px;}
+    to {bottom: -5px;}
+}
+
+@keyframes close {
+    from {bottom: -5px;}
+    to {bottom: 370px;}
 }

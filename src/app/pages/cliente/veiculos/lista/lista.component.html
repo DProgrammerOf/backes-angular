@@ -30,6 +30,12 @@
                 *ngIf="this.searchValue" (click)="this.filterCancelSelectBem()"></i>
             </span>
         </div> 
+        <div class="filter-group" (click)="this.openFilterStatus(true)">
+            <span>
+                <i class="icon ion-md-funnel"></i>
+                <span class="count-funnel">{{filterStatus.inputsEnabled}}</span>
+            </span>
+        </div>
     </div>
     <div class="veiculo-card" [id]="item.id" [class.offcard]="item.status_sinal == 'D'" *ngFor="let item of this.veiculosFiltered">
         <div class="card-infos" (click)="mapaVeiculo(item)">
@@ -93,6 +99,60 @@
         </div>
 	</div>
 </main>
+
+<div id="filter-popup" [class.opened]="this.filterStatus.opened" [class.closed]="!this.filterStatus.opened" [class.content-client-app-android]="this.app.platform?.toLocaleLowerCase() == 'android'">
+    <div class="filter-overlay" (click)="this.openFilterStatus(false)"></div>
+    <div class="filter-content">
+        <div class="filter-header">
+            <h4>Filtros</h4>
+            <span class="btnFilterSave" (click)="this.saveFilterStatus()">Salvar</span>
+        </div>
+        <div class="filter-inputs">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="filter-ligado" [(ngModel)]="this.filterStatus.inputsTemp.ligado">
+                <label class="form-check-label" for="filter-ligado">
+                    Ligado <span class="filter-count">{{this.filterStatus.inputsCount.ligado}}</span>
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="filter-desligado" [(ngModel)]="this.filterStatus.inputsTemp.desligado">
+                <label class="form-check-label" for="filter-desligado">
+                    Desligado <span class="filter-count">{{this.filterStatus.inputsCount.desligado}}</span>
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="filter-ligado-parado" [(ngModel)]="this.filterStatus.inputsTemp.ligadoparado">
+                <label class="form-check-label" for="filter-ligado-parado">
+                    Ligado parado <span class="filter-count">{{this.filterStatus.inputsCount.ligadoparado}}</span>
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="filter-off-24h" [(ngModel)]="this.filterStatus.inputsTemp.off24h">
+                <label class="form-check-label" for="filter-off-24h">
+                    Offline +24h <span class="filter-count">{{this.filterStatus.inputsCount.off24h}}</span>
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="filter-off-48h" [(ngModel)]="this.filterStatus.inputsTemp.off48h">
+                <label class="form-check-label" for="filter-off-48h">
+                    Offline +48h <span class="filter-count">{{this.filterStatus.inputsCount.off48h}}</span>
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="filter-off-72h" [(ngModel)]="this.filterStatus.inputsTemp.off72h">
+                <label class="form-check-label" for="filter-off-72h">
+                    Offline +72h <span class="filter-count">{{this.filterStatus.inputsCount.off72h}}</span>
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="filter-off-7d" [(ngModel)]="this.filterStatus.inputsTemp.off7d">
+                <label class="form-check-label" for="filter-off-7d">
+                    Offline +7 dias <span class="filter-count">{{this.filterStatus.inputsCount.off7d}}</span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <div style="display: none;">

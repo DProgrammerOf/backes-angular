@@ -1,4 +1,4 @@
-import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, ChildrenOutletContexts, Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { Veiculo, VeiculosService } from 'src/app/services/cliente/veiculos.service';
@@ -21,6 +21,38 @@ export class VeiculosListaComponent implements OnDestroy {
   veiculosTimer: NodeJS.Timer | undefined;
   searchValue: String = '';
   routerVeiculosLoaded: String | undefined;
+  // filters status
+  filterStatus = {
+    opened: false,
+    inputsEnabled: 0,
+    inputs: {
+      ligado: false,
+      desligado: false,
+      ligadoparado: false,
+      off24h: false,
+      off48h: false,
+      off72h: false,
+      off7d: false
+    },
+    inputsTemp: {
+      ligado: false,
+      desligado: false,
+      ligadoparado: false,
+      off24h: false,
+      off48h: false,
+      off72h: false,
+      off7d: false
+    },
+    inputsCount: {
+      ligado: 0,
+      desligado: 0,
+      ligadoparado: 0,
+      off24h: 0,
+      off48h: 0,
+      off72h: 0,
+      off7d: 0
+    }
+  };
 
   swalWithBootstrapButtons = Swal.mixin({
     customClass: {
@@ -51,8 +83,7 @@ export class VeiculosListaComponent implements OnDestroy {
             this.service.set(response.veiculos);
             this.veiculos = response.veiculos;
             this.veiculosFiltered = this.veiculos;
-
-            console.log(JSON.stringify(this.veiculos));
+            this.listFilterStatus();
           } else {
             alert(response.message);
           }
@@ -66,8 +97,7 @@ export class VeiculosListaComponent implements OnDestroy {
             this.service.set(response.veiculos);
             this.veiculos = response.veiculos;
             this.veiculosFiltered = this.veiculos;
-
-            console.log(JSON.stringify(this.veiculos));
+            this.listFilterStatus();
           } else {
             alert(response.message);
           }
@@ -82,6 +112,7 @@ export class VeiculosListaComponent implements OnDestroy {
             this.service.set(response.veiculos);
             this.veiculos = response.veiculos;
             this.veiculosFiltered = this.filteredSelectBem(this.searchValue);
+            this.listFilterStatus();
           } else {
             alert(response.message);
           }
@@ -107,6 +138,7 @@ export class VeiculosListaComponent implements OnDestroy {
     } else {
       this.veiculosFiltered = this.veiculos;
     }
+    this.listFilterStatus();
   }
   filterCancelSelectBem() {
     this.searchValue = '';
@@ -128,6 +160,7 @@ export class VeiculosListaComponent implements OnDestroy {
           this.service.set(response.veiculos);
           this.veiculos = this.service.getList();
           this.veiculosFiltered = this.filteredSelectBem(this.searchValue);
+          this.listFilterStatus();
         }
         this.app.setStatus(false);
       }
@@ -215,5 +248,77 @@ export class VeiculosListaComponent implements OnDestroy {
 
   cercas(veiculo: Veiculo) {
     this.router.navigate(['cliente/veiculos/cercas'], { queryParams: { veiculo: veiculo.imei } });
+  }
+
+
+  // filters list
+  openFilterStatus(value: boolean) {
+    this.filterStatus.inputsTemp = { ...this.filterStatus.inputs };
+    this.filterStatus.opened = value;
+  }
+
+  saveFilterStatus() {
+    this.filterStatus.inputs = this.filterStatus.inputsTemp;
+    this.filterStatus.inputsEnabled = Object.values(this.filterStatus.inputs).filter(input => input).length;
+    this.openFilterStatus(false);
+    this.filterSelectBem();
+  }
+
+  listFilterStatus() {
+    // filter list
+    if (this.filterStatus.inputsEnabled) {
+      const momentNow = moment();
+      this.veiculosFiltered = this.veiculosFiltered?.filter(
+        (veiculo) => {
+            if (this.filterStatus.inputs.ligado && veiculo.ligado === 'S') return true;
+            if (this.filterStatus.inputs.desligado && veiculo.ligado === 'N') return true;
+            if (this.filterStatus.inputs.ligadoparado && veiculo.ligado === 'S' && veiculo.speed === 0) return true;
+            if (this.filterStatus.inputs.off24h || this.filterStatus.inputs.off48h || this.filterStatus.inputs.off72h || this.filterStatus.inputs.off7d) {
+                const last_conn = moment(veiculo.date.toString());
+                const diff = momentNow.diff(last_conn, 'hours');
+                if (this.filterStatus.inputs.off24h && diff >= 24) {
+                    return true;
+                }
+                if (this.filterStatus.inputs.off48h && diff >= 48) {
+                    return true;
+                }
+                if (this.filterStatus.inputs.off72h && diff >= 72) {
+                    return true;
+                }
+                if (this.filterStatus.inputs.off7d && diff >= 128) {
+                    return true;
+                }
+            }
+            return false;
+        }
+      );
+    }
+
+    // reset filters status
+    this.filterStatus.inputsCount = {
+      ligado: 0,
+      desligado: 0,
+      ligadoparado: 0,
+      off24h: 0,
+      off48h: 0,
+      off72h: 0,
+      off7d: 0
+    };
+
+    // get count filters status
+    this.filterStatus.inputsCount.ligado = this.veiculos?.filter(veiculo =>  veiculo.ligado === 'S').length ?? 0;
+    this.filterStatus.inputsCount.desligado = this.veiculos?.filter(veiculo =>  veiculo.ligado === 'N').length ?? 0;
+    this.filterStatus.inputsCount.ligadoparado = this.veiculos?.filter(veiculo =>  veiculo.ligado === 'S' && veiculo.speed === 0).length ?? 0;
+
+    // get count filters status date
+    const momentNow = moment();
+    this.veiculos?.filter(veiculo =>  {
+      const last_conn = moment(veiculo.date.toString());
+      const diff = momentNow.diff(last_conn, 'hours');
+      if (diff >= 24) this.filterStatus.inputsCount.off24h++;
+      if (diff >= 48) this.filterStatus.inputsCount.off48h++;
+      if (diff >= 72) this.filterStatus.inputsCount.off72h++;
+      if (diff >= 128) this.filterStatus.inputsCount.off7d++;
+    });
   }
 }
