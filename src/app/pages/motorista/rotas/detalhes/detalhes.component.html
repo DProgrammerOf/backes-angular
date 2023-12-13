@@ -1,0 +1,33 @@
+<main>
+    <div id="header-create" class="header">
+        <div class="top">
+            <span class="close" (click)="back()">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </span>
+
+            <span class="title">
+                {{ rota?.label }}
+            </span>
+        </div>
+    </div>
+
+    <div id="content-list" class="content">
+        <div class="route-progress">
+            <div class="progress-bar">
+                <span class="bar"></span>
+            </div>
+            <span>0/0</span>
+        </div>
+
+        <div class="route-filter">
+            <span>Pendentes</span>
+            <span class="active">Todas as atividades</span>
+        </div>
+
+        <div class="route-locals">
+            <div class="route-local" *ngFor="let local of this.rota?.locals_details">
+                {{ local.name_address }}
+            </div>
+        </div>
+    </div>
+</main>

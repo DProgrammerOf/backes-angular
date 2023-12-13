@@ -91,6 +91,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.router.navigate(['motorista/home/combustivel'], { queryParams: { veiculo: undefined } });
   }
 
+  protected openRoutes() {
+    this.router.navigate(['motorista/home/rotas'], { queryParams: { veiculo: this.veiculo?.id } });
+  }
+
   protected openQRCode() {
     // this.motorista.openMessage(false, 'Essa função ainda não está disponível');
 

@@ -1,0 +1,54 @@
+<main>
+    <div id="header-create" class="header">
+        <div class="top">
+            <span class="close" (click)="back()">
+                Voltar
+            </span>
+        </div>
+
+
+        <div class="middle">
+            <h4>Rotas do veículo</h4>
+
+            <div class="content-tab">
+                <span [class.active]="this.type === 'today'" (click)="this.list_routes('today')">
+                    Hoje
+                </span>
+                <span [class.active]="this.type === 'future'" (click)="this.list_routes('future')">
+                    Futuras
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div id="content-list" class="content">
+        <div class="rota-item" *ngFor="let rota of this.rotas"> 
+            <div class="header" (click)="this.show(rota)">
+                <span class="label">
+                    {{ rota.label }}
+                </span>
+                <span class="to-open">
+                    <i class="fa fa-chevron-right"></i>
+                </span>
+            </div>
+            
+            <div class="separator"></div>
+
+            <div class="description">
+                <span class="label-day" *ngIf="this.type === 'future'">
+                    {{ rota.date_timestamp * 1000 | date:'dd/MM/yyyy' || '00/00/0000'}}
+                </span>
+                <span class="label-start">Início</span>
+                <div class="local-start">
+                    <span class="local-name">{{ rota.locals_details[0].name_address }}</span>
+                    <span class="local-hour">{{ rota.journey_start }}</span>
+                </div>
+                <span class="label-end">Fim</span>
+                <div class="local-end">
+                    <span class="local-name">{{ rota.locals_details[rota.locals_details.length-1].name_address }}</span>
+                    <span class="local-hour">{{ rota.journey_end }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

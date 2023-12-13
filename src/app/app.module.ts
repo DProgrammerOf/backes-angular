@@ -38,6 +38,8 @@ import { CombustivelCreateComponent } from './pages/motorista/combustivel/create
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { ToCnpj } from './format-cnpj.pipe';
+import { RotasComponent } from './pages/motorista/rotas/rotas.component';
+import { RotasDetalhesComponent } from './pages/motorista/rotas/detalhes/detalhes.component';
 
 
 registerLocaleData(localePt, 'pt');
@@ -71,6 +73,8 @@ registerLocaleData(localePt, 'pt');
     HomeComponent,
     CombustivelComponent,
     CombustivelCreateComponent,
+    RotasComponent,
+    RotasDetalhesComponent,
   ],
   imports: [
     BrowserModule,
