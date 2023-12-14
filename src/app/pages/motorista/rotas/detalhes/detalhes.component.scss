@@ -38,7 +38,10 @@ main {
         overflow-y: auto;
         overflow-x: hidden;
         padding: 1rem;
-        gap: 1rem;
+
+        > div {
+            margin-bottom: 1rem;
+        }
 
         // no scroll
         scrollbar-width: none;
@@ -63,7 +66,6 @@ main {
                 border-radius: 6px;
 
                 .bar {
-                    width: 33%;
                     height: 6px;
                     background-color: #186465;
                 }
@@ -91,10 +93,204 @@ main {
             }
         }
 
+        .label-inicio {
+            width: 24px;
+            font-size: 12px;
+            line-height: 12px;
+            color: rgba(0, 0, 0, .3);
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
         .route-locals {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 2rem;
+            
+            .route-local {
+                display: flex;
+                flex-direction: row;
+                gap: 1rem;
+
+                .icon-start > i {
+                    border: 2px solid rgba(0, 0, 0, .5);
+                }
+                
+                .icon-start,
+                .icon-togo {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 30px;
+                    position: relative;
+
+                    i, span {
+                        background: rgba(0, 0, 0, .1);
+                        color: rgba(0, 0, 0, .3);
+                    }
+
+                    &.running > i, &.running > span {
+                        background: rgba(13, 110, 253, 0.1);
+                        color: rgba(13, 110, 253, 1);
+                    }
+                    &.finished > i, &.finished > span {
+                        background: rgba(25, 135, 84, 0.1);
+                        color: rgba(25, 135, 84, 1);
+                    }
+                    &.canceled > i, &.canceled > span {
+                        background: rgba(220, 53, 69, 0.1);
+                        color: rgba(220, 53, 69, 1);
+                    }
+                    &.late > i, &.late > span {
+                        background: rgba(255, 193, 7, 0.1);
+                        color: rgba(255, 193, 7, 1);
+                    }
+                }
+
+                .icon-start.hasNext::after,
+                .icon-togo.hasNext::after {
+                    content: '';
+                    position: absolute;
+                    border-left: 2px dashed rgba(0,0,0,.25);
+                    height: calc(100% + 1rem - 20px); // gap between locals + height locals - top
+                    top: calc(24px + 10px); // height icon + padding top/bottom icon
+
+                }
+                .icon-start > i {
+                    width: 24px;
+                    height: 24px;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 4px;
+                    padding: 16px;
+                    border-radius: 100%;
+                }
+
+                .icon-togo > span {
+                    width: 24px;
+                    height: 24px;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: bold;
+                    font-size: 16px;
+                    line-height: 16px;
+                    padding: 16px;
+                    border-radius: 100%;
+                }
+                
+                .local-details {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+
+                    > div {
+                        padding: 0;
+                        margin: 0;
+                    }
+                    
+                    .header {
+                        height: 24px;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+
+                        .name_address {
+                            flex: 1;
+                            font-size: 18px;
+                            line-height: 18px;
+                        }
+
+                        .deliver_start {
+                            color: rgba(0, 0, 0, 0.5);
+                            font-size: 13px;
+                            line-height: 13px;
+                        }
+                    }
+
+                    .content {
+                        margin-top: 5px;
+
+                        .full_address {
+                            color: rgba(0, 0, 0, 0.5);
+                            font-size: 12px;
+                            line-height: 18px;
+                            word-spacing: 8px;
+                        }
+
+                        .status {
+                            margin-top: 10px;
+                            color: rgba(0, 0, 0, 0.3);
+                            font-size: 14px;
+                            font-weight: bold;
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            gap: 10px;
+
+                            &.running {
+                                color: rgba(13, 110, 253, 1);
+                            }
+                            &.finished {
+                                color: rgba(25, 135, 84, 1);
+                            }
+                            &.canceled {
+                                color: rgba(220, 53, 69, 1);
+                            }
+                            &.late {
+                                color: rgba(255, 193, 7, 1);
+                            }
+
+                            i {
+                                font-size: 18px;
+                            }
+                        }
+
+                    }
+
+                    .actions {
+                        margin-top: 5px;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+                        gap: 1rem;
+
+                        span {
+                            height: 25px;
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            justify-content: center;
+
+                            &.checkIn {
+                                border: 1px solid #1e7f80;
+                                color: #186465;
+                                padding: 1.2rem 1.4rem;
+                                border-radius: 5px;
+                                font-size: 14px;
+                            }
+
+                            &.openMap {
+                                border: 1px solid #1e7f80;
+                                background-color: #186465;
+                                color: white;
+                                padding: 1.2rem 1.4rem;
+                                border-radius: 5px;
+                                font-size: 14px;
+                                gap: 10px;
+                                flex: 1;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

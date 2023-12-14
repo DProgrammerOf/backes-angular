@@ -36,7 +36,6 @@ export class RotasComponent {
   protected list_routes(type: String): void {
     if (this.veiculo_id) {
       this.app.setStatus(true);
-      this.type = type;
       this.service.get(this.veiculo_id, type)
       .subscribe( (response) => {
           this.app.setStatus(false);
@@ -46,6 +45,7 @@ export class RotasComponent {
           }
 
           this.rotas = response.rotas;
+          this.type = type;
         }
       )
     }

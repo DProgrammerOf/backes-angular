@@ -1,0 +1,90 @@
+<main>
+    <div id="header-create" class="header">
+        <div class="top">
+            <span class="close" (click)="back()">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </span>
+
+            <span class="title">
+                Check-In
+            </span>
+        </div>
+    </div>
+
+    <div id="content-create" class="content">
+        <div class="form">
+            <div class="input-images">
+                <h6 class="group-title">Dados de Entrega</h6>
+                <p class="group-desc mb-1">
+                    Preencha o formulário com imagens relevantes como: comprovante de entrega e outros.
+                </p>
+
+                <div id="list-images" class="image-scroll">
+                    <img *ngFor="let image of imagens; index as i;"
+                        (click)="delImagem(i)"
+                        [src]="image.safeUrl ? image.safeUrl : 'assets/imagens/app-motorista/thumbnail-image.svg'"
+                        class="rounded float-end"
+                        alt="Imagem anexo ao novo abastecimento"
+                    />
+                    <input id="input-images" type="file" (change)="readURL($event)" accept="image/png, image/gif, image/jpeg" hidden>
+                </div>
+
+                <div class="image-infos">
+                    <span>
+                        <span id="image-count">{{countImagens}}</span>
+                        /3 fotos adicionadas
+                    </span>
+
+                    <a id="addImage" (click)="addImagem()">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M256 112v288M400 256H112"/></svg>
+                        <span>
+                            Adicionar foto
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="input-infos">
+
+                <div id="dateInput" class="input-group form-floating mt-2">
+                    <input type="datetime-local" class="form-control" id="date" [(ngModel)]="formInputs.dia">
+                    <label for="date">Data</label>
+                    <span class="input-group-text" (click)="openInputDate()">
+                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                    </span>
+                </div>
+                
+                <div id="label-datehour">Informe a data e hora <b>referente a entrega</b>.</div>
+
+                <div id="statusInput" class="form-floating mt-2">
+                    <select class="form-select" id="status" [(ngModel)]="formInputs.status">
+                        <option value="0" [class.selected]="formInputs.status === 0">Pendente</option>
+                        <option value="1" [class.selected]="formInputs.status === 1">Em andamento</option>
+                        <option value="2" [class.selected]="formInputs.status === 2">Atrasada</option>
+                        <option value="3" [class.selected]="formInputs.status === 3">Cancelada</option>
+                        <option value="4" [class.selected]="formInputs.status === 4">Finalizada</option>
+                      </select>
+                    <label for="status">Status da atividade</label>
+                </div>
+
+                <div id="label-status">Indique se a atividade foi concluída ou houve impedimento.</div>
+
+                <div id="clientInput" class="form-floating mt-2">
+                    <input type="text" class="form-control" id="cliente" [(ngModel)]="formInputs.cliente_name" placeholder="Nome da empresa">
+                    <label for="cliente">Empresa / Cliente</label>
+                </div>
+
+                <div id="obsInput" class="form-floating mt-2">
+                    <input type="text" class="form-control" id="observacao" [(ngModel)]="formInputs.observacao" placeholder="Observação (opcional)">
+                    <label for="observacao">Observação (opcional)</label>
+                </div>
+            </div>
+
+            <div class="input-buttons mt-4">
+                <a id="createCombustivel" (click)="save()">
+                    Salvar
+                </a>
+            </div>
+        </div>
+    </div>
+</main>

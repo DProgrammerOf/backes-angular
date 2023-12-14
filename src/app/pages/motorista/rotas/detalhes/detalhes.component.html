@@ -14,19 +14,54 @@
     <div id="content-list" class="content">
         <div class="route-progress">
             <div class="progress-bar">
-                <span class="bar"></span>
+                <span class="bar" [style.width]="progress"></span>
             </div>
-            <span>0/0</span>
+            <span>
+                {{ locals_finished }}  / {{ rota?.locals_details?.length }}
+            </span>
         </div>
 
         <div class="route-filter">
-            <span>Pendentes</span>
-            <span class="active">Todas as atividades</span>
+            <span [class.active]="type_filter === 'pendentes'" (click)="filterRota('pendentes')">Pendentes</span>
+            <span [class.active]="type_filter === 'todos'" (click)="filterRota('todos')">Todas as atividades</span>
         </div>
 
+        <span class="label-inicio" *ngIf="type_filter === 'todos'">Início</span>
         <div class="route-locals">
-            <div class="route-local" *ngFor="let local of this.rota?.locals_details">
-                {{ local.name_address }}
+            <div class="route-local" *ngFor="let local of locals_filtered, index as i">
+                <span 
+                [class.icon-start]="i === 0"  
+                [class.icon-togo]="i > 0"  
+                [ngClass]="getClassStatus(local.status) ?? getClassStatus(local.deliver_status)"
+                [class.hasNext]="locals_filtered && i+1 < locals_filtered.length"
+                >
+                    <i class="fa fa-map-marker" aria-hidden="true" *ngIf="i === 0"></i>
+                    <span *ngIf="i > 0">{{i}}</span>
+                </span>
+                <div class="local-details">
+                    <div class="header">
+                        <span class="name_address">{{ local.name_address }}</span>
+                        <span class="deliver_start">{{ local.deliver_start ?? '00:00' }}</span>
+                    </div>
+                    <div class="content">
+                        <span class="full_address">{{ local.full_address }}</span>
+                        <span class="status" [ngClass]="getClassStatus(local.status) ?? getClassStatus(local.deliver_status)">
+                            <i class="fa fa-list-alt" aria-hidden="true"></i>
+                            {{ getTypeStatus(local.status) ?? getTypeStatus(local.deliver_status) }}
+                        </span>
+                    </div>
+                    <div class="actions">
+                        <span class="checkIn" 
+                        *ngIf="(getClassStatus(local.status) ?? getClassStatus(local.deliver_status)) !== 'finished'" 
+                        (click)="openCheckin(i, local)">
+                            Check-In
+                        </span>
+                        <span class="openMap" (click)="openRota(local.full_address)">
+                            <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                            Ver Rota
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

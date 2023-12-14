@@ -1,0 +1,557 @@
+main {
+    background-color: white;
+    min-height: 100vh;
+
+    .header {
+        background-color: #186465;
+        display: flex;
+        flex-direction: column;
+        padding: 2rem 1rem 1rem 1rem;
+        gap: 1rem;
+        margin-top: 0;
+
+        .top {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 2rem;
+            span {
+                color: white;
+                font-weight: bold;
+            }
+            
+            .close {
+                padding: 5px;
+                i, svg {
+                    font-size: 1.2rem;
+                    line-height: 1.2rem;
+                    color: white;
+                }
+            }
+        }
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+        // no scroll
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        &::-webkit-scrollbar{
+            display: none;
+            width: 0 !important;
+        }
+
+        .group-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .group-desc {
+            font-size: .8rem;
+            color: gray;
+            margin-left: .1rem;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            padding: 1rem 1rem;
+
+            .input-images {
+                .image-scroll {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: nowrap;
+                    gap: 1rem;
+                    width: 100vw;
+                    overflow-x: scroll;
+                    padding: 1rem 0;
+                    padding-right: 2rem;
+                    align-items: center;
+
+                    img {
+                        width: 150px;
+                        height: 100%;
+                    }
+
+                    // no scroll
+                    scrollbar-width: none;
+                    -ms-overflow-style: none;
+                    &::-webkit-scrollbar{
+                        display: none;
+                        width: 0 !important;
+                    }
+                }
+
+                .image-infos {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    span {
+                        color: gray;
+                        font-size: .8rem;
+                        display: flex;
+                        flex-direction: row;
+
+                        &:first-child {
+                            margin-left: .1rem;
+                        }
+
+                        #image-count {
+                            font-weight: bold;
+                        }
+                    }
+
+                    #addImage {
+                        color: #186465;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        gap: 8px;
+
+                        svg {
+                            width: 22px;
+                            line-height: 22px;
+                        }
+                        span {
+                            font-weight: bold;
+                            color: #186465;
+                            font-size: 16px;
+                            line-height: 16px;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+
+            .input-infos {
+                margin-top: .4rem;
+                display: grid;
+                grid-template-areas:
+                "dateInput dateInput"
+                "label-datehour label-datehour"
+                "statusInput statusInput"
+                "label-status label-status"
+                "clientInput clientInput"
+                "obsInput obsInput";
+                grid-gap: 0 1rem;
+                grid-template-columns: 1fr 1fr;
+
+                #clientInput {
+                    grid-area: clientInput;
+                }
+
+                #obsInput {
+                    grid-area: obsInput;
+                }
+
+                #dateInput {
+                    grid-area: dateInput;
+
+                    input {
+                        overflow: hidden;
+                    }
+                }
+
+                #documentoInput {
+                    grid-area: documentoInput;
+                }
+
+                #hourInput {
+                    grid-area: hourInput;
+                }
+
+                #label-datehour {
+                    grid-area: label-datehour;
+                } 
+                
+                #label-status {
+                    grid-area: label-status;
+                }
+
+                #label-datehour, #label-status {
+                    margin-top: .5rem;
+                    margin-left: .1rem;
+                    font-size: .8rem;
+                    color: gray;
+                    b {
+                        color: black;
+                    }
+                }
+
+                #fornecedorInput {
+                    grid-area: fornecedorInput;
+                }
+
+                #litrosInput {
+                    grid-area: litrosInput;
+                }
+
+                #valorInput {
+                    grid-area: valorInput;
+                }
+
+                #statusInput {
+                    grid-area: statusInput;
+                }
+
+                #internoInput {
+                    grid-area: internoInput;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+
+                    span {
+                        font-size: .8rem;
+                        color: gray;
+                    }
+                }
+
+                #tipoInput {
+                    grid-area: tipoInput;
+                }
+
+                #hodometroInput {
+                    grid-area: hodometroInput;
+                }
+            }
+
+            .input-veiculos {
+                display: flex;
+                flex-direction: column;
+
+                .group-title {
+                    font-size: 1.4rem;
+                    font-weight: bold;
+                }
+
+                .group-desc {
+                    font-size: .8rem;
+                    color: gray;
+                    margin-left: .1rem;
+                }
+
+                .form-select {
+                    padding: .7rem .5rem;
+                    color: gray;
+                    
+                    &.selected{ 
+                        color: black;
+                    }
+                }
+            }
+
+            .input-buttons {
+                display: flex;
+                flex-direction: row;
+
+                a {
+                    width: 100%;
+                    height: 50px;
+                    border-radius: 4px;
+                    color: white;
+                    background-color: #186465;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 1rem;
+                    line-height: 1rem;
+                }
+            }
+
+            .input-group, #statusInput{
+                select {
+                    height: 58px;
+                    padding-top: 1.6rem !important;
+                    padding-left: .75rem !important;
+                    color: black !important;
+                }
+
+                label {
+                    color: gray;
+                }
+                
+
+                .form-select {
+                    padding: .7rem .5rem;
+                    color: gray;
+                    
+                    &.selected{ 
+                        color: black;
+                    }
+                }
+                
+                select, input {
+                    &:focus, &:active {
+                        outline: 0;
+                        box-shadow: none;
+                        border-color: #ced4da;
+                    }
+                }
+
+                #addFornecedor {
+                    background-color: #186465;
+                    color: white;
+                    border: 0;
+                }
+            }
+            .input-group.form-floating {
+                input {
+                    border-right: 0;
+                    z-index: 1;
+
+                    &::-webkit-inner-spin-button,
+                    &::-webkit-calendar-picker-indicator {
+                        // display: none;
+                        // -webkit-appearance: none;
+                    }
+                }
+
+                label {
+                    color: gray;
+                    z-index: 2;
+                }
+
+                .input-group-text {
+                    background-color: white;
+                    border-left: 0;
+
+                    svg, i {
+                        color: gray;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/* ACTIONSHEET FILTER: Veiculos */
+#overlaySelectVeiculo, 
+#overlaySelectFornecedor,
+#overlaySelectCombustivel  {
+    position: absolute;
+    background-color: black;
+    opacity: 0.26;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    &.hidden {
+        z-index: -1;
+    }
+
+    &.visible {
+        z-index: 12;
+    }
+}
+  
+#selectFornecedor > .select-list > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        gap: .1rem;
+        border-bottom: none;
+    }
+    .item-cnpj, .item-cidade {
+        color: #999;
+        font-size: .8rem;
+        line-height: .8rem;
+    }
+}
+
+#selectVeiculo,
+#selectFornecedor,
+#selectCombustivel {
+    position: absolute;
+    bottom: calc(-15px);
+    left: 0;
+    width: 100%;
+    height: 395px;
+    z-index: -1;
+    padding-top: 15px;
+    background-color: white;
+    
+    border-radius: 15px 15px 0 0;
+
+    .select-list {
+        height: 300px;
+        overflow-y: scroll;
+
+        div {
+            border-radius: 0;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow-x: hidden;
+            padding-top: 0.65rem;
+            padding-bottom: 0.65rem;
+        }
+        div:not(:last-child) {
+            border-bottom: 1px solid #fafafa;
+        }
+    }
+
+    div {
+        box-shadow: none;
+        border-radius: 15px;
+        padding: .5rem .4rem;
+
+        span.label-search-select{
+            background: white;
+            border-radius: 15px 0 0 15px;
+            border-right: 0;
+        }
+        span.close-search-select {
+            background: white;
+            border-radius: 0 15px 15px 0;
+            border-left: 0;
+        }
+
+        input {
+            border-left: 0;
+            border-right: 0;
+        }
+
+        input:focus {
+            box-shadow: none;
+            border-color: #ced4da;
+        }
+    }
+}
+/* ACTIONSHEET FILTER: Veiculos */
+
+
+.cl-toggle-switch {
+position: relative;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+    
+.cl-switch {
+position: relative;
+display: inline-block;
+}
+/* Input */
+.cl-switch > input {
+appearance: none;
+-moz-appearance: none;
+-webkit-appearance: none;
+z-index: -1;
+position: absolute;
+right: 6px;
+top: -8px;
+display: block;
+margin: 0;
+border-radius: 50%;
+width: 40px;
+height: 40px;
+background-color: rgb(0, 0, 0, 0.38);
+outline: none;
+opacity: 0;
+transform: scale(1);
+pointer-events: none;
+transition: opacity 0.3s 0.1s, transform 0.2s 0.1s;
+}
+/* Track */
+.cl-switch > span::before {
+content: "";
+float: right;
+display: inline-block;
+margin: 5px 0 5px 10px;
+border-radius: 7px;
+width: 36px;
+height: 14px;
+background-color: rgb(0, 0, 0, 0.38);
+vertical-align: top;
+transition: background-color 0.2s, opacity 0.2s;
+}
+/* Thumb */
+.cl-switch > span::after {
+content: "";
+position: absolute;
+top: 2px;
+right: 16px;
+border-radius: 50%;
+width: 20px;
+height: 20px;
+background-color: #fff;
+box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+transition: background-color 0.2s, transform 0.2s;
+}
+/* Checked */
+.cl-switch > input:checked {
+right: -10px;
+background-color: #85b8b7;
+}
+
+.cl-switch > input:checked + span::before {
+background-color: #85b8b7;
+}
+
+.cl-switch > input:checked + span::after {
+background-color: #018786;
+transform: translateX(16px);
+}
+/* Hover, Focus */
+.cl-switch:hover > input {
+opacity: 0.04;
+}
+
+.cl-switch > input:focus {
+opacity: 0.12;
+}
+
+.cl-switch:hover > input:focus {
+opacity: 0.16;
+}
+/* Active */
+.cl-switch > input:active {
+opacity: 1;
+transform: scale(0);
+transition: transform 0s, opacity 0s;
+}
+
+.cl-switch > input:active + span::before {
+background-color: #8f8f8f;
+}
+
+.cl-switch > input:checked:active + span::before {
+background-color: #85b8b7;
+}
+/* Disabled */
+.cl-switch > input:disabled {
+opacity: 0;
+}
+
+.cl-switch > input:disabled + span::before {
+background-color: #ddd;
+}
+
+.cl-switch > input:checked:disabled + span::before {
+background-color: #bfdbda;
+}
+
+.cl-switch > input:checked:disabled + span::after {
+background-color: #61b5b4;
+}
+
+#swal2-html-container {
+    overflow: hidden;
+}

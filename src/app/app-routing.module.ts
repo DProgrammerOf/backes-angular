@@ -25,6 +25,7 @@ import { CombustivelComponent } from './pages/motorista/combustivel/combustivel.
 import { CombustivelCreateComponent } from './pages/motorista/combustivel/create/create.component';
 import { RotasComponent } from './pages/motorista/rotas/rotas.component';
 import { RotasDetalhesComponent } from './pages/motorista/rotas/detalhes/detalhes.component';
+import { RotasCheckinComponent } from './pages/motorista/rotas/checkin/checkin.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/login', data: { animation: 'RedirectPage' } },
@@ -62,6 +63,11 @@ const routes: Routes = [
           {
             path: 'rotas/detalhes',
             component: RotasDetalhesComponent,
+            data: { animation: 'MotoristaCombustivelCreatePage' }
+          },
+          {
+            path: 'rotas/checkin',
+            component: RotasCheckinComponent,
             data: { animation: 'MotoristaCombustivelCreatePage' }
           }
         ]
