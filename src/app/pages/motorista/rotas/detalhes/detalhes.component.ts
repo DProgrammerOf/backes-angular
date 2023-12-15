@@ -79,6 +79,7 @@ export class RotasDetalhesComponent {
   protected openCheckin(index: number, local: Local_Details): void {
     this.router.navigate(['motorista/home/rotas/checkin'], { 
       queryParams: {
+        rota_id: this.rota?.id,
         local_index: index,
         local_status: index === 0 ? local.status : local.deliver_status
       }

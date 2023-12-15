@@ -72,6 +72,12 @@ main {
             border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             padding: 1.2rem;
+
+            &.finished {
+                border-color: #186465;
+                color: #186465;
+                background-color: #1864650f;
+            }
             
             .header {
                 margin: 0;

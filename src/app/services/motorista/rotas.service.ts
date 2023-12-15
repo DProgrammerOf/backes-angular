@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DataService } from '../data.service';
-import { Veiculo } from '../cliente/veiculos.service';
+import { HttpEvent } from '@angular/common/http';
 
 export interface Local_Details {
   description: String,
@@ -27,13 +27,15 @@ export interface Rota {
   journey_end: String,
   locals_details: Local_Details[],
   cidade: String,
-  estado: String
+  estado: String,
+  status: Number
 };
 
-interface RotaResponse {
+export interface RotaResponse {
   success: Boolean,
   message: String,
   rotas?: Rota[]
+  rota?: Rota
 };
 
 @Injectable({
@@ -44,5 +46,9 @@ export class RotasService {
 
   get(id: Number, type: String): Observable<RotaResponse> {
     return this.api.get('/motorista/rotas', { vehicle_id:id, type:type});
+  }
+
+  create(data: FormData): Observable<HttpEvent<any>> {
+    return this.api.post<any>('/motorista/rotas/checkin', data, true);
   }
 }

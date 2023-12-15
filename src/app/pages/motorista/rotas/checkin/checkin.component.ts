@@ -5,8 +5,9 @@ import { MotoristaComponent } from '../../motorista.component';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import * as moment from 'moment';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { Local_Details } from 'src/app/services/motorista/rotas.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Local_Details, RotaResponse, RotasService } from 'src/app/services/motorista/rotas.service';
+import { HttpEventType } from '@angular/common/http';
 
 interface ImageForm {
   file: File | undefined,
@@ -31,6 +32,7 @@ export class RotasCheckinComponent {
 
   // Formulario
   formInputs = {
+    rota_id: 0,
     local_index: 0,
     dia: moment().format("YYYY-MM-DDTmm:hh"),
     hora: moment().format("mm:hh"),
@@ -45,11 +47,14 @@ export class RotasCheckinComponent {
     private location: Location,
     private app: AppComponent,
     private route: ActivatedRoute,
+    private router: Router,
     private motorista: MotoristaComponent,
-    private imageCompress: NgxImageCompressService
+    private imageCompress: NgxImageCompressService,
+    private service: RotasService
   ){
     route.queryParams.subscribe(
       params => {
+        this.formInputs.rota_id = params['rota_id'];
         this.formInputs.local_index = params['local_index'];
         this.formInputs.status = params['local_status'];
       }
@@ -61,7 +66,64 @@ export class RotasCheckinComponent {
   }
   
   protected save(): void {
+    if (this.formInputs.rota_id === 0) {
+      alert('Rota inválida');
+      return;
+    }
 
+    if (this.formInputs.cliente_name === '') {
+      alert('Informe o cliente/empresa');
+      return;
+    }
+
+    // Formatando um objeto FormData
+    // Com as imagens e todos os campos da página
+    var data: FormData = new FormData();
+    this.imagens.forEach( (img, index) => {
+      if (img.file) {
+        data.append('imagem-'+index.toString(), img.file)
+      }
+    });
+    data.append('rota_id', this.formInputs.rota_id.toString());
+    data.append('local_index', this.formInputs.local_index.toString());
+    data.append('receptor_nome', this.formInputs.cliente_name.toString());
+    data.append('observacao', this.formInputs.observacao.toString());
+    data.append('status', this.formInputs.status.toString());
+    data.append('date', this.formInputs.dia);
+    //
+
+    // Fazendo o envio das imagens e sinalizando ao cliente o progresso e finalização
+    this.app.setStatusText("Enviando imagens");
+    this.app.setStatus(true);
+    this.service.create(data).subscribe(
+      (event) => {
+        if (event.type == HttpEventType.UploadProgress && event.total) {
+          this.app.setStatusText("Enviando imagens: " + Math.round(100 * (event.loaded / event.total)).toString() + "%");
+          if (event.loaded == event.total) {
+            this.app.setStatusText("Envio finalizado");
+          }
+        }
+        if (event.type == HttpEventType.Response) {
+          var response = <RotaResponse>event.body;
+          this.app.setStatus(false);
+          this.app.setStatusText('');
+          if (!response.success) {
+            this.motorista.openMessage(false, response.message);
+          } else {
+            this.motorista.openMessage(true, response.message);
+            this.router.navigate(['motorista/home/rotas/detalhes'], { queryParams: {rota: JSON.stringify(response.rota)} });
+          }
+        }
+        if (event.type == HttpEventType.ResponseHeader) {
+          if (!event.ok) {
+            this.app.setStatus(false);
+            this.app.setStatusText('');
+            this.motorista.openMessage(false, 'Ocorreu um erro no servidor');
+          }
+        }
+      }
+    )
+    //
   }
 
   protected openInputDate(): void {
