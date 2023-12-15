@@ -6,9 +6,8 @@ import { NgxImageCompressService } from 'ngx-image-compress';
 import * as moment from 'moment';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Local_Details, Rota, RotaResponse, RotasService } from 'src/app/services/motorista/rotas.service';
+import { RotaResponse, RotasService } from 'src/app/services/motorista/rotas.service';
 import { HttpEventType } from '@angular/common/http';
-import { RotasDetalhesComponent } from '../detalhes/detalhes.component';
 
 interface ImageForm {
   file: File | undefined,
