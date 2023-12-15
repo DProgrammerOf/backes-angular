@@ -58,17 +58,17 @@ const routes: Routes = [
           {
             path: 'rotas',
             component: RotasComponent,
-            data: { animation: 'MotoristaCombustivelPage' }
+            data: { animation: 'MotoristaRotasPage' }
           },
           {
             path: 'rotas/detalhes',
             component: RotasDetalhesComponent,
-            data: { animation: 'MotoristaCombustivelCreatePage' }
+            data: { animation: 'MotoristaRotasPageDetails' }
           },
           {
             path: 'rotas/checkin',
             component: RotasCheckinComponent,
-            data: { animation: 'MotoristaCombustivelCreatePage' }
+            data: { animation: 'MotoristaRotasPageCheckin' }
           }
         ]
       }

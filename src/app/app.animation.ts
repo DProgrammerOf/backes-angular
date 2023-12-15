@@ -44,13 +44,22 @@ export const slideOutAnimation = trigger('routeVeiculosAnimations', [
 // App motorista
 export const slideOutAnimationMotorista = trigger('routeMotoristaAnimations', [
     state('MotoristaCombustivelPage, MotoristaCombustivelCreatePage', style({zIndex: 10})),
+    state('MotoristaRotasPage, MotoristaRotasPageDetails, MotoristaRotasPageCheckin', style({zIndex: 10})),
     state('*', style({zIndex: -1})),
 
+    // Combustivel page
     transition('MotoristaCombustivelPage => MotoristaCombustivelCreatePage', openTo('10')),
     transition('MotoristaCombustivelCreatePage => MotoristaCombustivelPage', closeTo('10')),
+    
+    // Rotas page
+    transition('MotoristaRotasPage => MotoristaRotasPageDetails', openTo('10')),
+    transition('MotoristaRotasPageDetails => MotoristaRotasPage', closeTo('10')),
+    transition('MotoristaRotasPageDetails => MotoristaRotasPageCheckin', openTo('10')),
+    transition('MotoristaRotasPageCheckin => MotoristaRotasPageDetails', closeTo('10')),
 
     transition('* => MotoristaCombustivelPage', openTo('10')),
     transition('MotoristaCombustivelPage => *', closeTo('10')),
+    transition('* => MotoristaRotasPage', openTo('10')),
 ]);
 
 

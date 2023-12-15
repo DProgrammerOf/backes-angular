@@ -6,8 +6,9 @@ import { NgxImageCompressService } from 'ngx-image-compress';
 import * as moment from 'moment';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Local_Details, RotaResponse, RotasService } from 'src/app/services/motorista/rotas.service';
+import { Local_Details, Rota, RotaResponse, RotasService } from 'src/app/services/motorista/rotas.service';
 import { HttpEventType } from '@angular/common/http';
+import { RotasDetalhesComponent } from '../detalhes/detalhes.component';
 
 interface ImageForm {
   file: File | undefined,
@@ -34,8 +35,8 @@ export class RotasCheckinComponent {
   formInputs = {
     rota_id: 0,
     local_index: 0,
-    dia: moment().format("YYYY-MM-DDTmm:hh"),
-    hora: moment().format("mm:hh"),
+    dia: moment().format("YYYY-MM-DDTHH:mm"),
+    hora: moment().format("HH:mm"),
     status: 0,
     cliente_name: '',
     observacao: ''
@@ -43,13 +44,13 @@ export class RotasCheckinComponent {
   // Form
 
   constructor(
+    private imageCompress: NgxImageCompressService,
     private sanitizer: DomSanitizer,
     private location: Location,
     private app: AppComponent,
     private route: ActivatedRoute,
     private router: Router,
     private motorista: MotoristaComponent,
-    private imageCompress: NgxImageCompressService,
     private service: RotasService
   ){
     route.queryParams.subscribe(
@@ -111,7 +112,8 @@ export class RotasCheckinComponent {
             this.motorista.openMessage(false, response.message);
           } else {
             this.motorista.openMessage(true, response.message);
-            this.router.navigate(['motorista/home/rotas/detalhes'], { queryParams: {rota: JSON.stringify(response.rota)} });
+            this.motorista.rota = response.rota;
+            this.back();
           }
         }
         if (event.type == HttpEventType.ResponseHeader) {

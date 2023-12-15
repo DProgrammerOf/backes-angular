@@ -22,7 +22,10 @@
     </div>
 
     <div id="content-list" class="content">
-        <div class="rota-item" *ngFor="let rota of this.rotas" [class.finished]="rota.status === 4"> 
+        <div class="rota-item" *ngFor="let rota of this.rotas" 
+        [class.finished]="rota.status === 4"
+        [class.running]="rota.status === 1"
+        > 
             <div class="header" (click)="this.show(rota)">
                 <span class="label">
                     {{ rota.label }}

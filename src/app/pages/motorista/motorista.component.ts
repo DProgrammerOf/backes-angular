@@ -3,6 +3,7 @@ import { AppComponent } from 'src/app/app.component';
 import { Veiculo } from 'src/app/services/cliente/veiculos.service';
 import { LoginService } from 'src/app/services/login.service';
 import { Perfil, PerfilService } from 'src/app/services/motorista/perfil.service';
+import { Rota } from 'src/app/services/motorista/rotas.service';
 import { Option, UiActionsheetComponent } from 'src/app/widgets/ui-actionsheet/ui-actionsheet.component';
 import { UiMessagemodalComponent } from 'src/app/widgets/ui-messagemodal/ui-messagemodal.component';
 
@@ -19,6 +20,7 @@ export class MotoristaComponent implements OnInit {
   protected menu: Boolean | undefined;
   public perfil: Perfil | undefined;
   public veiculos: Veiculo[] | undefined;
+  public rota: Rota | undefined;
   private actionSheetOpened: Boolean = false;
   
   constructor(

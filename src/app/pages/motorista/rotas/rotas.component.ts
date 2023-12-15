@@ -52,7 +52,8 @@ export class RotasComponent {
   }
 
   protected show(rota: Rota): void {
-    this.router.navigate(['motorista/home/rotas/detalhes'], { queryParams: {rota: JSON.stringify(rota)} });
+    this.motorista.rota = rota;
+    this.router.navigate(['motorista/home/rotas/detalhes']);
   }
 
   protected back(): void {

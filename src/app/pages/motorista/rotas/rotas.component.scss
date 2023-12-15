@@ -78,6 +78,12 @@ main {
                 color: #186465;
                 background-color: #1864650f;
             }
+
+            &.running {
+                border-color: rgba(13, 110, 253, 1);
+                background: rgba(13, 110, 253, 0.1);
+                color: rgba(13, 110, 253, 1);
+            }
             
             .header {
                 margin: 0;

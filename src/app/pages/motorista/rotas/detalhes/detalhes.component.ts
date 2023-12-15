@@ -26,16 +26,14 @@ export class RotasDetalhesComponent {
     protected app: AppComponent,
     protected motorista: MotoristaComponent
   ){
-    route.queryParams.subscribe(
-      params => {
-        this.rota = <Rota>JSON.parse(params['rota']);
-        this.locals_filtered = this.rota.locals_details;
-        this.locals_finished = this.rota?.locals_details?.filter((detail, index) => 
-          (index > 0) ? detail.deliver_status === 4 : detail.status === 4
-        ).length;
-        this.progress = `${(this.locals_finished / this.rota?.locals_details?.length) * 100}%`;
-      }
-    )
+    this.rota = this.motorista.rota;
+    if (this.rota) {
+      this.locals_filtered = this.rota.locals_details;
+      this.locals_finished = this.rota.locals_details?.filter((detail, index) => 
+        (index > 0) ? detail.deliver_status === 4 : detail.status === 4
+      ).length;
+      this.progress = `${(this.locals_finished / this.rota?.locals_details?.length) * 100}%`;
+    }
   }
 
   protected openRota (endereco: String): void {
