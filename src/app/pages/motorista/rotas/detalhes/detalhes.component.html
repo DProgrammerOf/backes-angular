@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <div id="content-list" class="content">
+    <div id="content-list" class="content" [class.content-client-app-android]="this.app.platform?.toLocaleLowerCase() == 'android'">
         <div class="route-progress">
             <div class="progress-bar">
                 <span class="bar" [style.width]="progress"></span>

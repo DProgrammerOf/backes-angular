@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <div id="content-create" class="content">
+    <div id="content-create" class="content" [class.content-client-app-android]="this.app.platform?.toLocaleLowerCase() == 'android'">
         <div class="form">
             <div class="input-images">
                 <h6 class="group-title">Dados de Entrega</h6>

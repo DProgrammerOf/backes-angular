@@ -53,8 +53,12 @@ main {
         height: 100%;
         overflow-y: auto;
         overflow-x: hidden;
-        padding: 1rem 1rem 5rem 1rem;
+        padding: 1rem 1rem 11rem 1rem;
         gap: 1rem;
+
+        &.content-client-app-android {
+            padding-bottom: calc(300px) !important;
+        }
 
         // no scroll
         scrollbar-width: none;

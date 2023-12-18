@@ -46,7 +46,7 @@ export class RotasCheckinComponent {
     private imageCompress: NgxImageCompressService,
     private sanitizer: DomSanitizer,
     private location: Location,
-    private app: AppComponent,
+    protected app: AppComponent,
     private route: ActivatedRoute,
     private router: Router,
     private motorista: MotoristaComponent,

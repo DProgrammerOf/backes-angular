@@ -55,7 +55,7 @@ export class RotasDetalhesComponent {
           handler: () => this.sendCallNative({ 
             type: 'openLink', 
             url: "https://www.google.com/maps/search/?api=1&query=" + endereco, 
-            target: '_system' 
+            target: '_blank' 
           })
         }
       ]

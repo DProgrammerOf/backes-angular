@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <div id="content-list" class="content">
+    <div id="content-list" class="content" [class.content-client-app-android]="this.app.platform?.toLocaleLowerCase() == 'android'">
         <div class="rota-item" *ngFor="let rota of this.rotas" 
         [class.finished]="rota.status === 4"
         [class.running]="rota.status === 1"
