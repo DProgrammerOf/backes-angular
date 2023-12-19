@@ -43,19 +43,19 @@ export class RotasDetalhesComponent {
         {
           text: 'Waze',
           icon: 'WAZE-ICON',
-          handler: () => this.sendCallNative({ 
-            type: 'openLink', 
-            url: "https://waze.com/ul?q" + endereco + "&navigate=yes", 
+          handler: () => this.sendCallNative({
+            type: 'openLinkExtern', 
+            url: "https://waze.com/ul?q="+ endereco +"&navigate=yes", 
             target: '_system' 
           })
         },
         {
           text: 'Google Maps',
           icon: 'fa-google',
-          handler: () => this.sendCallNative({ 
-            type: 'openLink', 
-            url: "https://www.google.com/maps/search/?api=1&query=" + endereco, 
-            target: '_blank' 
+          handler: () => this.sendCallNative({
+            type: 'openLinkExtern', 
+            url: "https://www.google.com/maps/dir/?api=1&destination=" + endereco, 
+            target: '_system' 
           })
         }
       ]

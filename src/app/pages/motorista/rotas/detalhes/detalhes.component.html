@@ -44,6 +44,7 @@
                         <span class="deliver_start">{{ local.deliver_start ?? '' }}</span>
                     </div>
                     <div class="content">
+                        <span class="full_address">{{ local.search_address }}</span>
                         <span class="full_address">{{ local.full_address }}</span>
                         <span class="status" [ngClass]="getClassStatus(local.status) ?? getClassStatus(local.deliver_status)">
                             <i class="fa fa-list-alt" aria-hidden="true"></i>
@@ -56,7 +57,7 @@
                         (click)="openCheckin(i, local)">
                             Check-In
                         </span>
-                        <span class="openMap" (click)="openRota(local.full_address)">
+                        <span class="openMap" (click)="openRota(local.search_address)">
                             <i class="fa fa-location-arrow" aria-hidden="true"></i>
                             Ver Rota
                         </span>

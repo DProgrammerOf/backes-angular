@@ -8,6 +8,7 @@ export interface Local_Details {
   description: String,
   name_address: String,
   full_address: String,
+  search_address: String,
   
   // Locals to go specific attributes
   deliver_start?: String,
