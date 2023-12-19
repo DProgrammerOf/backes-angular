@@ -26,6 +26,8 @@ export class RotasCheckinComponent {
     { file: undefined, safeUrl:undefined, url: undefined },
     { file: undefined, safeUrl:undefined, url: undefined },
     { file: undefined, safeUrl:undefined, url: undefined },
+    { file: undefined, safeUrl:undefined, url: undefined },
+    { file: undefined, safeUrl:undefined, url: undefined }
   ];
   countImagens: number = 0;
   // Imagens upload
@@ -165,8 +167,8 @@ export class RotasCheckinComponent {
         { file: undefined, safeUrl:undefined, url: undefined },
         { file: undefined, safeUrl:undefined, url: undefined },
         { file: undefined, safeUrl:undefined, url: undefined },
-        // { file: undefined, safeUrl:undefined, url: undefined },
-        // { file: undefined, safeUrl:undefined, url: undefined }
+        { file: undefined, safeUrl:undefined, url: undefined },
+        { file: undefined, safeUrl:undefined, url: undefined }
       ];
       let countImagensOrdened: number = 0;
       this.imagens.forEach((img) => {
@@ -177,7 +179,7 @@ export class RotasCheckinComponent {
       })
       this.countImagens = countImagensOrdened;
       this.imagens = imagensOrderned;
-      console.log(this.countImagens, this.imagens);
+      // console.log(this.countImagens, this.imagens);
     }
   }
 
