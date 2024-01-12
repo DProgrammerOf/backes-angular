@@ -134,7 +134,7 @@ export class RotasCheckinComponent {
   }
   
   protected addImagem(): void {
-    if (this.countImagens == 3) {
+    if (this.countImagens == 5) {
       alert('O limite de imagens já foi atingido');
       return;
     }

@@ -44,7 +44,7 @@ export class RotasDetalhesComponent {
           text: 'Waze',
           icon: 'WAZE-ICON',
           handler: () => this.sendCallNative({
-            type: 'openLinkExtern', 
+            type: 'openLink', 
             url: "https://waze.com/ul?q="+ endereco +"&navigate=yes", 
             target: '_system' 
           })
@@ -53,7 +53,7 @@ export class RotasDetalhesComponent {
           text: 'Google Maps',
           icon: 'fa-google',
           handler: () => this.sendCallNative({
-            type: 'openLinkExtern', 
+            type: 'openLink', 
             url: "https://www.google.com/maps/dir/?api=1&destination=" + endereco, 
             target: '_system' 
           })
