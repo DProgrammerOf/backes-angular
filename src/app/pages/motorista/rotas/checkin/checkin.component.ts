@@ -21,6 +21,7 @@ interface ImageForm {
   styleUrls: ['./checkin.component.scss']
 })
 export class RotasCheckinComponent {
+
    // Imagens upload
    imagens: ImageForm[] = [
     { file: undefined, safeUrl:undefined, url: undefined },
@@ -31,6 +32,10 @@ export class RotasCheckinComponent {
   ];
   countImagens: number = 0;
   // Imagens upload
+
+  // Header
+  type_header: String = '';
+  title: String = '';
 
   // Formulario
   formInputs = {
@@ -59,6 +64,8 @@ export class RotasCheckinComponent {
         this.formInputs.rota_id = params['rota_id'];
         this.formInputs.local_index = params['local_index'];
         this.formInputs.status = params['local_status'];
+        this.title = params['local_status'] == 4 ? 'Check-In' : 'Cancelamento';
+        this.type_header = params['local_status'] == 3 ? 'type-cancel' : '';
       }
     )
   }

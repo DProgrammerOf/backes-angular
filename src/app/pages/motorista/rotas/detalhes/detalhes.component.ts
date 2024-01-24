@@ -27,13 +27,44 @@ export class RotasDetalhesComponent {
     protected motorista: MotoristaComponent
   ){
     this.rota = this.motorista.rota;
-    if (this.rota) {
-      this.locals_filtered = this.rota.locals_details;
-      this.locals_finished = this.rota.locals_details?.filter((detail, index) => 
-        (index > 0) ? detail.deliver_status === 4 : detail.status === 4
-      ).length;
-      this.progress = `${(this.locals_finished / this.rota?.locals_details?.length) * 100}%`;
+    this.rota && this.refreshRota(this.rota);
+  }
+
+  protected openWhatsapp(local: Local_Details): void {
+    if (local.deliver_whatsapp) {
+      const number_whatsapp = local.deliver_whatsapp.replace(/\D/g,'');
+      const text = encodeURI(`Olá, me chamo ${this.motorista.perfil?.nome} e estou em rota com o seu produto!`);
+      this.sendCallNative({
+        type: 'openLink', 
+        url: 'https://api.whatsapp.com/send?phone=55'+number_whatsapp+'&text='+text, 
+        target: '_system' 
+      })
     }
+  }
+
+  protected refreshRota(rota: Rota) {
+    this.motorista.rota = rota;
+    this.rota = this.motorista.rota;
+    this.locals_filtered = rota.locals_details;
+    this.locals_finished = rota.locals_details?.filter((detail, index) => 
+      (index > 0) ? detail.deliver_status === 4 : detail.status === 4
+    ).length;
+    this.progress = `${(this.locals_finished / rota.locals_details?.length) * 100}%`;
+  }
+
+  protected startRota (local_index: number, local: Local_Details): void {
+    const id_rota = this.rota?.id ?? -1;
+
+    this.app.setStatusText("Atualizando rota");
+    this.app.setStatus(true);
+    this.service.create_quick(id_rota, local_index).subscribe(
+      (response) => {
+        response.success && response.rota && this.refreshRota(response.rota);
+        this.app.setStatus(false);
+        this.app.setStatusText('');
+        this.motorista.openMessage(response.success, response.message);
+      }
+    )
   }
 
   protected openRota (endereco: String): void {
@@ -74,12 +105,12 @@ export class RotasDetalhesComponent {
     this.locals_filtered = this.rota?.locals_details;
   }
 
-  protected openCheckin(index: number, local: Local_Details): void {
+  protected openCheckin(index: number, status: number): void {
     this.router.navigate(['motorista/home/rotas/checkin'], { 
       queryParams: {
         rota_id: this.rota?.id,
         local_index: index,
-        local_status: index === 0 ? local.status : local.deliver_status
+        local_status: status
       }
     });
   }
@@ -95,16 +126,18 @@ export class RotasDetalhesComponent {
     }
   }
 
-  protected getClassStatus (status: number | undefined): String | null {
+  protected getClassStatus (details: Local_Details): String {
+    const status = details.status ?? details.deliver_status ?? -1;
     switch (status) {
-      case 0: return "";
+      case 0: return "waiting";
       case 1: return "running";
       case 2: return "late";
       case 3: return "canceled";
       case 4: return "finished";
-      default: return null;
+      default: return '';
     }
   }
+
 
   protected sendCallNative(event: any): void {
     if (window.parent.postMessage) {

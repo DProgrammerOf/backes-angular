@@ -15,6 +15,8 @@ export interface Local_Details {
   deliver_end?: String,
   deliver_weight?: String,
   deliver_status?: number
+  deliver_whatsapp?: String,
+  deliver_cost?: String,
 
   // Local start specific attribute
   status?: number
@@ -51,5 +53,9 @@ export class RotasService {
 
   create(data: FormData): Observable<HttpEvent<any>> {
     return this.api.post<any>('/motorista/rotas/checkin', data, true);
+  }
+
+  create_quick(id: Number, local_index: Number): Observable<RotaResponse> {
+    return this.api.get<RotaResponse>('/motorista/rotas/start', {rota_id:id, local_index:local_index});
   }
 }

@@ -1,12 +1,12 @@
 <main>
-    <div id="header-create" class="header">
+    <div id="header-create" class="header" [class.type-cancel]="type_header">
         <div class="top">
             <span class="close" (click)="back()">
                 <i class="fa fa-times" aria-hidden="true"></i>
             </span>
 
             <span class="title">
-                Check-In
+                {{ title }}
             </span>
         </div>
     </div>
@@ -56,7 +56,7 @@
                 
                 <div id="label-datehour">Informe a data e hora <b>referente a entrega</b>.</div>
 
-                <div id="statusInput" class="form-floating mt-2">
+                <div id="statusInput" class="form-floating mt-2" style="display: none;">
                     <select class="form-select" id="status" [(ngModel)]="formInputs.status">
                         <option value="0" [class.selected]="formInputs.status === 0">Pendente</option>
                         <option value="1" [class.selected]="formInputs.status === 1">Em andamento</option>
