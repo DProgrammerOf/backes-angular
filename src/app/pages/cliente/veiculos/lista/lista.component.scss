@@ -62,140 +62,277 @@ main.content-client-app {
     -webkit-box-shadow: none;
     box-shadow: none;
 
-    .card-infos {
+    .card-infoos {
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: 5px;
+        flex: 1;
+        padding-bottom: 10px;
+        border-radius: 5px;
 
-        .infos-top {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            overflow: hidden;
-
-            .identificacao {
-                display:flex;
-                flex-direction:column;
-                padding: .6rem 0 0 1rem;
-                max-width: 50%;
+        &.status-on {
+            .card-header-info {
+                .vehicle-icon {
+                    color: #32db64;
+                }
+                .vehicle-status { 
+                    color: #32db64;
+                    border-color: #32db64;
+                    background-color: rgba(0,255,0,.1);
+                }
             }
 
-            .status {
-                display: flex;
-                flex-direction: row;
-                color: white;
-                justify-content: flex-end;
-                align-items: flex-start;
-                margin-top: .6rem;
-
-                > div {
-                    display: flex;
-                    flex-direction: row;
-                    padding: .2rem;
-                    border-radius: .8rem 0 0 .8rem;
-                    align-items: center;
-                    height: 24px;
-                    width: 205px;
-                    > div {
-                        font-size: 1rem;
-                        line-height: 0.9rem;
-                        white-space: nowrap;
-                        font-weight: bold;
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: center;
-                        align-items: flex-end;
-                        height: 100%;
-                        padding-left: 3px;
+            .card-body-info > .tracker-infos { 
+                .data-speed, .data-odometer, .data-battery {
+                    .icon {
+                        background-color: rgba(0,255,0,.1);
+                        svg {
+                            color: #32db64 !important;
+                            fill: #32db64 !important;
+                        }
                     }
                 }
+            }
+
+            .card-more-info > .tracker-data > .icon {
+                color: #32db64;
+            }
+
+            .card-more-actions > .actions > div {
+                color: #32db64;
             }
         }
 
-        .infos-bottom {
-            padding: 0 0.5rem 0.5em 0.5rem;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            gap: 0.5rem;
-
-            .local {
-                max-width: 50%;
-                display: flex;
-                flex-direction: row;
-                gap: .4rem;
-                i, svg {
-                    font-size: 2.2rem;
-                    line-height: 2.2rem;
+        &:not(.status-on) {
+            .card-header-info {
+                .vehicle-icon {
+                    color: #f53d3d;
                 }
-                .endereco {
-                    font-size: 0.7em;
-                    line-height: 1.1rem;
-                    margin-top: .1rem;
+                .vehicle-status > .icon {
+                    transform:  rotate(-90deg);
                 }
             }
 
-            .velocidade {
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                
-                > div {
-                    display: flex;
-                    flex-direction: row;
-                    align-items: flex-end;
-                    gap: .2rem;
-
-                    i, svg {
-                        font-size: 2.2rem;
-                        line-height: 2rem;
-                        width: 2.2rem;
-                        height: 2rem;
-                    }
-
-                    span {
-                        font-size: 1.6rem;
-                        line-height: 1.2rem;
-                        font-weight: 500;
-                    }
-
-                    .unidade {
-                        font-size: .9rem;
-                        line-height: .9rem;
-                        font-weight: 400;
+            .card-body-info > .tracker-infos { 
+                .data-speed, .data-odometer, .data-battery {
+                    .icon {
+                        background-color: rgba(200, 47, 47, 0.2);
+                        svg {
+                            color: #f53d3d !important;
+                            fill: #f53d3d !important;
+                        }
                     }
                 }
+            }
+
+            .card-more-info > .tracker-data > .icon {
+                color: #f53d3d;
+            }
+
+            .card-more-actions > .actions > div {
+                color: #f53d3d;
             }
         }
-    }
 
-    .card-actions {
-        > div {
+        .card-header-info {
             display: flex;
             flex-direction: row;
-            border-radius: 0 0 6px 6px;
+            width: 100%;
+            padding: .8rem .6rem;
+            height: 70px;
+            gap: 8px;
 
-            > div {
-                width: 33.333%;
+            .vehicle-icon {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                padding: .5rem 0rem;
+                justify-content: center;
+                padding: 0 10px;
+                background-color: rgba(0,0,0,.02);
+                border-radius: 8px;
+                border: 1px solid rgba(0,0,0,0.06);
+                font-size: 26px;
+                line-height: 26px;
+            }
 
-                i, svg {
-                    font-size: 1.5rem;
-                    line-height: 1.5rem;
+            .vehicle-detail {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: flex-start;
+                width: 100%;
+    
+                .plate {
+                    font-weight: bold;
+                    font-size: 14px;
+                    line-height: 14px;
                 }
-
-                &:first-child {
-                    border-right: 1px solid #EDEDED;
+    
+                .model {
+                    font-size: 10px;
+                    line-height: 10px;
                 }
+            }
 
-                &:last-child {
-                    border-left: 1px solid #EDEDED;
+            .vehicle-status {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+
+                padding: 4px 8px;
+                border: 1px solid #f53d3d;
+                border-radius: 15px;
+                color: #c82f2f;
+                background-color: rgba(255,0,0,.1);
+                gap: 4px;
+                height: 25px;
+
+                span {
+                    font-size: 12px;
+                    line-height: 12px;
+                    flex: 1;
                 }
             }
         }
+
+
+        .card-body-info { 
+            border-bottom: 1px solid rgba(0,0,0,.1);
+            padding-bottom: 10px;
+
+            .tracker-infos {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                
+                .data-odometer {
+                    grid-template-columns: 25px 65px;
+                }
+                .data-speed {
+                    grid-template-columns: 25px 50px;
+                }
+                .data-battery {
+                    grid-template-columns: 25px 45px;
+                }
+                .data-speed, .data-odometer, .data-battery {
+                    display: grid;
+                    grid-template-areas: "info1 info2" "info1 info3";
+                    grid-template-rows: 1fr 1fr;
+                    column-gap: 8px;
+                    row-gap: 4px;
+
+                    > .icon {
+                        grid-area: info1;
+                        border-radius: 4px;
+                        text-align: center;
+                        svg {
+                            width: 22px;
+                            height: 28px;
+                        }
+                    }
+
+                    > .label {
+                        grid-area: info2;
+
+                        color: rgba(0,0,0,0.5);
+                        font-size: 10px;
+                        line-height: 10px;
+                        padding-top: 2px;
+                    }
+
+                    > .value {
+                        grid-area: info3;
+
+                        color: rgba(0,0,0);
+                        font-size: 10px;
+                        line-height: 10px;
+
+                        span {
+                            font-family: 'Courier New', Courier, monospace;
+                            font-weight: 600;
+                            font-size: 11px;
+
+                            &.batery-null {
+                                font-size: 10px;
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+
+        .card-more-info {
+            border-bottom: 1px solid rgba(0,0,0,.1);
+            padding-bottom: 10px;
+
+            .tracker-data {
+                display: flex;
+                flex-direction: row;
+                gap: 8px;
+                padding: 0 1rem;
+                margin-top: 10px;
+
+                .icon {
+                    text-align: center;
+                    line-height: 18px;
+                    width: 12px;
+                }
+
+                .driver {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    font-size: 12px;
+                    line-height: 18px;
+                }
+
+                .last-address {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                    .value {
+                        font-size: 12px;
+                        line-height: 18px;
+                        line-clamp: 2;
+                        -webkit-line-clamp: 2;
+                        -ms-flex-line-pack: 2;
+                    }
+                    .date-att {
+                        font-size: 12px;
+                        line-height: 12px;
+                        color: rgba(0,0,0,.5);
+                    }
+                }
+            }
+        }
+
+        .card-more-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            .label {
+                padding: 0 1rem;
+                color: rgb(58, 58, 58, .8);
+                font-size: 12px;
+            }
+
+            .actions {
+                display: flex;
+                flex-direction: row;
+                gap: 5px;
+                div {
+                    font-size: 18px;
+                    line-height: 18px;
+                    padding: 8px .5rem 8px 1rem;
+                }
+            }
+        }
+
+        
+        
     }
 }
 

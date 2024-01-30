@@ -17,6 +17,7 @@ export interface Veiculo {
   status_sinal?: String,
   ligado?: String,
   endereco?: String
+  endereco_regex?: String,
   speed?: Number,
   bloqueado?: String,
   limite_velocidade?: Number,
