@@ -176,11 +176,11 @@ main.content-client-app {
     position: absolute;
     margin: 0;
     display: flex;
-    flex-direction: row;
-    gap: .3rem;
-    padding: 0 .6rem;
-    width: 100%;
-    bottom: 1rem;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+    top: calc(30% + 40px);
+    right: 10px;
 }
 
 
@@ -188,12 +188,13 @@ main.content-client-app {
     background: white;
     color: rgba(0, 0, 0, 0.4);
     border-radius: 50%;
-    width: 3rem;
-    height: 3rem;
+    width: 2.2rem;
+    height: 2.2rem;
     box-shadow: none;
     border: none;
+    padding: 0;
     i, svg {
-        font-size: 1.4rem;
+        font-size: 1rem;
         color: rgba(0,0,0,.6);
     }
 }
@@ -210,7 +211,7 @@ main.content-client-app {
     font-weight: 500;
 
     i {
-        line-height: 1.5rem;
+        line-height: 1rem;
     }
 
     span {

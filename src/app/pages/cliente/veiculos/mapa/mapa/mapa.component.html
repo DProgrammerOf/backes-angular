@@ -11,7 +11,7 @@
         (click)="this.closeInfo()" ></div>
 </main>
 
-<div id="btn-acoes" [hidden]="this.veiculos === undefined || this.veiculoId == -1" [class.btn-acoes-android]="this.app.platform?.toLocaleLowerCase() == 'android'">
+<div id="btn-acoes" [hidden]="this.veiculos === undefined || this.veiculoId == -1" [ngStyle]="{'top': offset_top}">
     <button class="btn-in-map" ion-button icon-only color="royal" (click)="this.openComandos()">
         <i class="fa fa-cog" aria-hidden="true"></i>
     </button>
@@ -29,16 +29,19 @@
             top: -0.6rem;
             text-align: center;
             border-radius: 1rem;
-            font-size: .8rem;
+            font-size: .6rem;
             line-height: .8rem;
             font-weight: bold;
-            padding: 0.2rem 1rem;
+            padding: 0.2rem .4rem;
             left: 50%;
             transform: translateX(-50%);" class="btn-backes-success">{{ this.veiculoAlertas }}</span>
         <button class="btn-in-map" ion-button icon-only color="royal" (click)="this.openAlertas()">
             <i class="fa fa-bell" aria-hidden="true"></i>
         </button>
     </span>
+</div>
+
+<div id="btn-vel">
     <button class="btn-in-map btn-vel" ion-button style="text-transform: inherit;">
         <i class="icon ion-md-speedometer" aria-hidden="true"></i> 
         <span>{{this.veiculos?.[0]?.speed}}</span>

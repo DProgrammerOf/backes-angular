@@ -38,6 +38,9 @@ export class VeiculosMapaComponent implements OnDestroy {
   markersLatLng: any;
   precoCombustivel: any = "";
 
+  // UI
+  offset_top: String = "50%";
+
   swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: 'btn btn-success',
@@ -214,8 +217,9 @@ export class VeiculosMapaComponent implements OnDestroy {
       keyboard: false
     });
     L.control.zoom({
-        position: 'bottomright'
+        position: 'topright'
     }).addTo(this.map);
+
 
      // Control show Motorista or Placa
      L.Control.SwitchStyleMarker = L.Control.extend({
@@ -237,14 +241,23 @@ export class VeiculosMapaComponent implements OnDestroy {
       return new L.Control.SwitchStyleMarker(opts);
     }
     L.control.switchMarker({
-      position: 'bottomright'
+      position: 'topright'
     }).addTo(this.map);
     // Control show Motorista or Placa
 
+
     L.control.layers(baseMaps).addTo(this.map);
+    // Control to layers
+
     this.markersCluster = new L.MarkerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 50}); // Raio do Cluster
     this.map?.addLayer(this.markersCluster);
-  
+
+    // Calculate position btn-acoes in map
+    const position_btns: HTMLDivElement | null = document.querySelector('.leaflet-top.leaflet-right > div:last-child');
+    if (position_btns) {
+      this.offset_top = `calc(${position_btns.offsetTop+position_btns.offsetHeight}px + 2.2rem + 20px)`;
+    }
+    // Calculate position btn-acoes in map
     
     const me = this;
     this.map?.whenReady( () => {
