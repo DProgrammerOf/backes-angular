@@ -28,6 +28,7 @@ export interface Veiculo {
   longitude?: String,
   hodometro?: number,
   voltagem_bateria?: String,
+  nivel_bateria?: String,
   sinal?: String,
   saida1?: String,
   saida2?: String,
