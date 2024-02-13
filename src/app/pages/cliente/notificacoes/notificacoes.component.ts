@@ -15,6 +15,7 @@ export class NotificacoesComponent implements AfterViewInit {
   @Input() IgnicaoOff: Boolean = false;
   @Input() CercaVirtual: Boolean = false;
   @Input() VelocidadeLimite: Boolean = false;
+  @Input() EnergiaDesligada: Boolean = false;
   constructor(
     protected app: AppComponent,
     protected base: ClienteComponent,
@@ -36,6 +37,7 @@ export class NotificacoesComponent implements AfterViewInit {
       this.IgnicaoOff = notificacoes.data?.ignicao_desligada == "S";
       this.CercaVirtual = notificacoes.data?.cerca_virtual == "S";
       this.VelocidadeLimite = notificacoes.data?.velocidade_limite == "S";
+      this.EnergiaDesligada = notificacoes.data?.energia_desligada == "S"
     })
     .add( () => this.app.setStatus(false) );
   }
@@ -50,6 +52,7 @@ export class NotificacoesComponent implements AfterViewInit {
         ignicao_desligada: this.IgnicaoOff ? "S" : "N",
         cerca_virtual: this.CercaVirtual ? "S" : "N",
         velocidade_limite: this.VelocidadeLimite ? "S" : "N",
+        energia_desligada: this.EnergiaDesligada ? "S" : "N"
       })
       .subscribe( notificacoes => {
         if (notificacoes.success === false) {
@@ -62,6 +65,7 @@ export class NotificacoesComponent implements AfterViewInit {
         this.IgnicaoOff = notificacoes.data?.ignicao_desligada == "S";
         this.CercaVirtual = notificacoes.data?.cerca_virtual == "S";
         this.VelocidadeLimite = notificacoes.data?.velocidade_limite == "S";
+        this.EnergiaDesligada = notificacoes.data?.energia_desligada == "S";
       })
       .add( () => this.app.setStatus(false) );
   }

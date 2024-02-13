@@ -250,6 +250,28 @@ export class VeiculosListaComponent implements OnDestroy {
     this.router.navigate(['cliente/veiculos/cercas'], { queryParams: { veiculo: veiculo.imei } });
   }
 
+  notificacoes(veiculo: Veiculo) {
+    let title: string = veiculo.push_status === 1 ? "Desativar notificações" : "Ativar notificações";
+    let new_status = veiculo.push_status === 1 ? 0 : 1;
+    this.swalWithBootstrapButtons.fire({
+      title: title,
+      text: `Tem certeza que você quer as ${title.toLowerCase()} do veículo?`,
+      imageWidth: 100,
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Sim',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.service.notificacoes_status(veiculo.imei, new_status).subscribe( (response) => {
+          this.base.openMessage(response.success, response.message.toString());
+          if (response.success) {
+            this.refresh();
+          }
+        });
+      }
+    })
+  }
+
 
   // filters list
   openFilterStatus(value: boolean) {

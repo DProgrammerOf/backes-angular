@@ -36,7 +36,8 @@ export interface Veiculo {
   horimetroFormatted?: String,
   parado?: String,
   calc_hodometro?: Number,
-  obj_localizacao?: UltimaLocalizacao
+  obj_localizacao?: UltimaLocalizacao,
+  push_status: Number
 };
 
 export interface UltimaLocalizacao {
@@ -93,6 +94,10 @@ export class VeiculosService {
   }
 
   /* COMANDOS */
+  notificacoes_status(imei: String, status: Number): Observable<VeiculosComandoResponse> {
+    return this.api.get('/comandos', { action: 'VEICULO_NOTIFICACOES', imei, status });
+  }
+
   bloquear(imei: String): Observable<VeiculosComandoResponse> {
     return this.api.get('/comandos', { action: 'VEICULO_BLOQUEAR', imei: imei });
   }

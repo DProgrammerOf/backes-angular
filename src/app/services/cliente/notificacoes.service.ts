@@ -11,7 +11,8 @@ interface Notificacoes {
   ignicao_ligada: String,
   ignicao_desligada: String,
   cerca_virtual: String,
-  velocidade_limite: String
+  velocidade_limite: String,
+  energia_desligada: String
 };
 
 interface NotificacoesResponse {

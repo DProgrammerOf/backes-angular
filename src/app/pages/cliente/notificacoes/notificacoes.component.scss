@@ -27,6 +27,10 @@ main.content-client-app {
             flex: 1;
             font-size: 1.3rem;
             line-height: 1.3rem;
+
+            &.fa-bolt::before {
+                margin-left: 7px;
+            }
         }
 
         span {
