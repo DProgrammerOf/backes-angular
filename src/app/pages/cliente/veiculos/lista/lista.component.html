@@ -133,7 +133,7 @@
                         <i color="iconscolor" class="fa fa-exclamation-triangle size-1_5"></i>
                     </div>
                     <div (click)="notificacoes(item)">
-                        <i color="iconscolor" class="fa fa-info-circle size-1_5"></i>
+                        <i color="iconscolor" class="fa fa-plug size-1_5" [class.push_on]="item.push_status === 1"></i>
                     </div>
                 </div>
             </div>

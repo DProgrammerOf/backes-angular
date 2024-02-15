@@ -327,6 +327,12 @@ main.content-client-app {
                     font-size: 18px;
                     line-height: 18px;
                     padding: 8px .5rem 8px 1rem;
+                    position: relative;
+                    
+                    .fa-plug:not(.push_on) {
+                        color: rgba(0,0,0,.4);
+                        fill: rgba(0,0,0,.4);
+                    }
                 }
             }
         }  

@@ -255,7 +255,7 @@ export class VeiculosListaComponent implements OnDestroy {
     let new_status = veiculo.push_status === 1 ? 0 : 1;
     this.swalWithBootstrapButtons.fire({
       title: title,
-      text: `Tem certeza que você quer as ${title.toLowerCase()} do veículo?`,
+      text: `Tem certeza que você quer as ${title.toLowerCase()} notificações de Alimentação/Violação da Energia do Rastreador/Veiculo?`,
       imageWidth: 100,
       showCancelButton: true,
       cancelButtonText: 'Cancelar',
