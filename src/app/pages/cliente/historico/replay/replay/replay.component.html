@@ -8,9 +8,12 @@
 
 
 <main class="content-client-app" (click)="this.base.setMenu(false)" [class.content-client-app-android]="this.app.platform?.toLocaleLowerCase() == 'android'" >
-    <div id="map"></div>
+    <div id="map" class="map-replay"></div>
 
     <div id="replay-control">
+        <div class="control-date">
+            <span>{{ date | todate: "HH:mm [às] DD/MM/yyyy" }}</span>
+        </div>
         <div class="play" style="width: 20%; float:left;">
             <i class="fa fa-play" aria-hidden="true" (click)="play()" [hidden]="this.playReplay"></i>
             <i class="fa fa-pause" aria-hidden="true" (click)="play()" [hidden]="!this.playReplay"></i>
@@ -25,19 +28,6 @@
             <div style="border:1px solid black; padding: 5px; border-radius: 8px;" (click)="this.mudarVelocidade()">
                 {{ (velReplay == 600) ? "ALTA" : "BAIXA" }}
             </div>
-        </div>
-    </div>
-
-    <div id="replay-infos">
-        <div style="width: 100%;display: flex;flex-direction: row;">
-            <span>{{ date | todate: "DD/MM/yyyy" }} <br/>{{ date | todate:"HH:mm:ss" }}</span>
-            <span>Velocidade:<br/><i class="fa fa-tachometer" style="margin-right: .2rem;" aria-hidden="true"></i>{{ velocidade }}km/h</span>
-            <span>Distância:<br/><i class="fa fa-road" aria-hidden="true"></i> {{ distance }}km</span>
-        </div>
-        <div style="width: 100%;display: flex;flex-direction: row;">
-            <span>Duração:<br/><i class="fa fa-clock-o" aria-hidden="true"></i> {{ tempo }}</span>
-            <span>Paradas:<br/>{{ paradas }}</span>
-            <span>Gasto:<br/>R${{ gasto }}</span>
         </div>
     </div>
 </main>

@@ -207,11 +207,13 @@ export class HistoricoReplayComponent {
 
 
       var markerIcon = this.getIcon(posicaoInicial);
-      var marker = L.marker(posicaoInicial, { icon: markerIcon });
+      var marker = L.marker(posicaoInicial, { icon: markerIcon }).bindPopup();
       this.posicao = marker;
 
+      this.updatePopup();
       this.map?.addLayer(this.posicao);
       this.map?.setView(this.posicao.getLatLng(), 16);
+      this.posicao.openPopup();
     }
   }
 
@@ -278,7 +280,8 @@ export class HistoricoReplayComponent {
 
     // Atualizar marcador conforme ignição
     this.posicao.setIcon(this.getIcon(this.trajeto[this.trajetoPasso]));
-
+    // Atualizar popup
+    this.updatePopup();
     // Mover marcador
     var proxPosicao = this.trajetoLatLng[this.trajetoPasso];
     this.posicao.setLatLng(proxPosicao);
@@ -384,5 +387,42 @@ export class HistoricoReplayComponent {
     });
 
     return markerIcon;
+  }
+
+  updatePopup(): void {
+    let html = `<div class='popup-replay'>
+      <div class='header'>
+        (${this.veiculo?.name}) ${this.veiculo?.modelo} ${this.veiculo?.cor}
+      </div>
+      <div>
+        <hr style="margin-top: 5px; margin-bottom: 5px;">
+      </div>
+      <div>
+        <i class="fa fa-tachometer" aria-hidden="true"></i> 
+        <span>Velocidade:</span>
+        <span class='value'>${this.velocidade} km/h</span>
+      </div>
+      <div>
+        <i class="fa fa-road" aria-hidden="true"></i> 
+        <span>Distância:</span>
+        <span class='value'>${this.distance} km</span>
+      </div>
+      <div>
+        <i class="fa fa-clock-o" aria-hidden="true"></i> 
+        <span>Duração:</span>
+        <span class='value'>${this.tempo}</span>
+      </div>
+      <div>
+        <i class="fa fa-flag-o" aria-hidden="true"></i> 
+        <span>Paradas:</span>
+        <span class='value'>${this.paradas}</span>
+      </div>
+      <div>
+        <i class="fa fa-usd" aria-hidden="true"></i> 
+        <span>Gasto:</span>
+        <span class='value'>R$${this.gasto}</span>
+      </div>
+    </div>`;
+    this.posicao.setPopupContent(html);
   }
 }
