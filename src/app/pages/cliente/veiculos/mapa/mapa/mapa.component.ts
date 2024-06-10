@@ -56,7 +56,7 @@ export class VeiculosMapaComponent implements OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     protected location: Location,
-    private service: VeiculosService  
+    private service: VeiculosService
   ) {
   }
 
@@ -194,7 +194,7 @@ export class VeiculosMapaComponent implements OnDestroy {
       "Aereo": MapboxAereo,
       "Dark": Dark,
       "Light": Light
-    };    
+    };
 
     L.Map.prototype.MoveToVehicle = function (elem: any, targetZoom: any) {
       var offsetLeft = document.querySelector(`.icon-vehicle[title="${elem.options.title}"]`)?.scrollWidth;
@@ -249,7 +249,7 @@ export class VeiculosMapaComponent implements OnDestroy {
     L.control.layers(baseMaps).addTo(this.map);
     // Control to layers
 
-    this.markersCluster = new L.MarkerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 50}); // Raio do Cluster
+    this.markersCluster = new L.MarkerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 10}); // Raio do Cluster
     this.map?.addLayer(this.markersCluster);
 
     // Calculate position btn-acoes in map
@@ -258,7 +258,7 @@ export class VeiculosMapaComponent implements OnDestroy {
       this.offset_top = `calc(${position_btns.offsetTop+position_btns.offsetHeight}px + 2.2rem + 20px)`;
     }
     // Calculate position btn-acoes in map
-    
+
     const me = this;
     this.map?.whenReady( () => {
       this.loadMarkers(me.veiculoId);
@@ -270,7 +270,7 @@ export class VeiculosMapaComponent implements OnDestroy {
         }, 500 );
       }
 
-      this.veiculosTimer = setInterval( () => me.loadMarkers(me.veiculoId, false), 8000 );
+      this.veiculosTimer = setInterval( () => me.loadMarkers(me.veiculoId, false), 3000 );
     });
   }
 
@@ -280,8 +280,8 @@ export class VeiculosMapaComponent implements OnDestroy {
       if (this.veiculoFocusStatus) {
         this.veiculoFocus = this.service.get(this.veiculoFocus?.id);
       }
-    } 
-    else // Individual 
+    }
+    else // Individual
     {
       let veiculo = this.service.get(veiculoId, undefined);
       if (veiculo) {
@@ -456,7 +456,7 @@ export class VeiculosMapaComponent implements OnDestroy {
     const veiculo = this.veiculos?.[0];
     if (veiculo) {
       this.router.navigate(['cliente/veiculos/mapa/alertas'], { queryParams: {veiculo: veiculo.imei} });
-    } 
+    }
   }
 
   openExternMaps(){
@@ -468,28 +468,28 @@ export class VeiculosMapaComponent implements OnDestroy {
           {
             text: 'Waze',
             icon: 'WAZE-ICON',
-            handler: () => this.sendCallNative({ 
-              type: 'openLink', 
-              url: "https://waze.com/ul?ll=" + veiculo.latitude + "," + veiculo.longitude + "&z=10", 
-              target: '_system' 
+            handler: () => this.sendCallNative({
+              type: 'openLink',
+              url: "https://waze.com/ul?ll=" + veiculo.latitude + "," + veiculo.longitude + "&z=10",
+              target: '_system'
             })
           },
           {
             text: 'Google Maps',
             icon: 'fa-google',
-            handler: () => this.sendCallNative({ 
-              type: 'openLink', 
-              url: "https://www.google.com/maps/search/?api=1&query=" + veiculo.latitude + "," + veiculo.longitude, 
-              target: '_system' 
+            handler: () => this.sendCallNative({
+              type: 'openLink',
+              url: "https://www.google.com/maps/search/?api=1&query=" + veiculo.latitude + "," + veiculo.longitude,
+              target: '_system'
             })
           },
           {
             text: 'Street View',
             icon: 'fa-street-view',
-            handler: () => this.sendCallNative({ 
-              type: 'openLink', 
-              url: "https://maps.google.com/maps?q=&layer=c&cbll=" + veiculo.latitude + "," + veiculo.longitude, 
-              target: '_system' 
+            handler: () => this.sendCallNative({
+              type: 'openLink',
+              url: "https://maps.google.com/maps?q=&layer=c&cbll=" + veiculo.latitude + "," + veiculo.longitude,
+              target: '_system'
             })
           }
         ]
@@ -529,7 +529,7 @@ export class VeiculosMapaComponent implements OnDestroy {
             handler: () => veiculo.bloqueado == 'S' ? this.desbloquear(veiculo) : this.bloquear(veiculo)
           }
         ]
-      )  
+      )
     }
   }
 
@@ -636,8 +636,8 @@ export class VeiculosMapaComponent implements OnDestroy {
 
   bloquear(veiculo: Veiculo) {
     this.swalWithBootstrapButtons.fire({
-      title: 'Bloqueio',
-      text: 'Tem certeza que quer enviar o comando de bloqueio?',
+      title: 'Comando de bloqueio',
+      text: 'Tem certeza que você deseja enviar o comando de bloqueio? Essa ação irá ocasionar parada do veículo selecionado.',
       // imageUrl: 'assets/modals/bloquear.png',
       imageWidth: 100,
       showCancelButton: true,
@@ -651,11 +651,11 @@ export class VeiculosMapaComponent implements OnDestroy {
       }
     })
   }
-  
+
   desbloquear(veiculo: Veiculo) {
     this.swalWithBootstrapButtons.fire({
-      title: 'Desbloqueio',
-      text: 'Tem certeza que quer enviar o comando de desbloqueio?',
+      title: 'Comando de desbloqueio',
+      text: 'Tem certeza que você deseja enviar o comando de desbloqueio? Essa ação irá restaurar o funcionamento do veículo selecionado.',
       // imageUrl: 'assets/modals/desbloquear.png',
       imageWidth: 100,
       showCancelButton: true,

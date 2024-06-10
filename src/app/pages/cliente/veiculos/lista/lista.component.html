@@ -4,8 +4,8 @@
     </span>
     <h6>{{ this.titlePage }}</h6>
     <div class="lista-actions">
-        <i class="icon ion-md-car" aria-hidden="true" (click)="this.mapaVeiculos()"></i>
-        <i class="icon ion-md-refresh" aria-hidden="true" (click)="this.refresh()"></i>
+        <i class="fa fa-map" aria-hidden="true" (click)="this.mapaVeiculos()"></i>
+        <!-- <i class="icon ion-md-refresh" aria-hidden="true" (click)="this.refresh()"></i> -->
     </div>
 </nav>
 
@@ -19,9 +19,9 @@
             <span class="input-group-text" id="label-search-bem">
                 <i class="icon ion-md-search" aria-hidden="true"></i>
             </span>
-            <input type="text" class="form-control" 
-            placeholder="Placa, Motorista ou Veículo" 
-            aria-label="Procure por placa, Motorista ou Veículo" 
+            <input type="text" class="form-control"
+            placeholder="Placa, Motorista ou Veículo"
+            aria-label="Procure por placa, Motorista ou Veículo"
             aria-describedby="label-search-bem"
             [(ngModel)]="this.searchValue"
             (input)="this.filterSelectBem()" />
@@ -29,7 +29,7 @@
                 <i class="icon ion-md-close" aria-hidden="true"
                 *ngIf="this.searchValue" (click)="this.filterCancelSelectBem()"></i>
             </span>
-        </div> 
+        </div>
         <div class="filter-group" (click)="this.openFilterStatus(true)">
             <span>
                 <i class="icon ion-md-funnel"></i>
@@ -45,7 +45,7 @@
                 </span>
                 <div class="vehicle-detail">
                     <span class="plate">{{item.name}}</span>
-                    <span class="model">({{ item.marca }})</span>
+                    <span class="model">({{ item.marca}})</span>
                 </div>
 
                 <div class="vehicle-status">
@@ -133,7 +133,7 @@
                         <i color="iconscolor" class="fa fa-exclamation-triangle size-1_5"></i>
                     </div>
                     <div (click)="notificacoes(item)">
-                        <i color="iconscolor" class="fa fa-plug size-1_5" [class.push_on]="item.push_status === 1"></i>
+                        <i color="iconscolor" class="fa fa-plug"></i>
                     </div>
                 </div>
             </div>

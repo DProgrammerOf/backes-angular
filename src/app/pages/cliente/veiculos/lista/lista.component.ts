@@ -118,7 +118,7 @@ export class VeiculosListaComponent implements OnDestroy {
           }
         }
       )
-    }, 8000 );
+    }, 4000 );
 
     // alert(this.app.platform?.toLocaleLowerCase());
   }
@@ -177,8 +177,8 @@ export class VeiculosListaComponent implements OnDestroy {
 
   bloquear(veiculo: Veiculo) {
     this.swalWithBootstrapButtons.fire({
-      title: 'Bloqueio',
-      text: 'Tem certeza que quer enviar o comando de bloqueio?',
+      title: 'Comando de bloqueio',
+      text: 'Tem certeza que você deseja enviar o comando de bloqueio? Essa ação irá ocasionar parada do veículo selecionado.',
       // imageUrl: 'assets/modals/bloquear.png',
       imageWidth: 100,
       showCancelButton: true,
@@ -198,8 +198,8 @@ export class VeiculosListaComponent implements OnDestroy {
 
   desbloquear(veiculo: Veiculo) {
     this.swalWithBootstrapButtons.fire({
-      title: 'Desbloqueio',
-      text: 'Tem certeza que quer enviar o comando de desbloqueio?',
+      title: 'Comando de desbloqueio',
+      text: 'Tem certeza que você deseja enviar o comando de desbloqueio? Essa ação irá restaurar o funcionamento do veículo selecionado.',
       // imageUrl: 'assets/modals/desbloquear.png',
       imageWidth: 100,
       showCancelButton: true,
@@ -255,7 +255,7 @@ export class VeiculosListaComponent implements OnDestroy {
     let new_status = veiculo.push_status === 1 ? 0 : 1;
     this.swalWithBootstrapButtons.fire({
       title: title,
-      text: `Tem certeza que você quer as ${title.toLowerCase()} notificações de Alimentação/Violação da Energia do Rastreador/Veiculo?`,
+      text: `Tem certeza que você quer ${title.toLowerCase()} de Alimentação/Violação da Energia do Rastreador/Veículo?`,
       imageWidth: 100,
       showCancelButton: true,
       cancelButtonText: 'Cancelar',

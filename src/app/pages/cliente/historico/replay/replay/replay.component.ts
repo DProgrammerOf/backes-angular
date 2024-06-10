@@ -20,7 +20,7 @@ export class HistoricoReplayComponent {
   map: L.Map | undefined;
   titlePage: String = 'Replay';
   historico: Localizacao[] | undefined;
-  
+
   // Replay
   posicao:any;
   veiculo: Veiculo | undefined;
@@ -46,7 +46,7 @@ export class HistoricoReplayComponent {
   // Calculate odometers diff diario
   diff: any = 0;
   diffType: String = 'none';
-  
+
   constructor(
     protected app: AppComponent,
     protected base: ClienteComponent,
@@ -65,9 +65,9 @@ export class HistoricoReplayComponent {
     if (this.trajeto) {
       var trajetoAllStr = "";
       this.trajeto.forEach( (posicao) => {
-        this.trajetoLatLng.push( 
+        this.trajetoLatLng.push(
           new L.LatLng(
-            parseFloat(posicao.latitudeDecimalDegrees.toString()), 
+            parseFloat(posicao.latitudeDecimalDegrees.toString()),
             parseFloat(posicao.longitudeDecimalDegrees.toString())
           )
         );
@@ -391,36 +391,35 @@ export class HistoricoReplayComponent {
 
   updatePopup(): void {
     let html = `<div class='popup-replay'>
-      <div class='header'>
-        (${this.veiculo?.name}) ${this.veiculo?.modelo} ${this.veiculo?.cor}
+      <div>
+      <i class="fa fa-location-arrow" aria-hidden="true"></i>
+        <span>Placa:</span>
+        <span class='value'>${this.veiculo?.name}</span>
       </div>
       <div>
-        <hr style="margin-top: 5px; margin-bottom: 5px;">
-      </div>
-      <div>
-        <i class="fa fa-tachometer" aria-hidden="true"></i> 
-        <span>Velocidade:</span>
-        <span class='value'>${this.velocidade} km/h</span>
-      </div>
-      <div>
-        <i class="fa fa-road" aria-hidden="true"></i> 
-        <span>Distância:</span>
-        <span class='value'>${this.distance} km</span>
-      </div>
-      <div>
-        <i class="fa fa-clock-o" aria-hidden="true"></i> 
+        <i class="fa fa-clock-o" aria-hidden="true"></i>
         <span>Duração:</span>
         <span class='value'>${this.tempo}</span>
       </div>
       <div>
-        <i class="fa fa-flag-o" aria-hidden="true"></i> 
+        <i class="fa fa-flag-o" aria-hidden="true"></i>
         <span>Paradas:</span>
         <span class='value'>${this.paradas}</span>
       </div>
       <div>
-        <i class="fa fa-usd" aria-hidden="true"></i> 
+        <i class="fa fa-usd" aria-hidden="true"></i>
         <span>Gasto:</span>
         <span class='value'>R$${this.gasto}</span>
+      </div>
+      <div>
+        <i class="fa fa-road" aria-hidden="true"></i>
+        <span>Distância:</span>
+        <span class='value'>${this.distance} km</span>
+      </div>
+      <div>
+        <i class="fa fa-tachometer" aria-hidden="true"></i>
+        <span>Velocidade:</span>
+        <span class='value'>${this.velocidade} km/h</span>
       </div>
     </div>`;
     this.posicao.setPopupContent(html);

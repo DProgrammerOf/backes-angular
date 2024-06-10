@@ -37,7 +37,7 @@ export class HistoricoParadasComponent implements OnInit {
     if(this.paradas) {
       this.paradas.forEach( (posicao) => {
         this.paradasLatLng.push( new L.LatLng(
-          parseFloat(posicao.latitude.toString()), 
+          parseFloat(posicao.latitude.toString()),
           parseFloat(posicao.longitude.toString())
         ) );
       });
@@ -181,7 +181,7 @@ export class HistoricoParadasComponent implements OnInit {
         });
         var marker = new L.Marker(
           new L.LatLng(
-            parseFloat(posicao.latitude.toString()), 
+            parseFloat(posicao.latitude.toString()),
             parseFloat(posicao.longitude.toString())
             ), {
           icon:	new CustomIconNumbered()
@@ -216,19 +216,18 @@ export class HistoricoParadasComponent implements OnInit {
         var markerPopup =
         '<div class="row">'
         +  '<div style="width: 270px; text-transform:uppercase; font-size:10px;" id="info-title" class="panel-heading ">'
-        +  '(' + posicao.Placa + ')&nbsp' + posicao.Modelo + '&nbsp' + posicao.Cor + '</div>'
         +  '<div class="col-md-12 col-sm-12 col-xs-12">'
-        +      '<hr style="margin-top: 5px; margin-bottom: 5px;">'
+
         +  '</div>'
 
         +   '<div class="ft-marker-details" style="width: 240px; float: left;height: 100%;">'
-
+        +    '<div class="info-marker"><span><i class="fa fa-location-arrow"></i> Placa: <strong>'+ posicao.Placa +'</strong></span></div>'
         +    '<div class="info-marker"><span><i class="fa fa-calendar"></i> Parou: <strong>'+infosDataCarro+'</strong></span></div>'
         +    '<div class="info-marker"><span><i class="fa fa-calendar"></i> Saiu: <strong>'+infosDataCarroSaida+'</strong></span></div>'
         +    '<div class="info-marker"><span><i class="fa fa-address-card" aria-hidden="true"></i> Motorista: <strong>'+posicao.motorista+'</strong></span></div>'
         +    '<div class="info-marker"><span><svg class="iconpop svg-inline--fa fa-key fa-w-16" aria-hidden="true" data-fa-processed="" data-prefix="fa" data-icon="key" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M512 176.001C512 273.203 433.202 352 336 352c-11.22 0-22.19-1.062-32.827-3.069l-24.012 27.014A23.999 23.999 0 0 1 261.223 384H224v40c0 13.255-10.745 24-24 24h-40v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24v-78.059c0-6.365 2.529-12.47 7.029-16.971l161.802-161.802C163.108 213.814 160 195.271 160 176 160 78.798 238.797.001 335.999 0 433.488-.001 512 78.511 512 176.001zM336 128c0 26.51 21.49 48 48 48s48-21.49 48-48-21.49-48-48-48-48 21.49-48 48z"></path></svg>'
         +       'Parou por: <strong>' + tempoParado + '</strong></div>'
-        +    '<div class="info-map-marker"><span><svg class="iconpop svg-inline--fa fa-map-marker-alt fa-w-12" style="margin-right: 0px;" aria-hidden="true" data-fa-processed="" data-prefix="fa" data-icon="map-marker-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path></svg>'
+        +    '<div class="info-map-marker"><span><svg class="iconpop svg-inline--fa fa-map-marker-alt fa-w -12" style="margin-right: 0px;" aria-hidden="true" data-fa-processed="" data-prefix="fa" data-icon="map-marker-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path></svg>'
         +       'Endereço:<br><p class="endereco" style="margin: 0.2em 0 0 1.2em;font-size: 11px;"><strong>' + posicao.Endereco + '</strong></p>'
         +    '</div>'
         +  '</div>'
@@ -242,7 +241,7 @@ export class HistoricoParadasComponent implements OnInit {
 
       this.map.fitBounds(this.paradasLayer.getBounds());
     }
-  } 
+  }
 
   avancarPosicao(){
       this.paradasPasso++;
@@ -253,7 +252,7 @@ export class HistoricoParadasComponent implements OnInit {
       }
 
       layerMarker.openPopup();
-      this.map.setView(this.paradasLatLng[this.paradasPasso], 15);
+      this.map.setView(this.paradasLatLng[this.paradasPasso], 20);
   }
 
   voltarPosicao(){
@@ -265,12 +264,12 @@ export class HistoricoParadasComponent implements OnInit {
     }
 
     layerMarker.openPopup();
-    this.map.setView(this.paradasLatLng[this.paradasPasso], 15);
+    this.map.setView(this.paradasLatLng[this.paradasPasso], 20);
   }
 
   verPosicao(){
       var layerMarker = this.paradasLayer.getLayers()[this.paradasPasso];
       layerMarker.openPopup();
-      this.map.setView(this.paradasLatLng[this.paradasPasso], 15);
+      this.map.setView(this.paradasLatLng[this.paradasPasso], 20);
   }
 }

@@ -34,20 +34,20 @@ const Relatorios = {
 export class HistoricoComponent {
   titlePage: String = 'Histórico';
   datePeriodClass: String = 'hide';
-  form: HistoricoForm = { 
+  form: HistoricoForm = {
     veiculo: undefined,
     placa: undefined,
-    relatorio: Relatorios.TIPO_REPLAY, 
+    relatorio: Relatorios.TIPO_REPLAY,
     periodo: 'Hoje',
     periodoDates: {
       dia: moment().format('YYYY-MM-DD'),
       inicio: '00:00',
       fim: '23:59'
     }
-    
+
     // veiculo: "863656044446198",
     // placa: "RTW-6D97",
-    // relatorio: Relatorios.TIPO_REPLAY, 
+    // relatorio: Relatorios.TIPO_REPLAY,
     // periodo: 'Personalizado',
     // periodoDates: {
     //   dia: '2023-03-05',
@@ -57,7 +57,7 @@ export class HistoricoComponent {
 
     // veiculo: "863656044513922",
     // placa: "RVI-2C29",
-    // relatorio: Relatorios.TIPO_REPLAY, 
+    // relatorio: Relatorios.TIPO_REPLAY,
     // periodo: 'Personalizado',
     // periodoDates: {
     //   dia: '2023-04-19',
@@ -67,7 +67,7 @@ export class HistoricoComponent {
 
     // veiculo: "511123075",
     // placa: "BDC-1H72",
-    // relatorio: Relatorios.TIPO_REPLAY, 
+    // relatorio: Relatorios.TIPO_REPLAY,
     // periodo: 'Personalizado',
     // periodoDates: {
     //   dia: '2022-02-22',
@@ -83,9 +83,9 @@ export class HistoricoComponent {
     overlayClass: 'hidden',
     selectClass: 'closed',
     filterValue: '',
-    inputValue: 'Seleciona veículo'
+    inputValue: 'Selecione a placa'
   };
-  
+
   constructor(
     protected app: AppComponent,
     protected base: ClienteComponent,
@@ -186,7 +186,7 @@ export class HistoricoComponent {
   }
   filterCancelSelectBem() {
     this.selectBem.filterValue = '';
-    this.filterSelectBem();         
+    this.filterSelectBem();
   }
   filteredSelectBem(name: String) {
     return this.selectBem.veiculos.filter( (veiculo) => {
@@ -227,16 +227,6 @@ export class HistoricoComponent {
             handler: () => {this.form.relatorio = Relatorios.TIPO_REPLAY;}
           },
           {
-              text: 'Desenhado',
-              icon: 'fa-map-o',
-              handler: () => {this.form.relatorio = Relatorios.TIPO_DESENHO;}
-          },
-          {
-              text: 'Lista',
-              icon: 'fa-list',
-              handler: () => {this.form.relatorio = Relatorios.TIPO_LISTA;}
-          },
-          {
               text: 'Paradas',
               icon: 'fa-map-marker',
               handler: () => {this.form.relatorio = Relatorios.TIPO_PARADAS;}
@@ -245,6 +235,16 @@ export class HistoricoComponent {
             text: 'Viagens',
             icon: 'fa-flag-checkered',
             handler: () => {this.form.relatorio = Relatorios.TIPO_VIAGENS;}
+          },
+          {
+              text: 'Endereços',
+              icon: 'fa-list',
+              handler: () => {this.form.relatorio = Relatorios.TIPO_LISTA;}
+          },
+          {
+              text: 'Desenhado',
+              icon: 'fa-map-o',
+              handler: () => {this.form.relatorio = Relatorios.TIPO_DESENHO;}
           }
         ]);
       break;
@@ -253,41 +253,41 @@ export class HistoricoComponent {
           {
             text: 'Hoje',
             handler: () => {
-              this.form.periodo = 'Hoje'; 
+              this.form.periodo = 'Hoje';
               this.datePeriodClass = 'hide';
-              this.usarAtalho('hoje'); 
+              this.usarAtalho('hoje');
             }
           },
           {
             text: 'Ontem',
             handler: () => {
-              this.form.periodo = 'Ontem'; 
+              this.form.periodo = 'Ontem';
               this.datePeriodClass = 'hide';
-              this.usarAtalho('ontem'); 
+              this.usarAtalho('ontem');
             }
           },
           {
             text: '2 dias atrás',
             handler: () => {
-              this.form.periodo = '2 dias atrás'; 
+              this.form.periodo = '2 dias atrás';
               this.datePeriodClass = 'hide';
-              this.usarAtalho('2dias'); 
+              this.usarAtalho('2dias');
             }
           },
           {
             text: '3 dias atrás',
             handler: () => {
-              this.form.periodo = '3 dias atrás'; 
+              this.form.periodo = '3 dias atrás';
               this.datePeriodClass = 'hide';
-              this.usarAtalho('3dias'); 
+              this.usarAtalho('3dias');
             }
           },
           {
             text: 'Personalizado',
             handler: () => {
-              this.form.periodo = 'Personalizado'; 
+              this.form.periodo = 'Personalizado';
               this.datePeriodClass = 'show';
-              this.usarAtalho('personalizado'); 
+              this.usarAtalho('personalizado');
             }
           }
         ]);

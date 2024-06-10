@@ -21,8 +21,10 @@
                 "alerta.message.toLowerCase().split(' ligada').length > 1 || alerta.message.toLowerCase().split('curva').length > 1 || alerta.message.toLowerCase().split('desbloqueio').length > 1"
                 [class.item-turquesa]=
                 "alerta.message.toLowerCase().split('cerca').length > 1"
+                [class.item-amarelo]=
+                "alerta.message.toLowerCase().split('i-button').length > 1"
                 [class.item-azul]=
-                "alerta.message.toLowerCase().split('velocidade').length > 1 || alerta.message.toLowerCase().split('estacionando').length > 1"
+                "alerta.message.toLowerCase().split('limite').length > 1 || alerta.message.toLowerCase().split('estacionando').length > 1 "
                 [class.item-laranja]=
                 "alerta.message.toLowerCase().split('freiou').length > 1"
                 >{{ this.veiculo?.name }}</span>

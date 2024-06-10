@@ -5,7 +5,7 @@ html, body {
     // background-color: #186465!important;
     background-color: #186465;
     background-repeat: no-repeat;
-    background-size: cover; 
+    background-size: cover;
     min-height: 100vh;
     min-width: 100vw;
     overflow-x: hidden;
@@ -17,7 +17,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 /* GLOBAL TO APP MOTORISTA */
 .content-motorista-app-android {
     padding-bottom: 8rem !important;
-    
+
     #btnCreate {
         bottom: 4rem !important;
     }
@@ -80,6 +80,7 @@ main.content-client-app {
             font-size: 12px !important;
             line-height: 1.5 !important;
             font-family: "Helvetica Neue", Arial, Helvetica, sans-serif !important;
+            text-transform: initial;
         }
     }
 
@@ -123,15 +124,15 @@ main.content-client-app {
             font-weight: bold;
         }
         .header {
-            width: 270px; 
-            text-transform:uppercase; 
+            width: 270px;
+            text-transform:uppercase;
             font-size:10px;
         }
     }
 }
 
 #map {
-    .iconpop{ 
+    .iconpop{
 		width: 12px;
 		height: 12px;
     }
@@ -340,7 +341,7 @@ main.content-client-app:not([class*="content-client-app-android"]) {
             width: 100% !important;
         }
     }
-    
+
     .swal2-image {
         margin-bottom: 0 !important;
         margin-top: 1rem !important;
@@ -376,17 +377,13 @@ nav.header-client-app {
 
 .content-client-app-android {
     padding-bottom: 8rem !important;
-    
+
     #addCerca, #addLink {
         bottom: 4rem !important;
     }
 
     #replay-control {
-        bottom: calc(4rem + 110px + 2%) !important;
-    }
-
-    #replay-infos {
-        bottom: calc(4rem + 1%) !important;
+        bottom: calc(4rem + 2%) !important;
     }
 
     #controladorParadas {
@@ -438,14 +435,14 @@ body, span, button, h1, h2, h3, h4, h5, h6, p {
     fill: $greecustom;
 }
 .fill-danger {
-    fill: $danger;   
+    fill: $danger;
 }
 /* COLORS BOOTSTRAP -> IONIC */
 
 /* MAP VEICULOS - LIST */
 .map-veiculo, .map-veiculos {
-   
-    .leaflet-control { 
+
+    .leaflet-control {
         background: transparent;
         a {
             background-color: white;
@@ -463,7 +460,7 @@ body, span, button, h1, h2, h3, h4, h5, h6, p {
             flex-direction: column !important;
             align-items: center !important;
             justify-content: center !important;
-            
+
             i, svg {
                 font-size: 1rem !important;
                 color: rgba(0,0,0,.6) !important;

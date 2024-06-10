@@ -7,7 +7,7 @@
 </nav>
 
 
-<main class="content-client-app" (click)="this.base.setMenu(false)" [class.content-client-app-android]="this.app.platform?.toLocaleLowerCase() == 'android'" >
+<main class="content-client-app content-client-app-android" (click)="this.base.setMenu(false)"  >
     <div id="map" class="map-replay"></div>
 
     <div id="replay-control">
@@ -20,7 +20,7 @@
         </div>
 
         <div class="slidecontainer">
-            <input #trajetoSlider type="range" class="form-range" [(ngModel)]="trajetoPasso" min="0" [max]="trajeto && trajeto.length-1" 
+            <input #trajetoSlider type="range" class="form-range" [(ngModel)]="trajetoPasso" min="0" [max]="trajeto && trajeto.length-1"
             color="primary" (change)="this.avancarPosicao(trajetoSlider.value)" (input)="this.avancarPosicao(trajetoSlider.value)">
         </div>
 

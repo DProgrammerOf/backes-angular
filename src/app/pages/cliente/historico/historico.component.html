@@ -17,41 +17,41 @@
                 <span (click)="this.openSelectBem()">{{ this.selectBem.inputValue }}</span>
             </div>
         </div>
-    
+
         <div>
             <span>Relatório</span>
             <div class="form-select" (click)="this.openSelect('relatorio')">
                 <span>{{ this.form.relatorio }}</span>
             </div>
         </div>
-    
+
         <div>
             <span>Período</span>
             <div class="form-select" (click)="this.openSelect('periodo')">
                 <span>{{  this.form.periodo }}</span>
             </div>
         </div>
-    
+
         <div [className]="this.datePeriodClass">
             <span>Data</span>
             <input class="form-control input-date" [(ngModel)]="this.form.periodoDates.dia"
             type="date" id="data" />
         </div>
-    
+
         <div [className]="this.datePeriodClass">
             <span>Inicio</span>
             <input class="form-control input-date" [(ngModel)]="this.form.periodoDates.inicio"
             type="text" name="data-inicio" id="data-inicio" maxlength="5" />
         </div>
-    
+
         <div [className]="this.datePeriodClass">
             <span>Final</span>
             <input class="form-control input-date" [(ngModel)]="this.form.periodoDates.fim"
             type="text" id="data-final" maxlength="5" />
         </div>
     </div>
-    
-    
+
+
     <div class="d-grid mt-4">
         <button class="btn btn-primary p-2" type="button" (click)="this.getRelatorio()">Gerar Relatório</button>
     </div>
@@ -63,9 +63,9 @@
         <span class="input-group-text" id="label-search-historico-bem">
             <i class="fa fa-search" aria-hidden="true"></i>
         </span>
-        <input type="text" class="form-control" 
-        placeholder="Placa, motorista ou veículo" 
-        aria-label="Procure por placa, motorista ou veículo" 
+        <input type="text" class="form-control"
+        placeholder="Placa, motorista ou veículo"
+        aria-label="Procure por placa, motorista ou veículo"
         aria-describedby="label-search-historico-bem"
         [(ngModel)]="this.selectBem.filterValue"
         (input)="this.filterSelectBem()" tabindex="-1" />
@@ -73,7 +73,7 @@
             <i class="icon ion-md-close" aria-hidden="true"
             *ngIf="this.selectBem.filterValue" (click)="this.filterCancelSelectBem()"></i>
         </span>
-    </div> 
+    </div>
     <div class="bem-list">
         <div *ngFor="let item of this.selectBem.filtered" (click)="selectedBem(item)">
 			({{item.name}}) {{ item.marca }}

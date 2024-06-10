@@ -8,7 +8,8 @@
         font-size: 1.2rem;
 
         i, svg {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
+            margin-right: 5px;
         }
     }
 }
@@ -75,14 +76,14 @@ main.content-client-app {
                 .vehicle-icon {
                     color: #32db64;
                 }
-                .vehicle-status { 
+                .vehicle-status {
                     color: #32db64;
                     border-color: #32db64;
                     background-color: rgba(0,255,0,.1);
                 }
             }
 
-            .card-body-info > .tracker-infos { 
+            .card-body-info > .tracker-infos {
                 .data-speed, .data-odometer, .data-battery {
                     .icon {
                         background-color: rgba(0,255,0,.1);
@@ -113,7 +114,7 @@ main.content-client-app {
                 }
             }
 
-            .card-body-info > .tracker-infos { 
+            .card-body-info > .tracker-infos {
                 .data-speed, .data-odometer, .data-battery {
                     .icon {
                         background-color: rgba(200, 47, 47, 0.2);
@@ -161,13 +162,13 @@ main.content-client-app {
                 justify-content: space-evenly;
                 align-items: flex-start;
                 width: 100%;
-    
+
                 .plate {
                     font-weight: bold;
                     font-size: 14px;
                     line-height: 14px;
                 }
-    
+
                 .model {
                     font-size: 10px;
                     line-height: 10px;
@@ -197,7 +198,7 @@ main.content-client-app {
         }
 
 
-        .card-body-info { 
+        .card-body-info {
             border-bottom: 1px solid rgba(0,0,0,.1);
             padding-bottom: 10px;
 
@@ -205,7 +206,7 @@ main.content-client-app {
                 display: flex;
                 flex-direction: row;
                 justify-content: space-evenly;
-                
+
                 .data-odometer {
                     grid-template-columns: 25px 65px;
                 }
@@ -259,7 +260,7 @@ main.content-client-app {
                         }
                     }
                 }
-                
+
             }
         }
 
@@ -327,15 +328,9 @@ main.content-client-app {
                     font-size: 18px;
                     line-height: 18px;
                     padding: 8px .5rem 8px 1rem;
-                    position: relative;
-                    
-                    .fa-plug:not(.push_on) {
-                        color: rgba(0,0,0,.4);
-                        fill: rgba(0,0,0,.4);
-                    }
                 }
             }
-        }  
+        }
     }
 }
 
@@ -355,7 +350,7 @@ main.content-client-app {
             border: 0;
             padding: 0;
         }
-  
+
         span#label-search-bem{
           background: white;
           border-right: 0;
@@ -369,12 +364,12 @@ main.content-client-app {
           background: white;
           border-left: 0;
         }
-  
+
         input {
           border-left: 0;
           border-right: 0;
         }
-  
+
         input:focus {
           box-shadow: none;
           border-color: #ced4da;
@@ -411,7 +406,7 @@ main.content-client-app {
                 margin-top: 6px;
             }
         }
-        
+
     }
 }
 
@@ -438,7 +433,7 @@ main.content-client-app {
     }
     .icon-vehicle {
         width: auto !important;
-        
+
         // .iconLabel {
         //     display: none;
         // }
@@ -455,7 +450,7 @@ main.content-client-app {
     }
     .icon-vehicle {
         width: auto !important;
-        
+
         // .iconLabel {
         //     display: none;
         // }
@@ -532,7 +527,7 @@ main.content-client-app {
                 align-items: center;
                 height: 35px;
                 width: 100%;
-                
+
                 label {
                     width: 100%;
                     font-size: 14px;
